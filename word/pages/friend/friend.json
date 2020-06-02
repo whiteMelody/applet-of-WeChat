@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "login-tag": "/pages/login/login"
+  },
+  "navigationBarBackgroundColor": "#093D73",
+  "navigationBarTextStyle": "#FFFFFF",
+  "navigationBarTitleText": "好友对战",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "disableScroll": true
+}

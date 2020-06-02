@@ -1,0 +1,63 @@
+<!--pages/material/material.wxml-->
+<view class="wb100">
+  <view class="wb25 warpper-gray-9 text-center F30 fl" style='height:{{height}}px'>
+    <scroll-view scroll-y style="height:{{height}}px">
+      <block wx:for="{{gradeList}}" wx:key="">
+        <block wx:if="{{grade == item}}">
+          <view class="wb100 h120rpx lh120rpx Fblue-6 bor-solid-8l bor-blue5 warpper-white">{{item}}</view>
+        </block>
+        <block wx:else>
+          <view class="wb100 h120rpx lh120rpx Fgray-3" bindtap="select" data-grade="{{item}}">{{item}}</view>
+        </block>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="wb75 fr" style='height:{{height}}px'>
+    <view class="pal30 par30">
+      <view class="wb100">
+        <scroll-view scroll-y style="height:{{height}}px">
+          <view class="clear h40rpx"></view>
+          <block wx:for="{{bookList}}" wx:key="">
+            <view class="wb50 fl" bindtap="choose" data-bookid="{{item.bookid}}" data-title="{{item.title}}">
+              <block wx:if="{{item.bookImg == '' || item.bookImg == null}}">
+                <block wx:if="{{item.bookid == bid}}">
+                  <view class="w200rpx h280rpx warpper-gray-11 center">
+                    <view class="w200rpx h280rpx absolute">
+                      <image class="w40rpx h40rpx absolute" src='/images/xz.png' style='z-index:999;right:20rpx;top:20rpx'></image>
+                      <view class="w200rpx h280rpx absolute" style='background: rgba(0,0,0,.5);z-index:99'></view>
+                    </view>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class="w200rpx h280rpx warpper-gray-11 center"></view>
+                </block>
+              </block>
+              <block wx:else>
+                <view class="w200rpx h280rpx center">
+                  <view class="w200rpx h280rpx absolute">
+                    <block wx:if="{{item.bookid == bid}}">
+                      <image class="w40rpx h40rpx absolute" src='/images/xz.png' style='z-index:999;right:20rpx;top:20rpx'></image>
+                      <view class="w200rpx h280rpx absolute" style='background: rgba(0,0,0,.5);z-index:99'></view>
+                      <image class="w200rpx h280rpx absolute" src='{{item.bookImg}}' style='z-index:9'></image>
+                    </block>
+                    <block wx:else>
+                      <image class="w200rpx h280rpx absolute" src='{{item.bookImg}}' style='z-index:9'></image>
+                    </block>
+                  </view>
+                </view>
+              </block>
+              <view class="clear h20rpx"></view>
+              <block wx:if="{{item.bookid == bid}}">
+                <view class="F24 text-center Fblue-6">{{item.title}}</view>
+              </block>
+              <block wx:else>
+                <view class="F24 text-center">{{item.title}}</view>
+              </block>
+              <view class="clear h20rpx"></view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>

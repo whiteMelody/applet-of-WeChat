@@ -1,0 +1,67 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "touristappid",
+	"projectname": "bookrack",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "卡片(cards)",
+					"pathName": "pages/cards/cards",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "标签(tags)",
+					"pathName": "pages/tags/tags",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索（search）",
+					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情（detail）",
+					"pathName": "pages/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新建卡片（new）",
+					"pathName": "pages/new/new",
+					"query": ""
+				}
+			]
+		}
+	}
+}

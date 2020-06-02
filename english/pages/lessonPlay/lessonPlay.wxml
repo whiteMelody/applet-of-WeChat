@@ -1,0 +1,147 @@
+<!--pages/lessonPlay/lessonPlay.wxml-->
+<view class='wb100 warpper-gray-5' style='min-height:{{height}}px'>
+
+  <!-- download -->
+  <view class='wb100' hidden='{{!showDownload}}'>
+    <view class="dialogBg" bindtap="closeDownload"></view>
+    <view style='top:0; bottom:0; right:0; left:0; margin:auto; position:fixed; border-radius:5rpx; z-index:9999; width:550rpx; height:370rpx; background-color:#ffffff; '>
+
+        <view class="clear1"></view>
+
+        <view style='font-size:36rpx; text-align: center; color:#333;'>温馨提示</view>
+
+        <view class="clear1"></view>
+
+        <view style='text-align: center; color:#aaa; font-size:28rpx; line-height:40rpx; padding: 0 60rpx;'>请下载app体验完整内容，现在前往下载吗？</view>
+
+        <view class="clear1"></view>
+
+        <view class="wb100" style='border-bottom:1rpx solid #e1e1e1'></view>
+
+        <view class="h140rpx lh70rpx pat10 pab10 text-center Fblue F32">
+          <view data-url="https://itunes.apple.com/cn/app/7%E5%A4%A9%E8%8B%B1%E8%AF%AD-%E7%96%AF%E7%8B%82%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD%E5%90%AC%E5%8A%9B%E9%80%9A/id455568840?mt=8" bindtap='copyUrl'>
+            IOS版下载地址
+          </view>
+          <view class="wb100" data-url="https://a.app.qq.com/o/simple.jsp?pkgname=com.mizao.sevendayenglish" bindtap='copyUrl'>
+            安卓版下载地址
+          </view>
+                    
+        </view>
+
+    </view>
+
+  </view>
+
+  
+  <view style='background-color:#101010' class='pa5'>
+    <view class="wb100 center" style='height:92rpx; background:url(/images/bg-title.png); background-size:100% 100%;'>
+      <image src='/images/icon-lrc.png' style='width:96rpx; height:62rpx; margin:15rpx; float:left;' bindtap='openLrc' />
+      <view style='width:488rpx; ' class='Fwhite F32 text-center h100rpx lh100rpx fl'>
+        {{lesson.lessonName}}
+      </view>
+      <image src='/images/icon-menu.png' style='width:96rpx; height:62rpx; margin:15rpx; float:right;' bindtap='openMenu' />
+    </view>
+  </view>
+
+  <!-- lrc -->
+  <view class='wb100 h100 fixed' hidden="{{!showLrc}}" style='background:rgba(255,255,255,.8); top:0; left:0; z-index:9999;'>
+
+    <view class='w100rpx h60rpx lh60rpx text-center absolute warpper-blue Fwhite F28 radius30' style='top:10rpx; left:10rpx' bindtap='closeLrc'>关闭</view>
+ 
+    <view class='wb100 h100 fr over-auto' style='background:rgba(255,255,255,.9);'>
+      <view class='pal30 par30 pat50 F26'>
+        <block wx:for="{{lrcs}}" wx:key="{{index}}">
+            <view class="clear1"></view>
+            <view class="wb100 text-center lh40rpx {{ (playTime >= item.p1 && playTime<=item.p2) && index == item.index ? 'Fblue' : 'Fgray-3' }} ">
+              {{item.content}}
+            </view>
+          </block>
+      </view>
+      <view class="clear1"></view>
+    </view>
+  </view>
+
+  <!-- 目录 -->
+  <view class="wb100 h100 fixed" hidden="{{!showMenu}}" style='background:rgba(255,255,255,.1); top:0; left:0; z-index:9;' bindtap='closeMenu'>
+    <view class='w375rpx h100 fr over-auto' style='background:rgba(255,255,255,.9);'>
+      <view class='pal30 par30 F24'>
+        <block wx:for="{{playList}}" wx:key="{{index}}">
+
+              <view wx:if="{{index < channel.freeLessonNum}}" class="h80rpx lh80rpx text-over-hidden1 bor-gray bor-solid-1b {{ index == currentPlay ? 'Fblue' : 'Fgray-4' }}" bindtap="changePlay" data-id="{{item.lessonID}}">
+                  {{item.lessonName}}
+              </view>
+              <view wx:else class="h80rpx lh80rpx text-over-hidden1 bor-gray bor-solid-1b Fgray-5 {{ index == currentPlay ? 'Fblue' : 'Fgray-4' }}" bindtap="buyLesson">
+                  {{item.lessonName}}
+              </view>
+          </block>
+        </view>
+    </view>
+  </view>
+ 
+  <view class="clear h100rpx"></view>
+
+  <!-- bg -->
+  <view class="center relative" style='width:630rpx; height:630rpx'>
+
+    <view style='width:630rpx; height:630rpx' animation="{{animationData}}">
+
+      <image src='/images/play-bg.png' style='width:630rpx; height:630rpx' />
+
+      <image src='{{channel.iconURL}}?x-oss-process=image/resize,m_fixed,h_240,w_240' style='width:240rpx; height:240rpx; left:0; right:0; top:0; bottom:0; margin:auto; z-index:1;' class='radius50per absolute'></image>
+
+      <image src='/images/play-point.png' style='width:52rpx; height:52rpx; left:0; right:0; top:0; bottom:0; margin:auto; z-index:2;' class='radius50per absolute' />
+
+    </view>
+
+    <view class="absolute" style='width:216rpx; height:498rpx; right:-35rpx; top:0; z-index:1;'>
+      <image src='/images/play-bar.png'  style='width:216rpx; height:498rpx' />
+    </view>
+
+  </view>
+
+  <!-- <view class="clear h100rpx" style='border-bottom:2rpx solid #d2d4d6'></view> -->
+  <!-- <view class="clear h100rpx" style='border-bottom:2rpx solid #d2d4d6'></view> -->
+
+  <view class="clear h100rpx"></view>
+
+  <view class="wb100 absolute" style='bottom: 50rpx'>
+
+    <!-- 各种按钮 -->
+
+    <view class="wb100">
+
+      <view class="center" style='width:428rpx'>
+        <image src='/images/icon-prev.png' style='width:100rpx; height:100rpx; margin-top:14rpx; float:left;' bindtap='prev' />
+        
+        <image hidden="{{isPause}}" src='/images/icon-pause.png' style='width:128rpx; height:128rpx; margin:0 50rpx; float:left;' bindtap='pause' />
+        <image hidden="{{!isPause}}" src='/images/icon-play.png' style='width:128rpx; height:128rpx; margin:0 50rpx; float:left;' bindtap='play' />
+
+        <image src='/images/icon-next.png' style='width:100rpx; height:100rpx; margin-top:14rpx; float:left;' bindtap='next' />
+      </view>
+
+    </view>
+
+    <view class="clear1"></view>
+
+    <!-- 进度条 -->
+    <view class="relative" style='padding: 0 120rpx;'>
+      <view class="absolute F32 w100rpx" style='left:50rpx; top:0; color:#959698;'>
+        {{currentTime}}
+      </view>
+      <slider value="{{playSeek}}" bindchange="changed" bindchanging="changeing" backgroundColor="#bec3c7" block-size="12" block-color="#ededed" activeColor="#848486" />
+      <view class="absolute F32 fr w100rpx text-right" style='right:50rpx; top:0; color:#959698;'>
+        {{totleTime2}}
+      </view>
+    </view>
+  </view>
+
+  <view class='clear h100rpx'></view>
+
+<!-- 
+  <view style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1; " class="img-area">
+      <div style="position: fixed; z-index: 2; width: 100%; height: 100%; background: rgba(0,0,0,.5)"></div>
+      <div class="wb100 lrc-bg2 lrc-bg z-show" :style="'background: url('+bg+ '?x-oss-process=image/resize,m_fill,h_500,w_500)'">
+      </div>
+  </div> -->
+
+</view>

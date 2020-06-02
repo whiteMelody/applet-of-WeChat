@@ -1,0 +1,22 @@
+.tag {
+  width: 80%;
+  margin: 15rpx 10%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #fff;
+  border-radius: 10rpx;
+  color: #333;
+  font-size: 30rpx;
+  border: 1rpx solid #979797;
+}
+
+.active {
+  background: #f8e71c;
+  color: #fff;
+}
+
+.fav{ position: absolute; top: 10rpx; right: 10rpx; color:#4a4a4a; font-size:20rpx; line-height:20rpx; }
+
+.tag-area{ position: fixed; left: 0; top: 0; z-index: 9; background: #ffffff; box-shadow: 0 0 5px #e1e1e1; }
+.tag-area-btn{position: fixed;z-index: 99;}

@@ -1,0 +1,44 @@
+<!--pages/member/member.wxml-->
+<view class="wb100">
+
+  <view class="wb100 h90rp lh90rpx F34">
+    <view class="pal40 par40">
+      <view class="fl">相册成员</view>
+      <view class="fr">{{mem_count}}人</view>
+    </view>
+  </view>
+
+  <view class="clear"></view>
+
+  <block wx:for="{{users}}" wx:key="{{key}}">
+    <view class="wb100 h140rp lh140rpx F34">
+      <view class="pal40">
+        <image class="fl w80rpx h80rpx radius50per mat35" src='{{item.head}}'></image>
+        <view class="fl mal20 w400rpx text-over-hidden1">{{item.name}}</view>
+        <block wx:if="{{index == 0}}">
+          <view class="fr par40">管理员</view>
+        </block>
+        <block wx:else>
+          <view class="fr par20" bindtap="delete" data-user_id="{{item.user_id}}" wx:if="{{userID == admin_id}}">
+            <view class="w140rpx warpper-red-8 text-center Fwhite h60rpx lh60rpx mat40 F34 radius15">删除</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="clear"></view>
+  </block>
+
+  <view class="clear h200rpx"></view>
+
+  <view class="wb100 text-center fixed warpper-white F36 h180rpx" style='bottom:0rpx'>
+    <view class="pa40">
+      <navigator url='../share/share?cover={{cover}}&photo_id={{photo_id}}'>
+        <view class='h100rpx lh100rpx warpper-green-4 wb100 Fwhite radius50'>添加成员</view>
+      </navigator>
+    </view>
+  </view>
+
+
+
+
+</view>

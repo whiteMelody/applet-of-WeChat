@@ -1,0 +1,107 @@
+<view class="dialog-loading" hidden="{{loading}}">
+  <image src="../../image/loading.gif" mode="aspectFit" style=" width:46px; height:46px; position:fixed; top:0; left:0; right:0; bottom:0; margin:auto;"></image>
+</view>
+<view class="wb100" wx:if="{{noData}}">
+  <image src="../../image/img-no-data.png" mode="aspectFit" style=" position:fixed; bottom:0; left:0; top:0; right:0; margin:auto;"></image>
+</view>
+<view class="wb100 warpper-gray-1" wx:else bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend">
+  <view class="clear"></view>
+  <view class="pa30">
+    <view class="wb100 lh25px">{{current.id}}.{{current.question}}</view>
+    <view class="clear1"></view>
+    <view wx:if="{{current.url != ''}}">
+      <image src="{{current.url}}" mode="aspectFit" class="wb100"></image>
+    </view>
+    <view class="clear1"></view>
+    <view class="h30px lh30px mab10 Fgray-3 option-item " data-id="{{current.id}}" data-oid="1" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption">
+      <view class="option fl mar10" wx:if="{{current.option1.show}}">A</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option1.class == 'success'}}" src="../../image/icon-success2.png" style="width:30px; height:30px;"></image>
+        <image wx:elif="{{current.option1.class == 'error'}}" src="../../image/icon-error2.png" style="width:30px; height:30px;"></image>
+      </view>
+      <view class="{{current.option1.class}} fl" wx:if="{{current.item1 != ''}}"> {{current.item1}} </view>
+      <view class="text fl" wx:else>正确</view>
+    </view>
+    <view class="h30px lh30px mab10 Fgray-3 option-item " data-id="{{current.id}}" data-oid="2" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption">
+      <view class="option fl mar10" wx:if="{{current.option2.show}}">B</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option2.class == 'success'}}" src="../../image/icon-success2.png" style="width:30px; height:30px;"></image>
+        <image wx:elif="{{current.option2.class == 'error'}}" src="../../image/icon-error2.png" style="width:30px; height:30px;"></image>
+      </view>
+      <view class="text fl {{current.option2.class}}" wx:if="{{current.item2 != ''}}"> {{current.item2}} </view>
+      <view class="text fl" wx:else>正确</view>
+    </view>
+    <view class="h30px lh30px mab10 Fgray-3 option-item" data-id="{{current.id}}" data-oid="3" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption" wx:if="{{current.item3 != ''}}">
+      <view class="option fl mar10" wx:if="{{current.option3.show}}">C</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option3.class == 'success'}}" src="../../image/icon-success2.png" style="width:30px; height:30px;"></image>
+        <image wx:elif="{{current.option3.class == 'error'}}" src="../../image/icon-error2.png" style="width:30px; height:30px;"></image>
+      </view>
+      <view class="text fl {{current.option3.class}}"> {{current.item3}} </view>
+    </view>
+    <view class="h30px lh30px mab10 Fgray-3 option-item" data-id="{{current.id}}" data-oid="4" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption" wx:if="{{current.item4 != ''}}">
+      <view class="option fl mar10" wx:if="{{current.option4.show}}">D</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option4.class == 'success'}}" src="../../image/icon-success2.png" style="width:30px; height:30px;"></image>
+        <image wx:elif="{{current.option4.class == 'error'}}" src="../../image/icon-error2.png" style="width:30px; height:30px;"></image>
+      </view>
+      <view class="text fl {{current.option4.class}}"> {{current.item4}} </view>
+    </view>
+    <block wx:if="{{current.isSelected}}">
+      <view class="clear1"></view>
+      <view style="border-bottom:1px solid #e1e1e1; height:10px; width:100%;"></view>
+      <view class="text-center h40px lh40px Fgray-2 w100px center warpper-gray-1" style="margin-top:-20px;">
+        试题解析
+      </view>
+      <view class="clear1"></view>
+      <view class="pa15 warpper-white">
+        <view>答案：{{current.answer2}}</view>
+        <view class="clear1"></view>
+        <view class="lh25px">{{current.explains}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="h60px clear"></view>
+  <view class="footer">
+    <block wx:if="{{!opened}}">
+      <view class="pa15 warpper-white bor-gray bor-solid-1t">
+        <block wx:if="{{!test}}">
+          <!--<view class="fl" bindtap="del">
+            <image src="../../image/icon-delete.png" class="middle" style="width:20px; height:20px;"></image>
+          </view>
+          <view class="fl mal5 F14 Fgray-3" bindtap="del" style="line-height:24px;">
+            移除
+          </view>-->
+        </block>
+        <view class="fr" bindtap="openFooter">
+          <view class="fl">
+            <image src="../../image/icon-list.png" class="middle" style="width:20px; height:20px;"></image>
+          </view>
+          <view class="fl mal5" style="line-height:24px;">
+            {{id + 1}}/{{datas.length}}
+          </view>
+        </view>
+        <view class="clear"></view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="pal15 par15 pab15 warpper-white bor-gray bor-solid-1t">
+        <scroll-view scroll-y="true" style="height: 200px;">
+          <block wx:for="{{datas}}" wx:key="*this">
+            <view wx:if="{{item.isCorrect == undefined}}" bindtap="choose" data-id="{{index + 1}}" class="options">
+              {{item.id}}
+            </view>
+            <view wx:elif="{{item.isCorrect == true}}" bindtap="choose" data-id="{{index + 1}}" class="options cor">
+              {{item.id}}
+            </view>
+            <view wx:elif="{{item.isCorrect == false}}" bindtap="choose" data-id="{{index + 1}}" class="options err">
+              {{item.id}}
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+</view>
+<view wx:if="{{opened}}" class="warpper" bindtap="closeFooter">
+</view>

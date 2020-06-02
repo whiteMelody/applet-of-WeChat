@@ -1,0 +1,79 @@
+<!--pages/lesson/lesson.wxml-->
+<view class="wb100">
+
+  <!-- download -->
+  <view class='wb100' hidden='{{!showDownload}}'>
+    <view class="dialogBg" bindtap="closeDownload"></view>
+    <view style='top:0; bottom:0; right:0; left:0; margin:auto; position:fixed; border-radius:5rpx; z-index:9999; width:550rpx; height:370rpx; background-color:#ffffff; '>
+
+        <view class="clear1"></view>
+
+        <view style='font-size:36rpx; text-align: center; color:#333;'>温馨提示</view>
+
+        <view class="clear1"></view>
+
+        <view style='text-align: center; color:#aaa; font-size:28rpx; line-height:40rpx; padding: 0 60rpx;'>请下载app体验完整内容，现在前往下载吗？</view>
+
+        <view class="clear1"></view>
+
+        <view class="wb100" style='border-bottom:1rpx solid #e1e1e1'></view>
+
+        <view class="h140rpx lh70rpx pat10 pab10 text-center Fblue F32">
+          <view data-url="https://itunes.apple.com/cn/app/7%E5%A4%A9%E8%8B%B1%E8%AF%AD-%E7%96%AF%E7%8B%82%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD%E5%90%AC%E5%8A%9B%E9%80%9A/id455568840?mt=8" bindtap='copyUrl'>
+            IOS版下载地址
+          </view>
+          <view class="wb100" data-url="https://a.app.qq.com/o/simple.jsp?pkgname=com.mizao.sevendayenglish" bindtap='copyUrl'>
+            安卓版下载地址
+          </view>
+                    
+        </view>
+
+    </view>
+
+  </view>
+  
+
+  <view class="wb100 h590rpx relative over-hidden" hidden='{{isPlay}}'>
+
+    <!-- 封面图 -->
+    <view class='wb100 h400rpx'>
+      <image src="{{channel.iconURL}}?x-oss-process=image/resize,m_fill,h_590,w_750" class="img-filter10" style='width:750rpx; height:590rpx' />
+    </view>
+    
+    <view style="background: rgba(0,0,0,.2); top: 0; left: 0; z-index: 9;" class="wb100 h590rpx absolute"></view>
+
+    <view class="absolute w560rpx text-center" style="left: 0; right: 0; top: 50rpx; margin: 0 auto; z-index: 999;">
+
+      <view class="w300rpx h300rpx center">
+          <image src="{{channel.iconURL}}?x-oss-process=image/resize,m_fixed,h_300,w_300" style='width:300rpx; height:300rpx;' />
+      </view>
+
+      <view class="lh60rpx h60rpx F36 mat20 center text-over-hidden1 Fgray-3 Fb">{{channel.channelName}}</view>
+      <view class="lh40rpx F28 Fgray-3 center text-over-hidden2 mat10">{{channel.subtitle}}</view>
+      <view class="lh40rpx F24 Fgray-2 center text-over-hidden2 mat20">{{channel.openCount}}个人在学</view>
+    </view>
+  
+    <view class="wb120 h590rpx warpper-white absolute radius50per" style="z-index: 99; bottom: -220rpx; left: -10%;"></view>
+
+  </view>
+
+  <!-- <view class="w100 h590rpx" hidden="{{!isPlay}}">
+    <view class='wb100 text-center warpper-black Fwhite F32 h90rpx lh90rpx'>
+      {{playList[currentPlay].lessonName}}
+    </view>
+    <video id="myVideo" class='wb100 h500rpx' src="{{videoUrl}}" enable-danmu danmu-btn controls></video>
+  </view> -->
+
+  <view class='clear'></view>
+
+  <view class="wb100">
+    <view class="pal30 F28">
+        <block wx:for="{{playList}}" wx:key="{{index}}">
+            <view class="h80rpx lh80rpx text-over-hidden1 bor-gray bor-solid-1b {{ index == currentPlay ? 'Fblue' : 'Fgray-4' }}" bindtap="playLesson" data-id="{{item.lessonID}}">
+                {{item.lessonName}}
+            </view>
+        </block>
+    </view>
+  </view>
+  
+</view>

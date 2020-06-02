@@ -1,0 +1,154 @@
+<!--index.wxml-->
+<view class="wb100 warpper-gray-1">
+
+  <!-- button -->
+
+  <view class='w100rpx h100rpx lh100rpx text-center Fwhite warpper-blue fixed radius50per' style='bottom:100rpx; right:50rpx; z-index:999; font-size:60rpx'>
+    +
+  </view>
+
+  <!-- 导航 -->
+  <view class="wb100 warpper-red pat20 pab20 h60rpx">
+
+    <view class="pal50 par50 text-center">
+      <view class="w100rpx h60rpx fl Fred">
+       1
+      </view>
+      
+      <view class="w450rpx h80rpx fl">
+        <view class="w180rpx h60rpx lh60rpx center bor-white bor-solid-2a radius5 F28">
+
+          <block wx:if="{{ballType == 0}}">
+            <view class="wb50 fl warpper-white Fred">
+              足球
+            </view>
+            <view class="wb50 fl Fwhite" bindtap='changeBallType' data-value="1">
+              蓝球
+            </view>
+          </block>
+
+          <block wx:else>
+            <view class="wb50 fl Fwhite" bindtap='changeBallType' data-value="0">
+              足球
+            </view>
+            <view class="wb50 fl warpper-white Fred" >
+              蓝球
+            </view>
+          </block>
+         
+        </view>
+      </view>
+
+      <view class="w100rpx h60rpx fr">
+        <image src='/images/icon-filtrate.png' class='w60rpx h60rpx fr' bindtap='openFiltrate'></image>
+      </view>
+      
+    </view>
+
+  </view>
+
+  <view class="clear"></view>
+
+  <view class='wb100 warpper-gray-1'>
+
+    <view class='pa15'>
+      <view class='pa15 warpper-white radius10'>
+      </view>
+    </view>
+
+    <view class='clear2'></view>
+
+    <view class='pa15'>
+
+      <block wx:for="{{[1, 2, 3]}}">
+        <view class='pa15 warpper-white radius10'>
+          <view class='pal25 par25'>
+            <view class='w60rpx h60rpx fl'>
+            </view>
+
+            <view class='w400rpx h60rpx lh30rpx F28'>
+              <view class='wb100'>以球会友</view>
+              <view class='wb100'>
+                已带红3111 人次
+              </view>
+            </view>
+
+            <view class='clear2'></view>
+
+            <view class='wb100 F28 lh40rpx h40rpx'>
+              <view class='fl'>
+                已收米8期懂球客最长24连红
+              </view>
+              <view class='fr'>
+                <text class='Fred'>17小时</text>后截止
+              </view>
+            </view>
+
+            <view class='clear2'></view>
+
+            <view class="wb100 bor-red bor-solid-1a radius10 text-center">
+
+              <view class="pa15 warpper-white radius10 bor-gray bor-solid-1l bor-solid-1t box-shadow-gray3 relative">
+
+                <image src='/images/icon-sift.png' class='absolute' style='right:0rpx; top:0rpx; width:64rpx; height:64rpx;'> </image>
+
+                <view class='clear2'></view>
+
+                <view class="wb100 F28">
+                  <view class='wb333 fl'>
+                    <view class="w80rpx h80rpx center">
+                      <image src='/images/icon-seven.png' class='w60rpx h60rpx'></image>
+                    </view>
+                    <view class="h60rpx lh60rpx wb100">
+                      霍芬海姆
+                    </view>
+                  </view>
+                  <view class='wb333 fl'>
+
+                    <view class="wb100 h90rpx pat10 pab10 Fgray-2 text-center F24">
+
+                      <view class='wb100'>
+                        11-07 04：00
+                      </view>
+
+                      <view class='wb100'>
+                        欧冠
+                      </view>
+
+                      <view class='clear2'></view>
+
+                      <view class='wb100'>
+                        亚盘单关
+                      </view>
+
+                    </view>
+                    
+                  </view>
+                  <view class='wb333 fl'>
+                    <view class="w80rpx h80rpx center">
+                      <image src='/images/icon-ten.png' class='w60rpx h60rpx'></image>
+                    </view>
+                    <view class="h60rpx lh60rpx wb100">
+                      斯图加特
+                    </view>
+                  </view>
+                </view>
+
+                <view class='clear'></view>
+
+              </view>
+            </view>
+
+          </view>
+
+        </view>
+        
+        <view class='clear2 warpper-gray-1'></view>
+      </block>
+    </view>
+
+  </view>
+
+  <view class="clear2 bor-solid-1t bor-solid-1b bor-gray2"></view>
+
+</view>

@@ -1,0 +1,97 @@
+<!--pages/search/search.wxml-->
+<view class="wb100">
+
+  <view class="wb100" style='background-color:#529BFF'>
+    <view class="wb100 absolute">
+      <view class="w60rpx h60rpx fr mar60" bindtap="search">
+        <view class="w30rpx h60rpx center">
+          <block wx:if="{{hot}}">
+            <image class="w30rpx h30rpx mat15" src='/images/search.png' style='display:block'></image>
+          </block>
+          <block wx:else>
+            <image class="w40rpx h40rpx mat10" src='/images/icon_error.png' style='display:block'></image>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="pal30 par30">
+      <view class="wb100 warpper-white radius50">
+        <input placeholder="搜索" class="w500rpx h60rpx lh60rpx pal30 F28" value="{{searchValue}}" bindinput="bindKeyInput" />
+      </view>
+    </view>
+    <view class="clear h20rpx"></view>
+  </view>
+
+
+  <block wx:if="{{hot}}">
+    <view class="wb100 h50rpx lh50rpx warpper-gray-1">
+      <view class="pal15 F24 Fgray-2">实时热搜，每4小时更新一次</view>
+    </view>
+    <view class="clear h20rpx warpper-white"></view>
+    <view class="pal30 par30 warpper-white">
+      <view class="wb100">
+        <block wx:for="{{hotWords}}" wx:key="">
+          <view class="wb50 fl mab30 h50rpx lh50rpx" bindtap="select" data-word="{{item.word}}">
+            <block wx:if="{{index == 0}}">
+              <view class="w30rpx h30rpx lh30rpx F20 warpper-red text-center Fwhite fl mat10">{{index+1}}</view>
+            </block>
+            <block wx:elif="{{index == 1}}">
+              <view class="w30rpx h30rpx lh30rpx F20 warpper-orange-2 text-center Fwhite fl mat10">{{index+1}}</view>
+            </block>
+            <block wx:elif="{{index == 2}}">
+              <view class="w30rpx h30rpx lh30rpx F20 warpper-yellow text-center Fwhite fl mat10">{{index+1}}</view>
+            </block>
+            <block wx:else>
+              <view class="w30rpx h30rpx lh30rpx F20 warpper-gray-6 text-center Fwhite fl mat10">{{index+1}}</view>
+            </block>
+            <view class="fl mal10 F30 text-over-hidden1 w280rpx">{{item.word}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="clear bor-solid-1b bor-gray"></view>
+      <view class="wb100 text-center h80rpx lh80rpx F28 Fgray" bindtap="change">换一批</view>
+    </view>
+
+    <block wx:if="{{searchHistory}}">
+      <view class="wb100 h50rpx lh50rpx warpper-gray-1">
+        <view class="pal15 F24 Fgray-2">搜索历史</view>
+      </view>
+      <view class="pal30 par30 warpper-white">
+        <block wx:for="{{history}}" wx:key="">
+          <view class="wb100 h80rpx lh80rpx F30 bor-solid-1b bor-gray" bindtap="select" data-word="{{item.bookName}}">{{item.bookName}}</view>
+        </block>
+        <view class="wb100 text-center h80rpx lh80rpx F28 Fgray" bindtap="remove">清空搜索历史</view>
+      </view>
+    </block>
+  </block>
+
+  <block wx:else>
+    <block wx:for="{{bookList}}" wx:key="">
+      <navigator url="/pages/detail/detail?bookName={{item.title}}&author={{item.author}}&bookImg={{item.cover}}&intro={{item.shortIntro}}">
+        <view class="wb100 warpper-white">
+          <view class="clear h30rpx"></view>
+          <view class="pal30 par30">
+
+            <image class="fl w160rpx h200rpx absolute" src='{{item.cover}}' style='z-index:99'></image>
+
+            <image class="fl w160rpx h200rpx absolute" src='/images/book.png' style='z-index:9'></image>
+
+            <view class="fl h200rpx w500rpx" style='margin-left:180rpx'>
+              <view class="clear h10rpx"></view>
+              <view class="F32 h40rpx lh40rpx text-over-hidden1">{{item.title}}</view>
+              <view class="clear h10rpx"></view>
+              <view class="F24 h40rpx lh40rpx Fgray-3 fl">{{item.author}}</view>
+              <view class="F20 h30rpx lh30rpx Fgreen fl mal20 bor-solid-1a pal10 par10 radius5 mat5">{{item.wordCount}}万字</view>
+              <view class="clear h10rpx"></view>
+              <view class="F30 Fgray-3 text-over-hidden2">{{item.shortIntro}}</view>
+            </view>
+          </view>
+          <view class="clear h20rpx"></view>
+          <view class="clear h10rpx warpper-gray-8"></view>
+        </view>
+      </navigator>
+    </block>
+  </block>
+
+
+</view>

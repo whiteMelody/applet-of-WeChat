@@ -1,0 +1,65 @@
+<view class="wb100">
+  <view class="pal15 par15">
+    <navigator url="../randList/randList?subject={{subject}}&model=c1">
+      <view class=" h50px lh50px text-center warpper-white radius50per fl">
+        <image src="../../image/icon-car1.png" class="middle" style="width:23px; height:16px;"></image>
+      </view>
+      <view class="h50px lh50px fl Fgray-3 mal10 mar10">
+        小车
+      </view>
+      <view class="fr h50px lh50px text-center">
+        <image src="../../image/arrow-right.png" class="middle" style="width:7px; height:11px;"></image>
+      </view>
+      <view class="h50px lh50px fr Fgray-2 mal10 mar10">
+        100题
+      </view>
+    </navigator>
+    <view class="clear bor-gray bor-solid-1b"></view>
+    <navigator url="../randList/randList?subject={{subject}}&model=b2">
+      <view class=" h50px lh50px text-center warpper-white radius50per fl">
+        <image src="../../image/icon-car2.png" class="middle" style="width:23px; height:27px;"></image>
+      </view>
+      <view class="h50px lh50px fl Fgray-3 mal10 mar10">
+        货车
+      </view>
+      <view class="fr h50px lh50px text-center">
+        <image src="../../image/arrow-right.png" class="middle" style="width:7px; height:11px;"></image>
+      </view>
+      <view class="h50px lh50px fr Fgray-2 mal10 mar10">
+        100题
+      </view>
+      <view class="clear bor-gray bor-solid-1b"></view>
+    </navigator>
+    <navigator url="../randList/randList?subject={{subject}}&model=a1">
+      <view class=" h50px lh50px text-center warpper-white radius50per fl">
+        <image src="../../image/icon-car3.png" class="middle" style="width:23px; height:26px;"></image>
+      </view>
+      <view class="h50px lh50px fl Fgray-3 mal10 mar10">
+        客车
+      </view>
+      <view class="fr h50px lh50px text-center">
+        <image src="../../image/arrow-right.png" class="middle" style="width:7px; height:11px;"></image>
+      </view>
+      <view class="h50px lh50px fr Fgray-2 mal10 mar10">
+        100题
+      </view>
+      <view class="clear bor-gray bor-solid-1b"></view>
+    </navigator>
+
+    <!--<navigator url="../randList/randList?subject={{subject}}&model=d">
+        <view class=" h50px lh50px text-center warpper-white radius50per fl">
+            <image src="../../image/icon-car4.png" class="middle" style="width:23px; height:34px;"></image>
+        </view>
+        <view class="h50px lh50px fl Fgray-3 mal10 mar10">
+            摩托车
+        </view>
+        <view class="fr h50px lh50px text-center">
+            <image src="../../image/arrow-right.png" class="middle" style="width:7px; height:11px;"></image>
+        </view>
+        <view class="h50px lh50px fr Fgray-2 mal10 mar10">
+            100题
+        </view>
+        <view class="clear bor-gray bor-solid-1b"></view>
+    </navigator>-->
+  </view>
+</view>

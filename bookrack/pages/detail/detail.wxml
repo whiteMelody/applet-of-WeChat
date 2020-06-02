@@ -1,0 +1,89 @@
+<!--pages/detail/detail.wxml-->
+<view class="wb100">
+
+    <view class="pat30 pab30 par30 relative h280rpx" style='padding-left:280rpx;'>
+        
+        <view class="w210rpx h280rpx warpper-gray-1 absolute" style='left:30rpx; top:30rpx;'>
+        
+        </view>
+
+        <view class="Fblack F36 h50rpx lh50rpx">西方合唱音乐纵览</view>
+        <view class="clear2"></view>
+        <view class="Fgray-3 F28 h50rpx lh50rpx">admin</view>
+        <view class="clear2"></view>
+        <view class="Fgray-2 F24 lh40rpx">西方合唱音乐纵览，西方合唱音乐纵览，西方合唱音乐纵览</view>
+        <view class="clear1"></view>
+       
+        <view class="Fblack F36 h40rpx lh40rpx">0.0 <text class='Fgray-2 F24'>分</text></view>
+
+    </view>
+
+    <view class="clear1"></view>
+
+    <view class='wb100 text-center F32'>
+
+        <!-- 热门卡片 -->
+        <block wx:if="{{isHot}}">
+            <view class='wb50 fl' bindtap="changeMy">
+                <text class='pa10'>我的卡片</text>
+            </view>
+            <view class='wb50 fl'>
+                <text style='color:#409EFF; border-bottom: 2px solid #409EFF' class='pa10'>热门卡片</text>
+            </view>
+        </block>
+
+        <block wx:else>
+            <view class='wb50 fl'>
+                <text style='color:#409EFF; border-bottom: 2px solid #409EFF' class='pa10'>我的卡片</text>
+            </view>
+            <view class='wb50 fl' bindtap="changeHot">
+               <text class='pa10'>热门卡片</text>
+            </view>
+        </block>
+
+        <view class="clear2"></view>
+        
+    </view>
+
+    <view class="clear"></view>
+
+    <!-- cards -->
+    <view class="pa30 warpper-gray-1">
+        <block wx:for="{{[1, 2, 3]}}">
+            <view class="wb100 warpper-white" style='box-shadow: 0rpx 0rpx 5rpx rgba(225, 225, 225, .35);'>
+
+                <view class="pa30">
+                    <view>
+                        图
+                    </view>
+                    <view>
+                        文
+                    </view>
+                </view>
+
+                <view class="clear bor-gray bor-solid-1b"></view>
+
+                <view class="pa30">
+                    <view class="w80rpx h80rpx lh80rpx text-center radius50per F14 warpper-gray-1 fl">
+                        用户头像
+                    </view>
+
+                    <view class="w200rpx h80rpx lh40rpx fl mal25">
+                        <view class='F28'>用户昵称</view>
+                        <view class="F24">2018-4-25</view>
+                    </view>
+
+                    <view class="w180rpx h80rpx Fgray-3 fr F24 lh80rpx text-right">
+                        3222225次Up
+                    </view>
+                    <view class="clear"></view>
+                </view>
+
+            </view>
+
+            <view class="clear1"></view>
+
+        </block>
+    </view>
+
+</view>

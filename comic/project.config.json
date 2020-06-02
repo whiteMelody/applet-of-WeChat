@@ -1,0 +1,75 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.1",
+	"appid": "wxc386bcab2c2c0674",
+	"projectname": "%E6%BC%AB%E7%94%BB",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": 0,
+					"name": "chapter(章节",
+					"pathName": "pages/chapter/chapter",
+					"query": "work_id=3"
+				},
+				{
+					"id": -1,
+					"name": "list(列表",
+					"pathName": "pages/list/list",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "comic(漫画详情",
+					"pathName": "pages/comic/comic",
+					"query": "work_id=3&chapter_id=879"
+				},
+				{
+					"id": -1,
+					"name": "history(本地历史",
+					"pathName": "pages/history/history",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "classify(分类",
+					"pathName": "pages/classify/classify",
+					"query": "type=1"
+				}
+			]
+		}
+	}
+}

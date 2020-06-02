@@ -1,0 +1,84 @@
+<!--pages/set/set.wxml-->
+<view class="wb100 warpper-gray-1 F34" style='height:{{windowHeight}}px'>
+
+  <view class="clear h40rpx"></view>
+
+  <navigator url='../member/member?cover={{cover}}'>
+    <view class="wb100 h120rpx lh120rpx warpper-white">
+      <view class="fl pal40">相册成员</view>
+      <view class="fr par40 Fgray-2">
+        <view class="fl mar20">{{mem_count}}人</view>
+        <image class="fr w18rpx h30rpx mat48" src='/images/shape_r.png'></image>
+      </view>
+    </view>
+  </navigator>
+
+  <view class="clear h40rpx"></view>
+
+  <block wx:if="{{is_admin == 1}}">
+    <view class="wb100 h120rpx lh120rpx warpper-white" bindtap="showName">
+      <view class="fl pal40">相册名称</view>
+      <image class="w18rpx h30rpx mat48 fr par40" src='/images/shape_r.png'></image>
+    </view>
+
+    <navigator url='../cover/cover'>
+      <view class="wb100 h120rpx lh120rpx warpper-white">
+        <view class="fl pal40">相册封面</view>
+        <image class="w18rpx h30rpx mat48 fr par40" src='/images/shape_r.png'></image>
+      </view>
+    </navigator>
+  </block>
+
+  <block wx:else>
+    <view class="wb100 h120rpx lh120rpx warpper-white" bindtap="showMsg">
+      <view class="fl pal40">相册名称</view>
+      <image class="w18rpx h30rpx mat48 fr par40" src='/images/shape_r.png'></image>
+    </view>
+
+     <view class="wb100 h120rpx lh120rpx warpper-white" bindtap="showMsg">
+        <view class="fl pal40">相册封面</view>
+        <image class="w18rpx h30rpx mat48 fr par40" src='/images/shape_r.png'></image>
+      </view>
+  </block>
+
+  <navigator url='../permit/permit'>
+    <block wx:if="{{is_admin == 1}}">
+      <view class="wb100 h120rpx lh120rpx warpper-white">
+        <view class="fl pal40">添加照片权限</view>
+        <image class="w18rpx h30rpx mat48 fr par40" src='/images/shape_r.png'></image>
+      </view>
+    </block>
+  </navigator>
+
+
+
+  <view class="wb100 text-center fixed F36 " style='bottom:0rpx'>
+    <view class="pa40">
+      <block wx:if="{{is_admin == 1}}">
+        <view class='h100rpx lh100rpx warpper-red-8 wb100 Fwhite radius50' bindtap="dissolve">解散相册</view>
+      </block>
+      <block wx:else>
+        <view class='h100rpx lh100rpx warpper-red-8 wb100 Fwhite radius50' bindtap="exit">退出相册</view>
+      </block>
+    </view>
+  </view>
+
+  <block wx:if="{{albumName}}">
+    <view class="dialogBg"></view>
+    <view class="fixed warpper-white w560rpx h350rpx radius10 center" style='top:400rpx;left:0;right:0;z-index:999'>
+      <view class="F36 pat30 text-center">修改相册名称</view>
+      <view class="pal60 par60 pat40">
+        <view class="wb100 bor-solid-1b bor-gray">
+          <input type="text" maxlength="9" placeholder="" value="{{name}}" bindinput="bindKeyInput" class="h70rpx lh70rpx F30 fl" />
+          <view class="fr h70rpx lh70rpx F30 Fgray-2">{{length}}/9</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+      <view class="pal60 par60 pat40 text-center F30">
+        <view class="fl w180rpx h60rpx lh60rpx warpper-gray-7 Fwhite radius30" bindtap="cancelName">取消</view>
+        <view class="fr w180rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30" bindtap="setName">确定</view>
+      </view>
+    </view>
+  </block>
+
+</view>

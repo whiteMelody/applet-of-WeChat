@@ -1,0 +1,27 @@
+<!--pages/user/user.wxml-->
+<view class="wb100">
+  <view class="wb100 h320rpx" style="background: url('/images/bg-user.png') repeat-x center center">
+    <view class="clear1"></view>
+    <view class="pa50 text-center">
+      <block wx:if="{{!isLogin}}">
+        <button open-type="getUserInfo" class="wb100 text-center" bindgetuserinfo="onGotUserInfo">
+          <image src='/images/head-default.png' class='h120rpx w120rpx'></image>
+          <view class='F28 Fwhite h50rpx lh50rpx'>前去登录</view>
+        </button>
+      </block>
+      <block wx:else>
+        <view class="wb100">
+          <image src='/images/head-default.png' class='h120rpx w120rpx'></image>
+          <view class='F28 Fwhite h50rpx lh50rpx'>用户名</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="clear1"></view>
+
+  <view class="wb100 lh100rpx Fgray-3 F32 text-center">
+    功能建设中...
+  </view>
+
+</view>

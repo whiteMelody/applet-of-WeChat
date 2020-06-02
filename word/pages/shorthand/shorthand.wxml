@@ -1,0 +1,64 @@
+<!--pages/shorthand/shorthand.wxml-->
+<view class="wb100">
+
+  <view class="wb100 h88rpx lh88rpx warpper-white">
+    <view class="pal30 par30 Fgray-3">
+      <view class="F36 fl" bindtap="back">退出</view>
+      <view class="w480rpx pat40 fl mal30">
+        <view class="warpper-gray-8 h14rpx radius50 over-hidden">
+          <view class="warpper-blue-12 h14rpx" style='width:{{width}}%'></view>
+        </view>
+      </view>
+      <view class="F30 fr">
+        <text>{{rememberNum}}</text>
+        <text>/</text>
+        <text>{{wordNum}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="clear h20rpx"></view>
+
+  <view class="wb100 warpper-white">
+    <view class="clear h30rpx"></view>
+    <view class="pal24 par60">
+      <view class="wb100 h80rpx lh80rpx">
+        <view class="F64 fl">{{word}}</view>
+        <image class="fr w50rpx h50rpx mat15" bindtap="play" src='/images/lb.png'></image>
+      </view>
+      <view class="clear h20rpx"></view>
+      <view class="F30 Fgray-3">
+        <block wx:if="{{phonetic == ' ' || phonetic == null}}">
+          <view></view>
+        </block>
+        <block wx:else>
+          <view>/{{phonetic}}/</view>
+          <view class="clear h20rpx"></view>
+        </block>
+        <view>{{explain}}</view>
+      </view>
+    </view>
+    <view class="clear h30rpx"></view>
+  </view>
+
+  <view class="clear h20rpx"></view>
+
+  <view class="wb100 warpper-white">
+    <view class="pal24 par24">
+      <view class="clear h40rpx"></view>
+      <view class="F30 Fgray-3">参考例句</view>
+      <view class="clear h20rpx"></view>
+      <block wx:for="{{sentences}}" wx:key="">
+        <view class="F36">{{item.english}}</view>
+        <view class="F30 Fgray-3">{{item.chinese}}</view>
+        <view class="clear h40rpx"></view>
+      </block>
+
+    </view>
+  </view>
+
+  <view class="wb100 h100rpx lh100rpx absolute text-center F36 warpper-white Fblue-6" style='bottom:0' bindtap="next">记住了，下一个</view>
+
+
+
+</view>

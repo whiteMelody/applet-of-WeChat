@@ -1,0 +1,50 @@
+<view class="wb100" style='background:url("https://album.31un.com/teachersDay/images/teacherBg3.jpg"); background-position:center center; background-size:auto {{minHeight}}px; min-height:{{minHeight}}px'>
+
+    <view class="clear h100rpx"></view>
+
+    <view style='width:650rpx; height:754rpx;' class='center'>
+      <canvas canvas-id="myCanvas" style='width:650rpx; height:754rpx;' />
+    </view>
+
+
+    <!-- <view style='width:650rpx; height:715rpx; background:url("/images/resultBg.png"); background-size:100%;' class='center'>
+
+      <view class="clear h220rpx"></view>
+
+      <view class='F40 text-center Fb center' style='color:#973922; background:url("/images/titleBg.png"); width:316rpx; height:113rpx;background-size:100%; line-height:100rpx; '>
+        {{title}}
+      </view>
+     
+      <view class="clear"></view>
+
+      <view class="pa50 F28 lh48rpx Fwhite">
+        {{content}}
+      </view>
+
+      <view class='text-right par50 F36 Fwhite'>
+        —— 你的{{teather}}老师
+      </view>
+
+    </view> -->
+
+    <view class="wb100 absolute" style='bottom: 50rpx; z-index:999'>
+
+      <view style='width:300rpx; height:112rpx;' class='fl mal50' bindtap='saveImg'>
+        <image src='/images/btn-save.png' style='width:300rpx; height:112rpx;'></image>
+      </view>
+
+      <button open-type='share' style='width:300rpx; height:112rpx;' class='fr mar50'>
+        <image src='/images/btn-share.png' style='width:300rpx; height:112rpx;'></image>
+      </button>
+
+      <view class='clear h50rpx'></view>
+
+       <navigator url='/pages/subject/subject'>
+        <view style='width:300rpx; height:112rpx;' class='center'>
+          <image src='/images/btn-restart.png' style='width:300rpx; height:112rpx;'></image>
+        </view>
+      </navigator>
+
+    </view>
+
+  </view>

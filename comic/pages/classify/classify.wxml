@@ -1,0 +1,113 @@
+
+<view class="wb100">
+  <view class="clear1"></view>
+
+  <view class="wb100 F28 lh80rpx">
+
+    <view class="w105rpx pal10 par10 fl text-center ">
+      <view class=" h80rpx {{id == -1 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeId' data-id="-1">
+        全部
+      </view>
+    </view>
+
+    <block wx:for="{{category}}" wx:key="{{index}}">
+      <view class="w105rpx pal10 par10 h80rpx fl text-center {{item.id == id ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeId' data-id="{{item.id}}">
+        {{item.name}}
+      </view>
+
+    </block>
+
+  </view>
+
+  <view class="clear"></view>
+
+  <!-- xianshi -->
+  <block wx:if="{{showFiltrate}}">
+
+    <!-- <view class="wb100 F28 lh80rpx">
+      <view class="w105rpx pal10 par10 fl text-center ">
+        <view class=" h80rpx {{type_buy == -1 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeBuy' data-id="-1">
+          全部
+        </view>
+      </view>
+      <view class="w105rpx pal10 par10 fl text-center ">
+        <view class=" h80rpx {{type_buy == 0 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeBuy' data-id="0">
+          免费
+        </view>
+      </view>
+      <view class="w105rpx pal10 par10 fl text-center ">
+        <view class=" h80rpx {{type_buy == 1 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeBuy' data-id="1">
+          付费
+        </view>
+      </view>
+    </view>
+
+    <view class='clear'></view>
+
+    <view class="wb100 F28 lh80rpx">
+      <view class="w105rpx pal10 par10 fl text-center ">
+        <view class=" h80rpx {{type_over == -1 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeOver' data-id="-1">
+          全部
+        </view>
+      </view>
+      <view class="w105rpx pal10 par10 fl text-center ">
+        <view class=" h80rpx {{type_over == 0 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeOver' data-id="0">
+          连载中
+        </view>
+      </view>
+      <view class="w105rpx pal10 par10 fl text-center ">
+        <view class=" h80rpx {{type_over == 1 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeOver' data-id="1">
+          完结
+        </view>
+      </view>
+    </view>
+
+     -->
+
+  </block>
+
+  <view class='clear'></view>
+
+  <view class="wb100 F28 lh80rpx">
+    <view class="w105rpx pal10 par10 fl text-center ">
+      <view class=" h80rpx {{type_order == 0 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeOrder' data-id="0">
+        最新
+      </view>
+    </view>
+    <view class="w105rpx pal10 par10 fl text-center ">
+      <view class=" h80rpx {{type_order == 1 ? 'Forange bor-orange bor-solid-5b' : 'pab5'}}" bindtap='changeOrder' data-id="1">
+        最热
+      </view>
+    </view>
+
+    <!-- 詳細篩選 -->
+
+  </view>
+
+  <view class='clear1'></view>
+
+  <view class="wb100" wx:for="{{datas}}" wx:key="{{index}}">
+    <view class="pal30">
+      <navigator url='/pages/chapter/chapter?work_id={{item.id}}'>
+        <view class="fl w250rpx h160rpx radius10 warpper-gray-3">
+            <image src="{{item.thumb}}" class="radius10 w250rpx h160rpx" />
+        </view>
+        <view class="Fgray-3">
+          <view class="lh50rpx h50rpx text-over-hidden1 pal30 Fblack F28">{{item.book_name}}</view>
+          <!-- <view class="lh50rpx h50rpx text-over-hidden1 pal30 pat10 Fblack F28 Fgray-3">
+            <block wx:for="{{item.categories}}" wx:key="{{index}}">
+              <text>{{item.name}}</text>
+            </block>
+          </view> -->
+
+          <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 pat20 Fgray-3">更新时间：{{item.time2}}</view>
+          <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">阅读量：{{item.view}}</view>
+
+        </view>
+      </navigator>
+      <view class="clear1 bor-gray bor-solid-1b"></view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+
+</view>

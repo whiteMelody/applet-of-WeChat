@@ -1,0 +1,35 @@
+<!--pages/cover/cover.wxml-->
+<view class="wb100">
+
+  <view class="pal40 pat40 pab30 F36">上传相册封面</view>
+
+  <view class="pal40">
+    <view class="h180rpx w320rpx" style='border:1px dashed #999999' bindtap="upload">
+      <view class="w80rpx h80rpx center mat50">
+        <image class="w80rpx h80rpx" src='/images/add.png'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="clear h60rpx"></view>
+
+  <view class="pal40 F36">选择其他封面</view>
+
+  <view class="clear1"></view>
+
+  <view class="pal20 par20">
+    <block wx:for="{{list}}" wx:key="{{key}}">
+      <view class="wb100">
+        <view class="fl wb50 h183rpx w326rpx center pab20" bindtap="replace" data-cover="{{item.cover}}">
+          <view class="h183rpx w326rpx center">
+            <!-- <view class="w326rpx h326rpx warpper-gray-1"></view>  -->
+            <image class="w326rpx h183rpx" mode='aspectFill' src='{{item.cover}}'></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+
+
+</view>

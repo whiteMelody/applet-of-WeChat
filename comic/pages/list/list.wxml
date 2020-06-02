@@ -1,0 +1,39 @@
+
+<view class="wb100">
+  <view class="clear1"></view>
+
+  <view class="wb100" wx:for="{{datas}}" wx:key="{{index}}">
+    <view class="pal30">
+      <navigator url='/pages/chapter/chapter?work_id={{item.id}}'>
+        <view class="fl w250rpx h160rpx radius10 warpper-gray-3">
+            <image src="{{item.thumb}}" class="radius10 w250rpx h160rpx" mode="aspectFill" />
+        </view>
+        <view class="Fgray-3">
+          <view class="lh50rpx h50rpx text-over-hidden1 pal30 Fblack F28">{{item.book_name}}</view>
+          <view class="lh50rpx h50rpx text-over-hidden1 pal30 pat10 Fblack F28 Fgray-3">
+            <block wx:for="{{item.categories}}" wx:key="{{index}}">
+              <text>{{item.name}}</text>
+            </block>
+          </view>
+
+          <!-- 最新更新 -->
+          <block wx:if="{{type == 1}}">
+            <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">更新时间：{{item.time2}}</view>
+          </block>
+          <!-- 热门作品 -->
+          <block wx:elif="{{type == 2}}">
+            <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">阅读量：{{item.view}}</view>
+          </block>
+          <!-- 本周主打推荐 || 最佳推荐 || 精品推荐 -->
+          <block wx:elif="{{type == 3 || type == 4 || type == 5}}">
+            <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">{{item.now_chapter}}</view>
+          </block>
+
+        </view>
+      </navigator>
+      <view class="clear1 bor-gray bor-solid-1b"></view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+
+</view>

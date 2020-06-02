@@ -1,0 +1,68 @@
+<!--pages/comic/comic.wxml-->
+<view class="wb100">
+  
+  <!-- 头部 -->
+  <view class="wb100 fixed h100rpx lh100rpx" style='background:rgba(0,0,0,.6); top:0; left:0;'>
+    <view class="pal30 par30 Fwhite text-center">
+      {{detail.title}}
+    </view>
+  </view>
+
+  <!-- 内容 -->
+  <view class="wb100">
+    <view class='wb100 text-center'>
+      <block wx:for="{{detail.content}}" wx:key="{{index}}">
+        <image src='{{item.url}}' style='width:{{item.width2}}rpx; height:{{item.height2}}rpx'></image>
+      </block>
+    </view>
+  </view>
+
+   <!-- 底部 -->
+  <view class="wb100 fixed h100rpx" style='background:rgba(0,0,0,.6); bottom:0; left:0;'>
+    <view class="pal25 par25">
+      <image src='/images/icon-menu.png' style='width:64rpx; height:64rpx; margin:18rpx; float:left;' bindtap='openMenu'></image>
+      <!-- <image src='/images/icon-comm.png' style='width:64rpx; height:64rpx;margin:18rpx; float:left;'></image> -->
+      <!-- <image src='/images/icon-share.png' style='width:64rpx; height:64rpx;margin:18rpx; float:left;'></image> -->
+      <image src='/images/icon-next.png' style='width:64rpx; height:64rpx;margin:18rpx; float:right;' bindtap='changeChapter' data-value="next"></image>
+      <image src='/images/icon-prev.png' style='width:64rpx; height:64rpx;margin:18rpx; float:right;' bindtap='changeChapter' data-value="prev"></image>
+    </view>
+  </view>
+ 
+ <!-- 目录 -->
+  <view class="wb100 h100 fixed" hidden="{{!showMenu}}" style='background:rgba(255,255,255,.1); top:0; left:0; z-index:9;' bindtap='closeMenu'>
+    <view class='w375rpx h100 fr over-auto' style='background:rgba(255,255,255,.9);'>
+      <view class='pal30 par30 F24'>
+        <block wx:for="{{chapter}}" wx:key="{{index}}">
+
+              <view wx:if="{{index < freeNum}}" class="h80rpx lh80rpx text-over-hidden1 bor-gray bor-solid-1b {{ index == currentPlay ? 'Fblue' : 'Fgray-4' }}" bindtap="changeChapter" data-value="change" data-index="{{index}}">
+                  {{item.title}}
+              </view>
+              <view wx:else class="h80rpx lh80rpx text-over-hidden1 bor-gray bor-solid-1b Fgray-5 {{ index == currentPlay ? 'Fblue' : 'Fgray-4' }}" bindtap="openShare">
+                  {{item.title}}
+              </view>
+          </block>
+        </view>
+    </view>
+  </view>
+
+  <!-- share -->
+  <view class='wb100' hidden='{{!showShare}}'>
+    <view class="dialogBg" bindtap="closeShare"></view>
+    <view style='top:0; bottom:0; right:0; left:0; margin:auto; position:fixed; border-radius:5rpx; z-index:9999; width:550rpx; height:260rpx; background-color:#ffffff; '>
+        <view class="clear1"></view>
+        <view style='font-size:36rpx; text-align: center; color:#333;'>温馨提示</view>
+        <view class="clear1"></view>
+        <view style='text-align: center; color:#aaa; font-size:28rpx; line-height:40rpx; padding: 0 60rpx;'>分享后可以观看本篇全部内容</view>
+        <view class="clear1"></view>
+        <view class="h80rpx lh80rpx text-center Fblue F32">
+          <button class='wb50 fl h80rpx Fblue radius0' style='background:none; border:none;' open-type='share'>
+            分享
+          </button>
+          <view class="wb50 fr Fgray-2 bor-gray bor-solid-1t" bindtap='closeShare'>
+            取消
+          </view>
+        </view>
+    </view>
+  </view>
+
+</view>

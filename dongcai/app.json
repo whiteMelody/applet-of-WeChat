@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/date/date",
+    "pages/find/find",
+    "pages/dktj/dktj",
+    "pages/dqzs/dqzs",
+    "pages/gpxc/gpxc",
+    "pages/ypyc/ypyc",
+    "pages/newsDetail/newsDetail",
+    "pages/matchDetail/matchDetail",
+    "pages/faDetail/faDetail",
+    "pages/plan/plan"
+  ],
+  "tabBar": {
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#ff5645",
+    "color": "#aaaaaa",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "直播",
+        "iconPath": "images/icon_zb_false.png",
+        "selectedIconPath": "images/icon_zb_true.png"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "text": "发现",
+        "iconPath": "images/icon_qz_false.png",
+        "selectedIconPath": "images/icon_qz_true.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "懂球客",
+    "navigationBarTextStyle": "black"
+  }
+}

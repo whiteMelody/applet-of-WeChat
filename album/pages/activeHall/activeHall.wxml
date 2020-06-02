@@ -1,0 +1,103 @@
+<!--pages/make/make.wxml-->
+
+<view class="wb100">
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+    </login-tag>
+
+<block wx:if="{{isUpload}}">
+
+    <view class="pal40 par40">
+      <text class='fl F24 lh40rpx Fgray-2'>正在上传{{plan}}%</text>
+      <text class='fr F24 lh40rpx Fgray-2'>上传中请勿关闭</text>
+
+      <view class="clear"></view>
+
+      <view class="h20rpx wb100 warpper-gray-4 radius20">
+        <view class="h20rpx fl warpper-green radius20" style='width:{{plan}}%'>
+
+        </view>
+      </view>
+    </view>
+
+    <view class="clear1"></view>
+
+  </block>
+
+
+  <view class="fixed h100rpx lh100rpx wb100" style='background: rgba(0,0,0,.7);z-index:99'>
+
+    <view class="pal40 Fwhite F32 fl" bindtap="back">
+      <image class="fl w18rpx h30rpx mat36" src='/images/fhsy_shape.png'></image>
+      <view class="fl mal15">返回首页</view>
+    </view>
+
+    <view class="fr par40 Fwhite F32">
+      活动规则
+    </view>
+   
+  </view>
+
+  <!-- cover  -->
+  <view class="wb100">
+    <image class="wb100 h421rpx relative" bindtap="editCover" src='{{cover}}' mode='aspectFill'></image>
+  </view>
+
+  <view class="clear1"></view>
+
+  <!-- list  -->
+  <view class="wb100">
+     <view class="pa30">
+        <view class='wb100 bor-green bor-solid-1a'>
+          <input placeholder="说点什么吧" bindinput="searchInput" style='width:480rpx' class="warpper-white  pal30 par30 h70rpx lh70rpx F28 fl" /> 
+          <view class="fr w150rpx h70rpx lh70rpx warpper-green-4 Fwhite pa2 text-center F36" bindtap="search">搜索</view>
+          <view class="clear"></view>
+          </view>
+        </view>
+  </view>
+
+  <view class="clear1"></view>
+
+  <view class="wb100">
+    <view class="pal30 par30">
+      <block wx:for="{{[1,2,3,4,5,6]}}">
+        <view class="wb50 fl mab40">
+          <view class="pa10 warpper-white relative">
+            <view class="w325rpx h325rpx">
+              <view class="absolute w120rpx h38rpx F26 Fwhite text-center" style='background-color:#FF9E23; top:10rpx; left:10rpx'>
+                1494号
+              </view>
+              <image src='/images/wu.png' class="w325rpx h325rpx" mode='aspectFit'></image>
+            </view>
+            <view class="wb100">
+              <view class="fl w150rpx h60rpx lh60rpx F32">
+                王丽丽
+              </view>
+              <view class="w110rpx h30rpx lh30rpx pa15 fr bor-gray bor-solid-1a radius30" bindtap='like' data-id="{{item}}">
+                <text class='fl F28 Fgray-3'>1560</text>
+                <!-- <image class="fr w40rpx h40rpx" src='/images/dz_pre.png'></image> -->
+                 <image class="fr w30rpx h30rpx" src='/images/dz_nor.png'></image> 
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+  <view class="wb100 fixed h120rpx lh120rpx warpper-white" style='bottom:0;z-index:99'>
+
+    <navigator url='../upload/upload'>
+      <view class="pal40 F36 par40">
+        <view class="wb100 h80rpx lh80rpx text-center warpper-green-4 Fwhite mat20 radius50">上传照片</view>
+      </view>
+    </navigator>
+
+  </view>
+
+</view>

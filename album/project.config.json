@@ -1,0 +1,145 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wxc2261a61348533c3",
+	"projectname": "album",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 17,
+			"list": [
+				{
+					"id": -1,
+					"name": "新建相册（make）",
+					"pathName": "pages/make/make",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "上传照片（upload）",
+					"pathName": "pages/upload/upload",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分享（share）",
+					"pathName": "pages/share/share",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "预览（preview）",
+					"pathName": "pages/preview/preview",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "选择相册类型",
+					"pathName": "pages/select/select",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "下载相册",
+					"pathName": "pages/download/download",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "动态",
+					"pathName": "pages/dynamic/dynamic",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "相册设置",
+					"pathName": "pages/set/set",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "相册成员",
+					"pathName": "pages/member/member",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更换封面",
+					"pathName": "pages/cover/cover",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加照片权限",
+					"pathName": "pages/permit/permit",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/home/home",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "同步到相册",
+					"pathName": "pages/syncAlbum/syncAlbum",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更换封面",
+					"pathName": "pages/cover/cover",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "login(组件)",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "分享后的相册（join）",
+					"pathName": "pages/join/join",
+					"query": "dynamic_id=e9df5d56aa0b48f6f21102789e6a1d42"
+				},
+				{
+					"id": 16,
+					"name": "详情页（detail）",
+					"pathName": "pages/detail/detail",
+					"query": "dynamic_id=0edf4566b347d8972215348d0bb11b74"
+				},
+				{
+					"id": 17,
+					"name": "活动详情(activeDetail)",
+					"pathName": "pages/activeDetail/activeDetail",
+					"query": ""
+				}
+			]
+		}
+	}
+}

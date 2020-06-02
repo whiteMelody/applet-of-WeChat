@@ -1,0 +1,67 @@
+<scroll-view scroll-y="true" bindscrolltolower="lower" style="height:{{height}}px; background:#f0f0f0;" lower-threshold="200">
+<view class="warpper-gray-1 wb100">
+
+  <view class="tag-area-btn" style="left:{{width2}}px; top:0rpx;" bindtap="swichTag" animation="{{animationData}}">
+
+  <image src="{{tagUrl}}" style="width:61rpx;height:120rpx;"></image>
+  </view>
+
+  <!--标签-->
+  <view class="tag-area" style="width:{{width2}}px;" animation="{{animationData}}">
+    <scroll-view scroll-y="true" style="height: {{height}}px;">
+    
+    <block wx:for="{{tags}}" wx:key="this">
+      <view class="tag {{item.active}}" bindtap="reSearch" data-id="{{item.id}}" data-index="{{index}}" data-bid="{{item.bid}}">{{item.tag}}</view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!--人气榜-->
+  <view class="wb100 fr" style="width:{{width3}}px">
+    <view class="clear"></view>
+
+    <!--搜索框-->
+    <view class="pal15 par15 pat15" wx:if="{{search}}">
+      <view class="wb85 fl h60rpx lh60rpx radius10 warpper-white F30 Fgray-2 bor-gray bor-solid-1a">
+        <image src="../../image/icon-search.png" class="fl ma15" style="width:30rpx;height:30rpx; "></image>
+        <input class="fl wb85 h60rpx lh60rpx Fgray-2 text-left" bindinput="eInput" value="{{keyword}}"/>
+      </view>
+      <view class="fr F30 Fblue lh60rpx h60rpx" bindtap="toSearch">搜索</view>
+      <view class="clear"></view>
+    </view>
+    <view class="clear"></view>
+
+    <block wx:for="{{datas}}" wx:key="this" wx:if="{{empty === false}}">
+        <navigator url="../detail/detail?id={{item.id}}">
+          <view style="width:{{width2}}px;height:{{width2*1.64 + height2*2 + 5}}px; margin:{{margin}}px 0 0 {{margin}}px; -webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8; " class="fl relative warpper-white radius10 over-hidden">
+            <image src="{{item.imageUrl}}" style="width:{{width2 - 10}}px;height:{{width2 * 1.64 - 10}}px; margin:5px"></image>
+            <view class="wb100 F30 Fgray-3">
+              <image src="{{item.icon == '' ? '../../image/icon-author.png' : item.icon}}" style="width:{{height2}}px;height:{{height2}}px;" class="radius50per fl mal15 mar15"></image>
+              <view style="height:{{height2}}px;line-height:{{height2}}px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.username == '' ? '匿名': item.username}}</view>
+            </view>
+            <view class="F24 Fgray-2 pal15 par15">
+              <view style="height:{{height2}}px;line-height:{{height2}}px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.title == '' ? '无题': item.title}}</view>
+            </view>
+            <view class="fav">
+              <image src="../../image/icon-fav.png" style="width:22rpx;height:20rpx;"></image>
+              <view class="F20 lh20rpx h20rpx fr mal5">{{item.zan}}</view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <block wx:if="{{empty === true}}">
+        <view class="pa30 text-center">
+          <image src="../../image/none-data.png" mode="aspectFit" style=" width:140rpx; height:140rpx;"></image>
+          <view class="h80rpx lh80rpx Fgray-3 F30">暂无数据</view>
+        </view>
+      </block>
+
+    <view class="clear1"></view>
+  </view>
+  <view class="clear1"></view>
+</view>
+</scroll-view>
+
+<loading hidden="{{hidden}}">
+  数据加载中...
+</loading>

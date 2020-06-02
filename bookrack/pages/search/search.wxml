@@ -1,0 +1,34 @@
+<!--pages/search/search.wxml-->
+<view class="wb100"> 
+    <view class="pa30 warpper-gray-1 relative" style='padding-left:90rpx'>
+
+        <view class="w80rpx h70rpx warpper-white absolute" style='left:30rpx; top:30rpx;'>
+            <image src='../../images/icon-search2.png' style='height:40rpx; width:40rpx; float:left; margin-left:15rpx; margin-top:15rpx;'></image>
+        </view>        
+
+        <input placeholder="搜索书名或者作者" class='wb100 h70rpx lh70rpx warpper-white radius5 F28 Fgray-3' />
+    </view>
+
+    <view class="clear"></view>
+
+    <block wx:for="{{[1, 2, 3, 4]}}">
+
+        <view class="pat30 pab30 par30 relative h180rpx" style='padding-left:200rpx;'>
+            
+            <view class="w150rpx h180rpx warpper-gray-1 absolute" style='left:30rpx; top:30rpx;'>
+            
+            </view>
+
+            <view class="Fblack F32 h50rpx lh50rpx">西方合唱音乐纵览</view>
+            <view class="Fgray-2 F28 h50rpx lh50rpx">admin</view>
+            <view class="clear1"></view>
+
+            <view class='w150rpx h45rpx lh45rpx bor-black bor-solid-1a radius10 text-center F24'>加入书架</view>
+
+        </view>
+
+        <view class="clear bor-gray bor-solid-1b"></view>
+
+    </block>
+
+</view>

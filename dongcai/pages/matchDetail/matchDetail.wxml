@@ -1,0 +1,1823 @@
+<!--pages/detail/detail.wxml-->
+<view class='wb100'>
+
+  <view class="wb100" id='matchDetail' style='background-image:url("/images/match_bg.png"); background-size:100% 100%;'>
+
+    <view class='wb100 h70rpx pat10 pab10 text-center F24 Fwhite'>
+      <view class="wb100 lh35rpx">
+        {{match.league}} {{match.round ? match.round : ''}}
+      </view>
+      <view class="wb100 lh35rpx">
+      {{match.match_start_time}}
+      </view>
+    </view>
+
+    <view class="clear2"></view>
+
+    <!-- 队伍信息 -->
+    <view class="wb100 Fwhite">
+
+      <view class='pal50 par50'>
+
+        <view class='clear'></view>
+
+        <view class='wb100'>
+          <view class="w250rpx fl">
+            <view class="w75rpx h75rpx center">
+              <image src='{{match.home_logo}}' class='w75rpx h75rpx'></image>
+            </view>
+            <view class="text-center F32 h80rpx lh80rpx wb100">
+              {{match.home}}
+            </view>
+          </view>
+
+          <view class="w150rpx fl text-center">
+            <view class="w80rpx h50rpx lh50rpx F32 radius5 center" style='background:rgba(255,255,255,.4)'>
+              未
+            </view>
+
+            <view class="clear2"></view>
+            <view class="wb100 h80rpx lh80rpx">
+              VS
+            </view>
+
+          </view>
+
+          <view class="w250rpx fr">
+            <view class="w75rpx h75rpx center">
+              <image src='{{match.away_logo}}' class='w75rpx h75rpx'></image>
+            </view>
+            <view class="text-center F32 h80rpx lh80rpx wb100">
+              {{match.away}}
+            </view>
+          </view>
+        </view>
+
+        <view class="clear1"></view>
+
+        <view class="wb100 F28">
+
+          <view class="w200rpx fl h45rpx lh45rpx">
+            <view class="w35rpx h45rpx warpper-red text-center Fwhite fl">
+              主
+            </view>
+            <view class="fl mal10">
+              {{match.league}}{{match.home_rank}}
+            </view>
+          </view>
+
+          <view class="w250rpx fl text-center">
+            比赛实况
+          </view>
+
+          <view class="w200rpx fr h45rpx lh45rpx">
+            <view class="w35rpx h45rpx warpper-blue text-center Fwhite fr">
+              客
+            </view>
+            <view class="fr mar10">
+              {{match.league}}{{match.away_rank}}
+            </view>
+          
+          </view>
+        </view>
+
+        <view class="clear2"></view>
+
+        <view class="h10rpx warpper-red fl" style='width:{{match.win_percent2}}%'>
+        </view>
+
+        <view class="h10rpx warpper-blue fl" style='width:{{match.defeat_percent2}}%'>
+        </view>
+
+        <view class="clear"></view>
+
+        <view class="wb100 F28 lh50rpx">
+          <text class='fl Fred'>{{match.win_percent2}}%</text>
+          <text class='fr Fblue'>{{match.defeat_percent2}}%</text>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="clear"></view>
+
+  </view>
+
+  <view class="wb100 pat20 pab20 pal50 par50 h50rpx lh50rpx F28 text-center">
+
+    <block wx:for="{{['必发', '赔率', '分析', '情报', '点评', '大咖']}}" wx:key="{{index}}">
+
+      <view class="w90rpx {{ index == showType ? 'warpper-red Fwhite' : 'warpper-white Fblack' }} h50rpx lh50rpx Fwhite fl mar20 radius25" bindtap='changeShowType' data-value="{{index}}">
+        {{item}}
+      </view>
+
+    </block>
+  </view>
+
+  <!-- 必发 -->
+  <block wx:if="{{showType == 0}}">
+
+    <view class="clear2 warpper-gray-1"></view>
+
+    <view class='clear2'></view>
+
+    <!-- 交易盈亏 -->
+    <view class='wb100'>
+
+      <view class='wb100'>
+        <view class='h40rpx lh40rpx fl bor-red bor-solid-8l pal15 w200rpx F36'>
+          交易盈亏
+        </view>
+
+        <view class='clear2 bor-gray bor-solid-1b'></view>
+        
+      </view>
+
+      <view class='clear1'></view>
+
+      <view class="pa25">
+
+        <view class='w150rpx fl'>
+
+          <view class="w150rpx h150rpx warpper-red radius50per">
+          </view>
+
+          <view class='wb100'>
+            胜 平 负
+          </view>
+
+        </view>
+
+        <view class="w400rpx fr">
+
+          <view class="wb100">
+            <view class='wb40 fl F28 lh50rpx text-center'>
+              <view class='wb100'>
+                第<text class='Fred F40 Fb'> {{betfair.hot}} </text>名
+              </view>
+              <view class="wb100 Fgray-2">
+                交易量排名
+              </view>
+            </view>
+            <view class='wb40 fr F28 lh50rpx text-center'>
+              <view class='wb100 Fb F32'>
+                <text class='Fgreen'>平</text> 
+                <text class='Fblue'>负</text> 
+              </view>
+              <view class="wb100 Fgray-2">
+                庄赢选项
+              </view>
+            </view>
+          </view>
+
+          <view class='clear1'></view>
+
+          <view class="wb100">
+            <view class='wb40 fl F28 lh50rpx text-center'>
+              <view class='wb100'>
+                第<text class='Fred F40 Fb'> {{betfair.win}} </text>名
+              </view>
+              <view class="wb100 Fgray-2">
+                亏损量排名
+              </view>
+            </view>
+            <view class='wb40 fr F28 lh50rpx text-center'>
+              <view class='wb100 Fb F32'>
+                <text class='Fred'>胜</text> 
+              </view>
+              <view class="wb100 Fgray-2">
+                庄亏选项
+              </view>
+            </view>
+          </view>
+
+        </view>
+
+        <view class="clear1"></view>
+
+        <view class="wb100 F24 text-center lh40rpx">
+
+          <view class='clear2'></view>
+
+          <view class="w80rpx fl Fwhite">null</view>
+          <view class="w120rpx fl Fgray-2">赔率</view>
+          <view class="w120rpx fl Fgray-2">交易量</view>
+          <view class="w120rpx fl Fgray-2">交易占比</view>
+          <view class="w120rpx fl Fgray-2">盈亏</view>
+          <view class="w120rpx fl Fgray-2">冷热指数</view>
+
+
+          <view class='clear2'></view>
+
+          <view class="w80rpx fl">胜</view>
+          <view class="w120rpx fl">{{betfair.all_odds_home}}</view>
+          <view class="w120rpx fl">{{betfair.all_trade_home}}</view>
+          <view class="w120rpx fl">{{betfair.per_home}}%</view>
+          <view class="w120rpx fl">{{betfair.win_lose_home}}</view>
+          <view class="w120rpx fl">{{betfair.hot_cold_home}}</view>
+
+          <view class='clear2'></view>
+          
+          <view class="w80rpx fl">平</view>
+          <view class="w120rpx fl">{{betfair.all_odds_draw}}</view>
+          <view class="w120rpx fl">{{betfair.all_trade_draw}}</view>
+          <view class="w120rpx fl">{{betfair.per_draw}}%</view>
+          <view class="w120rpx fl">{{betfair.win_lose_draw}}</view>
+          <view class="w120rpx fl">{{betfair.hot_cold_draw}}</view>
+          
+          <view class='clear2'></view>
+          
+          <view class="w80rpx fl">负</view>
+          <view class="w120rpx fl">{{betfair.all_odds_away}}</view>
+          <view class="w120rpx fl">{{betfair.all_trade_away}}</view>
+          <view class="w120rpx fl">{{betfair.per_away}}%</view>
+          <view class="w120rpx fl">{{betfair.win_lose_away}}</view>
+          <view class="w120rpx fl">{{betfair.hot_cold_away}}</view>
+
+        </view>
+
+      </view>
+
+      <view class='clear1'></view>
+
+    </view>
+
+    <view class="clear2 warpper-gray-1"></view>
+
+    <view class='clear2'></view>
+
+    <!-- 盈亏提点 -->
+    <view class="wb100">
+
+      <view class='wb100'>
+        <view class='h40rpx lh40rpx fl bor-red bor-solid-8l pal15 w200rpx F36'>
+          盈亏提点
+        </view>
+
+        <view class='clear2 bor-gray bor-solid-1b'></view>
+        
+      </view>
+
+      <view class='clear'></view>
+
+      <view class='pa25 F24 lh50rpx'>
+
+        <view class="wb100">
+          本场比赛必发交易规模<text class='Forange'>适中</text>，不太会有热门风险。
+        </view>
+        
+        <view class="wb100">
+          本场比赛必发成交量倾向于主胜，与99家平均概率倾向相差<text class='Forange'>较大</text>。
+        </view>
+
+        <view class="clear"></view>
+      </view>
+
+    </view>
+
+    <view class="clear2 warpper-gray-1"></view>
+
+    <view class='clear2'></view>
+
+    <!-- 五大要素 -->
+    <view class="wb100">
+
+      <view class='wb100'>
+        <view class='h40rpx lh40rpx fl bor-red bor-solid-8l pal15 w200rpx F36'>
+          五大要素
+        </view>
+
+        <view class='clear2 bor-gray bor-solid-1b'></view>
+        
+      </view>
+
+      <view class='clear'></view>
+
+      <view class='pa25 F24'>
+
+        <view class="wb100 Fgray-2 text-center lh40rpx">
+
+          <view class="w120rpx mar20 fl">
+            要素
+          </view>
+          <view class="w120rpx mar20 fl">
+            主胜
+          </view>
+          <view class="w120rpx mar20 fl">
+            平局
+          </view>
+          <view class="w120rpx mar20 fl">
+            主负
+          </view>
+          <view class="w120rpx mar20 fl">
+            建议
+          </view>
+
+        </view>
+
+        <view class='clear2'></view>
+
+        <view class="wb100 Fgray-3 text-center lh40rpx">
+          <view class="w120rpx mar20 fl">
+            交锋
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.cross_win}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.cross_drawn}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.cross_lost}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.cross_tui}}
+          </view>
+
+          <view class='clear2'></view>
+
+          <view class="w120rpx mar20 fl">
+            状态
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.status_win}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.status_drawn}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.status_lost}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.status_tui}}
+          </view>
+          
+          <view class='clear2'></view>
+
+          <view class="w120rpx mar20 fl">
+            主客
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.win_lost_win}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.win_lost_drawn}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.win_lost_lost}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.win_lost_tui}}
+          </view>
+
+          <view class='clear2'></view>
+
+          <view class="w120rpx mar20 fl">
+            赔率
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.radio_home}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.radio_draw}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.radio_away}}%
+          </view>
+          <view class="w120rpx mar20 fl">
+            {{betfair.radio_tui}}
+          </view>
+          
+          <view class='clear2'></view>
+
+        </view>
+
+        <view class="clear"></view>
+
+      </view>
+
+    </view>
+
+  </block>
+  
+  <!-- 赔率 -->
+  <block wx:if="{{showType == 1}}">
+
+    <view class="pa15 warpper-gray-1">
+      <view class="wb100 warpper-white">
+         <swiper indicator-dots="true" indicator-color="#909399" indicator-active-color="#409EFF" interval="5000" duration="1000"
+            class="warpper-white radius5 relative" style='height: 400rpx;  box-shadow: 0rpx 0rpx 5rpx rgba(225, 225, 225, .35);'>
+                
+            <!-- 概率转换 -->
+            <swiper-item >
+              <view class='wb100' >
+                <view class='text-center wb100 Fgray-3 F24 lh60rpx'>概率转换</view>
+                <view class="clear1 bor-gray bor-solid-1t"></view>
+                <view class="wb100">
+                  <view class='wb333 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#ff4f57'>
+                                                          
+                        <block wx:if="{{odds.odd_top.rate_home < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.odd_top.rate_home*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.odd_top.rate_home-50)*3.6}}deg); background:#efefef">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #ff4f57">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fred">
+                          {{odds.odd_top.rate_home}}%
+                        </view>
+                      </view>
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        胜
+                      </view>
+
+                    </view>
+
+                  </view>
+
+                  <view class='wb333 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#4e9944'>
+                                                           
+                        <block wx:if="{{odds.odd_top.rate_draw < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.odd_top.rate_draw*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.odd_top.rate_draw-50)*3.6}}deg); background:#efefef">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #4e9944">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fgreen">
+                          {{odds.odd_top.rate_draw}}%
+                        </view>
+                      </view> 
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        平
+                      </view>
+
+                    </view>
+
+                  </view>
+
+                  <view class='wb333 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#0b7ed4'>
+                                                          
+                        <block wx:if="{{odds.odd_top.rate_away < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.odd_top.rate_away*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.odd_top.rate_away-50)*3.6}}deg); background:#efefef">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #0b7ed4">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fblue">
+                          {{odds.odd_top.rate_away}}%
+                        </view>
+                      </view>
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        负
+                      </view>
+
+                    </view>
+
+                  </view>
+                </view>
+
+                <view class='clear2'></view>
+
+                <view class='wb100 Fgray-2 F22 lh60rpx lh60rpx text-center'>
+                  赔率转换概率显示，<text class='Forange'>主负</text>出现概率最大。最新赔率与初赔相比概率<text class='Forange'>下降</text>
+                </view>
+
+              </view>
+            </swiper-item>
+              
+            <!-- 赔率变化 -->
+            <swiper-item>
+              <view class='wb100' >
+                <view class='text-center wb100 Fgray-3 F24 lh60rpx'>赔率变化</view>
+                <view class="clear1 bor-gray bor-solid-1t"></view>
+
+                <view class='wb100 center'>
+
+                  <view class='wb50 fl'>  
+                    <view class="wb100 F24 Fgray-3 text-center">
+                      上升赔率公司
+                    </view>
+
+                    <view class="w200rpx center">
+                      <view class="w60rpx fl h200rpx relative">
+                        <view class="absolute w60rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.odd_top.change_up_home}}</view>
+                          <view class="w60rpx warpper-red" style='height:{{ odds.odd_top.change_up_home / odds.odd_top.change_up_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>胜</view>
+                        </view>
+                      </view>
+
+                      <view class="w60rpx fl h200rpx relative mal10 mar10">
+                        <view class="absolute w60rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.odd_top.change_up_draw}} 家</view>
+                          <view class="w60rpx warpper-green" style='height:{{ odds.odd_top.change_up_draw / odds.odd_top.change_up_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>平</view>
+                        </view>
+                      </view>
+
+                      <view class="w60rpx fl h200rpx relative">
+                        <view class="absolute w60rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.odd_top.change_up_away}} 家</view>
+                          <view class="w60rpx warpper-blue" style='height:{{ odds.odd_top.change_up_away / odds.odd_top.change_up_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>负</view>
+                        </view>
+                      </view>
+                      
+                    </view>
+
+                  </view>   
+                  
+                   <view class='wb50 fl'>  
+                    <view class="wb100 F24 Fgray-3 text-center">
+                      降低赔率公司
+                    </view>
+
+                    <view class="w200rpx center">
+                      <view class="w60rpx fl h200rpx relative">
+                        <view class="absolute w60rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.odd_top.change_down_home}} 家</view>
+                          <view class="w60rpx warpper-red" style='height:{{ odds.odd_top.change_down_home / odds.odd_top.change_down_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>胜</view>
+                        </view>
+                      </view>
+
+                      <view class="w60rpx fl h200rpx relative mal10 mar10">
+                        <view class="absolute w60rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.odd_top.change_down_draw}} 家</view>
+                          <view class="w60rpx warpper-green" style='height:{{ odds.odd_top.change_down_draw / odds.odd_top.change_down_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>平</view>
+                        </view>
+                      </view>
+
+                      <view class="w60rpx fl h200rpx relative">
+                        <view class="absolute w60rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.odd_top.change_down_away}} 家</view>
+                          <view class="w60rpx warpper-blue" style='height:{{ odds.odd_top.change_down_away / odds.odd_top.change_down_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>负</view>
+                        </view>
+                      </view>
+                      
+                    </view>
+
+                  </view>   
+                
+                </view>
+
+              </view>
+            </swiper-item>
+
+            <!-- 赔付控制 -->
+            <swiper-item >
+              <view class='wb100' >
+                <view class='text-center wb100 Fgray-3 F24 lh60rpx'>赔付控制</view>
+                <view class="clear1 bor-gray bor-solid-1t"></view>
+                <view class="wb100">
+                 <view class='wb333 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#ff4f57'>
+                                                          
+                        <block wx:if="{{odds.odd_top.control_home2 < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.odd_top.control_home2*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.odd_top.control_home2-50)*3.6}}deg); background:#efefef">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #ff4f57">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fred">
+                          {{odds.odd_top.control_home}}家
+                        </view>
+                      </view>
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        胜
+                      </view>
+
+                    </view>
+
+                  </view>
+
+                  <view class='wb333 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#4e9944'>
+                                                           
+                        <block wx:if="{{odds.odd_top.control_draw2 < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.odd_top.control_draw2*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.odd_top.control_draw2)*3.6}}deg); background:#efefef">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #4e9944">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fgreen">
+                          {{odds.odd_top.control_draw}}家
+                        </view>
+                      </view> 
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        平
+                      </view>
+
+                    </view>
+
+                  </view>
+
+                  <view class='wb333 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#0b7ed4'>
+                                                          
+                        <block wx:if="{{odds.odd_top.control_away2 < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.odd_top.control_away2*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.odd_top.control_away2)*3.6}}deg); background:#efefef">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #0b7ed4">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fblue">
+                          {{odds.odd_top.control_away}}家
+                        </view>
+                      </view>
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        负
+                      </view>
+
+                    </view>
+
+                  </view>
+                </view>
+
+                <view class='clear2'></view>
+
+                <view class='wb100 Fgray-2 F22 lh60rpx lh60rpx text-center'>
+                  赔率转换概率显示，<text class='Forange'>主负</text>出现概率最大。最新赔率与初赔相比概率<text class='Forange'>下降</text>
+                </view>
+
+              </view>
+            </swiper-item>
+
+            <!-- 亚盘赢盘率 -->
+            <swiper-item >
+              <view class='wb100' >
+                <view class='text-center wb100 Fgray-3 F24 lh60rpx'>亚盘赢盘率</view>
+                <view class="clear1 bor-gray bor-solid-1t"></view>
+                <view class="wb100">
+                  <view class='wb50 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#ff4f57'>
+                                                          
+                        <block wx:if="{{odds.plate_top.win_rate_home < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.plate_top.win_rate_home*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.plate_top.win_rate_home-50)*3.6}}deg); background:#aaa">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #ff4f57">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fred">
+                          {{odds.plate_top.win_rate_home}}%
+                        </view>
+                      </view>
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        主队
+                      </view>
+
+                    </view>
+
+                  </view>
+
+                  <view class='wb50 fl'>
+
+                    <view class="w120rpx center relative">
+
+                      <view class="circle" style='background:#0b7ed4'>
+                                                          
+                        <block wx:if="{{odds.plate_top.win_rate_away < 50}}">
+                          <view class="circle_left" style='background:#efefef'>
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate({{odds.plate_top.win_rate_away*3.6}}deg); background:#efefef">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <block wx:else>
+                          <view class="circle_left" style="transform:rotate({{(odds.plate_top.win_rate_away-50)*3.6}}deg); background:#aaa">
+                            <view class="clip_left"></view>
+                          </view>
+                          <view class="circle_right" style="transform:rotate(0deg); background: #0b7ed4">
+                            <view class="clip_right"></view>
+                          </view>
+                        </block>
+
+                        <view class="mask Fblue">
+                          {{odds.plate_top.win_rate_away}}%
+                        </view>
+                      </view>
+
+                      <view class="wb100 lh50rpx h50rpx text-center F28">
+                        客队
+                      </view>
+
+                    </view>
+
+                  </view>
+                  
+                </view>
+
+                <view class='clear2'></view>
+
+                <view class='wb100 Fgray-2 F22 lh60rpx lh60rpx text-center'>
+                  赔率转换概率显示，<text class='Forange'>主负</text>出现概率最大。最新赔率与初赔相比概率<text class='Forange'>下降</text>
+                </view>
+
+              </view>
+            </swiper-item>
+
+            <!-- 盘位水位升降 -->
+            <swiper-item>
+              <view class='wb100' >
+                <view class='text-center wb100 Fgray-3 F24 lh60rpx'>盘位水位升降</view>
+                <view class="clear1 bor-gray bor-solid-1t"></view>
+
+                <view class='wb100 center'>
+
+                  <view class='wb50 fl'>  
+                    <view class="wb100 F24 Fgray-3 text-center">
+                      升降盘公司数
+                    </view>
+
+                    <view class="w150rpx center">
+                      <view class="w70rpx fl h200rpx relative">
+                        <view class="absolute w70rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.plate_top.change_up_boundary}} 家</view> 
+                           
+                          <view class="w70rpx warpper-red" style='height:{{ odds.plate_top.change_up_boundary / odds.plate_top.change_up_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>升盘</view>
+                        </view>
+                      </view>
+
+                      <view class="w70rpx fl h200rpx relative mal10">
+                        <view class="absolute w70rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.plate_top.change_down_boundary}} 家</view>
+                          <view class="w70rpx warpper-blue" style='height:{{ odds.plate_top.change_down_boundary / odds.plate_top.change_up_totle * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>降盘</view>
+                        </view>
+                      </view>
+
+                    </view>
+
+                  </view>   
+                  
+                   <view class='wb50 fl'>  
+                    <view class="wb100 F24 Fgray-3 text-center">
+                      主队水位公司数
+                    </view>
+
+                    <view class="w150rpx center">
+                      <view class="w70rpx fl h200rpx relative">
+                        <view class="absolute w70rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.plate_top.high_level}} 家</view>  
+                          <view class="w70rpx warpper-red" style='height:{{ odds.plate_top.high_level / odds.plate_top.totle_level * 100 }}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>高水</view>
+                        </view>
+                      </view>
+
+                      <view class="w70rpx fl h200rpx relative mal10">
+                        <view class="absolute w70rpx" style='bottom:0rpx'>
+                          <view class='F24 lh40rpx text-center'>{{odds.plate_top.low_level}} 家</view>
+                          <view class="w70rpx warpper-blue" style='height:{{ odds.plate_top.low_level / odds.plate_top.totle_level * 100}}rpx;'>
+                          </view>
+                          <view class='F24 lh40rpx text-center'>低水</view>
+                        </view>
+                      </view>
+
+                    </view>
+
+                  </view>   
+                
+                </view>
+
+              </view>
+            </swiper-item>
+
+          </swiper>
+      </view>
+    </view>
+
+    <view class='clear1'></view>
+
+    <view class="wb100">
+      
+      <view class="w240rpx center bor-blue bor-solid-1a F22 h50rpx text-center">
+        <block wx:for="{{['欧赔', '亚盘', '大小球']}}" wx:key="{{index}}">
+          <view class="wb33333 fl h50rpx {{showType1 == index ? 'warpper-blue Fwhite' : 'Fblue warpper-white' }} "  bindtap="changeShowType1" data-value="{{index}}">
+            <view class="h50rpx lh50rpx {{index == 1 ? 'bor-blue bor-solid-1l bor-solid-1r' : ''}}">
+              {{item}}
+            </view>
+          </view>
+        </block>
+      </view>
+      
+    </view>
+
+    <view class='clear1'></view>
+
+    <view class="pal25 par25 F22 lh40rpx Fgray-2 text-center">
+
+      <block wx:if="{{showType1 == 0}}">
+        <view class="wb100">
+          <view class="w130rpx fl">公司名</view>
+          <view class="w95rpx fl Fwhite">无</view>
+          <view class="w95rpx fl">初赔</view>
+          <view class="w95rpx fl Fwhite">无</view>
+          <view class="w95rpx fl Fwhite">无</view>
+          <view class="w95rpx fl ">最新赔率</view>
+          <view class="w95rpx fl Fwhite">无</view>
+        </view>
+
+        <view class='clear2'></view>
+
+        <view class="wb100">
+          <block wx:for="{{odds.odd_kelly}}" wx:key="{{index}}">
+            <view class="wb100">
+              <view class="w130rpx fl Fgray-3">{{item.company_name}}</view>
+              <view class="w95rpx fl">{{item.start_home}}</view>
+              <view class="w95rpx fl">{{item.start_draw}}</view>
+              <view class="w95rpx fl">{{item.start_away}}</view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.home_change == 1}}" class='Fred'>{{item.end_home}}↑</text>
+                <text wx:elif="{{item.home_change == 2}}" class='Fblue'>{{item.end_home}}↓</text>
+                <text wx:else>{{item.end_home}}</text>
+              </view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.draw_change == 1}}" class='Fred'>{{item.end_draw}}↑</text>
+                <text wx:elif="{{item.draw_change == 2}}" class='Fblue'>{{item.end_draw}}↓</text>
+                <text wx:else>{{item.end_draw}}</text>
+              </view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.away_change == 1}}" class='Fred'>{{item.end_away}}↑</text>
+                <text wx:elif="{{item.away_change == 2}}" class='Fblue'>{{item.end_away}}↓</text>
+                <text wx:else>{{item.end_away}}</text>
+              </view>
+            </view>
+            <view class='clear'></view>
+
+          </block>
+        </view>
+
+      </block>
+      
+      <block wx:if="{{showType1 == 1}}">
+
+        <view class="wb100">
+          <view class="w130rpx fl">公司名</view>
+          <view class="w95rpx fl Fwhite">主水</view>
+          <view class="w95rpx fl">初盘</view>
+          <view class="w95rpx fl Fwhite">客水</view>
+          <view class="w95rpx fl Fwhite">主水</view>
+          <view class="w95rpx fl ">最新盘口</view>
+          <view class="w95rpx fl Fwhite">客水</view>
+        </view>
+
+        <view class='clear2'></view>
+
+        <view class="wb100">
+          <block wx:for="{{odds.plate_kelly}}" wx:key="{{index}}">
+            <view class="wb100">
+              <view class="w130rpx fl Fgray-3">{{item.company_name}}</view>
+              <view class="w95rpx fl">{{item.start_home}}</view>
+              <view class="w95rpx fl">{{item.start_boundary_cn_name}}</view>
+              <view class="w95rpx fl">{{item.start_away}}</view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.home_change == 1}}" class='Fred'>{{item.end_home}}↑</text>
+                <text wx:elif="{{item.home_change == 2}}" class='Fblue'>{{item.end_home}}↓</text>
+                <text wx:else>{{item.end_home}}</text>
+              </view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.boundary_change == 1}}" class='Fred'>{{item.end_boundary_cn_name}}↑</text>
+                <text wx:elif="{{item.boundary_change == 2}}" class='Fblue'>{{item.end_boundary_cn_name}}↓</text>
+                <text wx:else>{{item.end_boundary_cn_name}}</text>
+              </view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.away_change == 1}}" class='Fred'>{{item.end_away}}↑</text>
+                <text wx:elif="{{item.away_change == 2}}" class='Fblue'>{{item.end_away}}↓</text>
+                <text wx:else>{{item.end_away}}</text>
+              </view>
+            </view>
+            <view class='clear'></view>
+
+          </block>
+        </view>
+      
+      </block>
+      
+      <block wx:if="{{showType1 == 2}}">
+
+        <view class="wb100">
+          <view class="w130rpx fl">公司</view>
+          <view class="w95rpx fl">大球</view>
+          <view class="w95rpx fl">初盘</view>
+          <view class="w95rpx fl">小球</view>
+          <view class="w95rpx fl">大球</view>
+          <view class="w95rpx fl">最新盘</view>
+          <view class="w95rpx fl">小球</view>
+        </view>
+        
+        <view class='clear2'></view>
+
+        <view class="wb100">
+          <block wx:for="{{odds.plate_ball}}" wx:key="{{index}}">
+            <view class="wb100">
+              <view class="w130rpx fl Fgray-3">{{item.company_name}}</view>
+              <view class="w95rpx fl">{{item.start_over}}</view>
+              <view class="w95rpx fl">{{item.start_boundary}}</view>
+              <view class="w95rpx fl">{{item.start_under}}</view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.over_change == 1}}" class='Fred'>{{item.end_over}}↑</text>
+                <text wx:elif="{{item.over_change == 2}}" class='Fblue'>{{item.end_over}}↓</text>
+                <text wx:else>{{item.end_over}}</text>
+              </view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.boundary_change == 1}}" class='Fred'>{{item.end_boundary}}↑</text>
+                <text wx:elif="{{item.boundary_change == 2}}" class='Fblue'>{{item.end_boundary}}↓</text>
+                <text wx:else>{{item.end_boundary}}</text>
+              </view>
+              <view class="w95rpx fl">
+                <text wx:if="{{item.under_change == 1}}" class='Fred'>{{item.end_under}}↑</text>
+                <text wx:elif="{{item.under_change == 2}}" class='Fblue'>{{item.end_under}}↓</text>
+                <text wx:else>{{item.end_under}}</text>
+              </view>
+            </view>
+            <view class='clear'></view>
+
+          </block>
+        </view>
+      
+      </block>
+
+    </view>
+
+  </block>
+
+  <!-- 分析 -->
+  <block wx:if="{{showType == 2}}">
+    <view class="pa15 warpper-gray-1 lh40rpx">
+       <swiper indicator-dots="true" indicator-color="#909399" indicator-active-color="#409EFF" interval="5000" duration="1000"
+            class="warpper-white radius5 relative" style='height: 430rpx;  box-shadow: 0rpx 0rpx 5rpx rgba(225, 225, 225, .35);'>
+                
+        <!-- 实力对比 -->
+        <swiper-item>
+          <view class="wb100 warpper-white">
+            <view class='text-center wb100 Fgray-3 F24 lh60rpx'>实力对比</view>
+            <view class="clear1 bor-gray bor-solid-1t"></view>
+
+            <view class="pal25 par25 F28">
+              <view class="wb100 h40rpx lh40rpx">
+                <view class='wb33333 fl text-left Fred'>
+                 {{analyze.compute.complex_home_power2}}%
+                </view>
+                <view class='wb33333 fl text-center Fblack F40'>
+                  vs
+                </view>
+                <view class='wb33333 fl text-right Fblue'>
+                 {{analyze.compute.complex_away_power2}}%
+                </view>
+              </view>
+
+              <view class='clear2'></view>
+
+              <view class='wb100'>
+                <view class="h20rpx warpper-red fl" style='width:{{analyze.compute.complex_home_power2}}%'></view>
+                <view class="h20rpx warpper-blue fl" style='width:{{analyze.compute.complex_away_power2}}%'></view>
+              </view>
+
+              <view class="clear2"></view>
+              <view class='w120rpx fl text-left h50rpx lh50rpx'>进攻实力</view>
+              <view class="wb60 fl mat15" style='width:430rpx'>
+                <view class="h20rpx warpper-red fl" style='width:{{analyze.compute.attack_home_power2}}%'></view>
+                <view class="h20rpx warpper-blue fl" style='width:{{analyze.compute.attack_away_power2}}%'></view>
+              </view>
+              <view class='w120rpx fr text-right h50rpx lh50rpx'>进攻实力</view>
+
+              <view class="clear2"></view>
+              <view class='w120rpx fl text-left h50rpx lh50rpx'>防守实力</view>
+              <view class="wb60 fl mat15" style='width:430rpx'>
+                <view class="h20rpx warpper-red fl" style='width:{{analyze.compute.attend_home_power2}}%'></view>
+                <view class="h20rpx warpper-blue fl" style='width:{{analyze.compute.attend_away_power2}}%'></view>
+              </view>
+              <view class='w120rpx fr text-right h50rpx lh50rpx'>防守实力</view>
+
+              <view class="clear2"></view>
+              <view class='w120rpx fl text-left h50rpx lh50rpx'>近期交锋</view>
+              <view class="wb60 fl mat15" style='width:430rpx'>
+                <view class="h20rpx warpper-red fl" style='width:{{analyze.compute.cross_home_power2}}%'></view>
+                <view class="h20rpx warpper-blue fl" style='width:{{analyze.compute.cross_away_power2}}%'></view>
+              </view>
+              <view class='w120rpx fr text-right h50rpx lh50rpx'>近期交锋</view>
+
+            </view>
+
+            <view class="clear2"></view>
+
+          </view>
+        </swiper-item>
+
+        <!-- 近10场战绩 -->
+        <swiper-item>
+          <view class="wb100 warpper-white">
+            <view class='text-center wb100 Fgray-3 F24 lh60rpx'>近10场战绩</view>
+            <view class="clear1 bor-gray bor-solid-1t"></view>
+
+            <view class="wb100 F24 Fgray-2 lh40rpx">
+
+              <view class='wb45 fl text-right'>
+                <view class="pal50 par15">
+                  <view class="text-center F28 Fgray-3">主队</view>
+                  <view class="wb100">{{analyze.xi.all_home_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.all_home_win / analyze.xi.all_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-red fl" style='width:{{analyze.xi.all_home_win / analyze.xi.all_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.all_home_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.all_home_draw / analyze.xi.all_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-green fl" style='width:{{analyze.xi.all_home_draw / analyze.xi.all_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.all_home_away}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.all_home_away / analyze.xi.all_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-blue fl" style='width:{{analyze.xi.all_home_away / analyze.xi.all_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.all_home_win_goals}}</text>失<text class='Fblue'>{{analyze.xi.all_home_lost_goals}}</text>
+                  </view>
+                </view>
+              </view>
+
+              <view class="wb10 fl F28 text-center">
+                <view class='clear h70rpx'></view>
+                <view class='wb100 Fred'>胜</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fgreen'>平</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fblue'>负</view>
+              </view>
+
+              <view class='wb45 fl text-left'>
+
+                <view class="pal15 par50">
+                  <view class="text-center F28 Fgray-3">客队</view>
+                  <view class="wb100">{{analyze.xi.all_away_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-red fl" style='width:{{analyze.xi.all_away_win / analyze.xi.all_away_totle * 100}}%'></view> 
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.all_away_win / analyze.xi.all_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.all_away_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-green fl" style='width:{{analyze.xi.all_away_draw / analyze.xi.all_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.all_away_draw / analyze.xi.all_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.all_away_away}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-blue fl" style='width:{{analyze.xi.all_away_away / analyze.xi.all_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.all_away_away / analyze.xi.all_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.all_away_win_goals}}</text>失<text class='Fblue'>{{analyze.xi.all_away_lost_goals}}</text>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+
+          </view>
+        </swiper-item>
+
+        <!-- 近10场主客战绩 -->
+        <swiper-item>
+          <view class="wb100 warpper-white">
+            <view class='text-center wb100 Fgray-3 F24 lh60rpx'>近10场主客战绩</view>
+            <view class="clear1 bor-gray bor-solid-1t"></view>
+
+             <view class="wb100 F24 Fgray-2 lh40rpx">
+
+              <view class='wb45 fl text-right'>
+                <view class="pal50 par15">
+                  <view class="text-center F28 Fgray-3">主队</view>
+                  <view class="wb100">{{analyze.xi.site_home_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.site_home_win / analyze.xi.site_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-red fl" style='width:{{analyze.xi.site_home_win / analyze.xi.site_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.site_home_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.site_home_draw / analyze.xi.site_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-green fl" style='width:{{analyze.xi.site_home_draw / analyze.xi.site_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.site_home_away}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.site_home_away / analyze.xi.site_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-blue fl" style='width:{{analyze.xi.site_home_away / analyze.xi.site_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.site_home_win_goals}}</text>失<text class='Fblue'>{{analyze.xi.site_home_lost_goals}}</text>
+                  </view>
+                </view>
+              </view>
+
+              <view class="wb10 fl F28 text-center">
+                <view class='clear h70rpx'></view>
+                <view class='wb100 Fred'>胜</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fgreen'>平</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fblue'>负</view>
+              </view>
+
+              <view class='wb45 fl text-left'>
+
+                <view class="pal15 par50">
+                  <view class="text-center F28 Fgray-3">客队</view>
+                  <view class="wb100">{{analyze.xi.site_away_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-red fl" style='width:{{analyze.xi.site_away_win / analyze.xi.site_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.site_away_win / analyze.xi.site_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.site_away_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-green fl" style='width:{{analyze.xi.site_away_draw / analyze.xi.site_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.site_away_draw / analyze.xi.site_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.site_away_away}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-blue fl" style='width:{{analyze.xi.site_away_away / analyze.xi.site_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.site_away_away / analyze.xi.site_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.site_away_win_goals}}</text>失<text class='Fblue'>{{analyze.xi.site_away_lost_goals}}</text>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </swiper-item>
+
+        <!-- 主队等级战绩 -->
+        <swiper-item>
+          <view class="wb100 warpper-white">
+            <view class='text-center wb100 Fgray-3 F24 lh60rpx'>主队等级战绩</view>
+            <view class="clear1 bor-gray bor-solid-1t"></view>
+
+             <view class="wb100 F24 Fgray-2 lh40rpx">
+
+              <view class='wb45 fl text-right'>
+                <view class="pal50 par15">
+                  <view class="text-center F28 Fgray-3">对阵强队</view>
+                  <view class="wb100">{{analyze.xi.home_grade_home_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{analyze.xi.home_grade_home_win / analyze.xi.home_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-red fl" style='width:{{100 - analyze.xi.home_grade_home_win / analyze.xi.home_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.home_grade_home_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{analyze.xi.home_grade_home_draw / analyze.xi.home_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-green fl" style='width:{{100 - analyze.xi.home_grade_home_draw / analyze.xi.home_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.home_grade_home_lose}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{analyze.xi.home_grade_home_lose / analyze.xi.home_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-blue fl" style='width:{{100 - analyze.xi.home_grade_home_lose / analyze.xi.home_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.home_grade_home_wingoals}}</text>失<text class='Fblue'>{{analyze.xi.home_grade_home_losegoals}}</text>
+                  </view>
+                </view>
+              </view>
+
+              <view class="wb10 fl F28 text-center">
+                <view class='clear h70rpx'></view>
+                <view class='wb100 Fred'>胜</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fgreen'>平</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fblue'>负</view>
+              </view>
+
+              <view class='wb45 fl text-left'>
+
+                <view class="pal15 par50">
+                  <view class="text-center F28 Fgray-3">对阵弱队</view>
+                  <view class="wb100">{{analyze.xi.home_grade_away_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-red fl" style='width:{{analyze.xi.home_grade_away_win / analyze.xi.home_grade_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.home_grade_away_win / analyze.xi.home_grade_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.home_grade_away_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-green fl" style='width:{{analyze.xi.home_grade_away_draw / analyze.xi.home_grade_away_draw * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.home_grade_away_draw / analyze.xi.home_grade_away_draw * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.home_grade_away_lose}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-blue fl" style='width:{{analyze.xi.home_grade_away_lose / analyze.xi.home_grade_away_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.home_grade_away_lose / analyze.xi.home_grade_away_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.home_grade_away_wingoals}}</text>失<text class='Fblue'>{{analyze.xi.home_grade_away_losegoals}}</text>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </swiper-item>
+
+        <!-- 客队等级战绩 -->
+        <swiper-item>
+          <view class="wb100 warpper-white">
+            <view class='text-center wb100 Fgray-3 F24 lh60rpx'>客队等级战绩</view>
+            <view class="clear1 bor-gray bor-solid-1t"></view>
+
+             <view class="wb100 F24 Fgray-2 lh40rpx">
+
+              <view class='wb45 fl text-right'>
+                <view class="pal50 par15">
+                  <view class="text-center F28 Fgray-3">主队</view>
+                  <view class="wb100">{{analyze.xi.away_grade_home_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{analyze.xi.away_grade_home_win / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-red fl" style='width:{{100 - analyze.xi.away_grade_home_win / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.away_grade_home_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{analyze.xi.away_grade_home_draw / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-green fl" style='width:{{100 - analyze.xi.away_grade_home_draw / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.away_grade_home_lose}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{analyze.xi.away_grade_home_lose / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-blue fl" style='width:{{100 - analyze.xi.away_grade_home_lose / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.away_grade_home_wingoals}}</text>失<text class='Fblue'>{{analyze.xi.away_grade_home_losegoals}}</text>
+                  </view>
+                </view>
+              </view>
+
+              <view class="wb10 fl F28 text-center">
+                <view class='clear h70rpx'></view>
+                <view class='wb100 Fred'>胜</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fgreen'>平</view>
+                <view class="clear h20rpx"></view>
+                <view class='wb100 Fblue'>负</view>
+              </view>
+
+              <view class='wb45 fl text-left'>
+
+                <view class="pal15 par50">
+                  <view class="text-center F28 Fgray-3">客队</view>
+                  <view class="wb100">{{analyze.xi.away_grade_away_win}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-red fl" style='width:{{analyze.xi.away_grade_away_win / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.away_grade_away_win / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.away_grade_away_draw}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-green fl" style='width:{{analyze.xi.away_grade_away_draw / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.away_grade_away_draw / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">{{analyze.xi.away_grade_away_lose}}场</view>
+                  <view class="wb100">
+                    <view class="h20rpx warpper-blue fl" style='width:{{analyze.xi.away_grade_away_lose / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                    <view class="h20rpx warpper-gray-1 fl" style='width:{{100 - analyze.xi.away_grade_away_lose / analyze.xi.away_grade_home_totle * 100}}%'></view>
+                  </view>
+                  <view class="wb100">
+                    进<text class='Fred'>{{analyze.xi.away_grade_away_wingoals}}</text>失<text class='Fblue'>{{analyze.xi.away_grade_away_losegoals}}</text>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </swiper-item>
+
+      </swiper>
+
+    </view>
+
+    <view class='clear2'></view>
+
+    <!-- 积分排名 -->
+    <view class='wb100'>
+      <view class='h40rpx lh40rpx fl bor-red bor-solid-8l pal15 F36'>
+        积分排名（法乙）
+      </view>
+
+      <view class='clear2'></view>
+
+      <view class='wb100 Fgray-2 F24 text-center'>
+
+        <!-- 主队 -->
+        <view class="wb100 bor-white2 bor-solid-1l bor-solid-1t lh40rpx">
+          <view class="wb100">
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>梅斯</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>赛</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>胜</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>平</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>负</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>得</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>失</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>净</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>得分</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>排名</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>胜率</view>
+            </view>
+          </view>
+          <view class='clear'></view>
+
+          <block wx:for="{{[1,2,3]}}" wx:key="{{index}}">
+             <view class="wb100">
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>1</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>2</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>3</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>4</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>5</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>6</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>7</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>8</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>9</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>10</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>11</view>
+              </view>
+            </view>
+            <view class='clear'></view>
+          </block>
+
+        </view>
+
+        <view class='clear1 warpper-gray-1'></view>
+
+        <!-- 客队 -->
+        <view class="wb100 bor-white2 bor-solid-1l bor-solid-1t lh40rpx">
+          <view class="wb100">
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>梅斯</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>赛</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>胜</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>平</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>负</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>得</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>失</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>净</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>得分</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>排名</view>
+            </view>
+            <view class='wb9 fl'>
+              <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>胜率</view>
+            </view>
+          </view>
+          <view class='clear'></view>
+
+          <block wx:for="{{[1,2,3]}}" wx:key="{{index}}">
+             <view class="wb100">
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>1</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>2</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>3</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>4</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>5</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>6</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>7</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>8</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>9</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>10</view>
+              </view>
+              <view class='wb9 fl'>
+                <view class='wb100 h40rpx bor-white2 bor-solid-1b bor-solid-1r'>11</view>
+              </view>
+            </view>
+            <view class='clear'></view>
+          </block>
+
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class='clear1'></view>
+
+    <block wx:for="{{analyze.xi_home_history}}" wx:key="{{index}}">
+      
+      <view class='wb100'>
+        <view class='h40rpx lh40rpx fl bor-red bor-solid-8l pal15 F36'>
+          {{item.away}}
+        </view>
+
+        <view class='clear2 bor-gray bor-solid-1b'></view>
+
+        <view class='clear2'></view>
+
+        <view class='wb100 F28 text-center lh50rpx'>
+        
+          <view class='w200rpx fl'>
+            <view class='wb100'>
+              {{item.lname}}
+            </view>
+            <view class='wb100 Fgray-2 F24'>
+              {{item.date}}
+            </view>
+          </view>
+
+          <view class='w450rpx fl'>
+            <view class='w150rpx fl text-right'>
+              <view class='wb100 Fblue'>
+                {{item.home}}
+              </view>
+              <view class='wb100 Fgray-2'>
+                {{item.home_rank}}
+              </view>
+            </view>
+            <view class='w150rpx fl Fblue'>
+              {{item.home_goal}}-{{item.away_goal}}
+            </view>
+            <view class='w150rpx fr text-left'>
+              <view class='wb100'>
+                {{item.away}}
+              </view>
+              <view class='wb100 Fgray-2'>
+                {{item.away_rank}}
+              </view>
+            </view>
+          </view>
+
+          <view class='w50rpx fr h100rpx lh100rpx Fblue text-right mar25'>
+            {{item.panlu}}
+          </view>
+
+        </view>
+
+      </view>
+      
+      <view class='clear2'></view>
+      <view class="clear2 warpper-gray-1"></view>
+      <view class='clear2'></view>
+
+    </block>
+
+    <view class='clear2'></view>
+    
+  </block>
+
+  <!-- 情报 -->
+  <block wx:if="{{showType == 3}}">
+    <view class='wb100'>
+      <view class="wb100">
+        <view class="w240rpx center bor-blue bor-solid-1a F22 h50rpx text-center">
+          <block wx:for="{{['临场', '基本面', '参谋']}}" wx:key="{{index}}">
+            <view class="wb33333 fl h50rpx {{showType2 == index ? 'warpper-blue Fwhite' : 'Fblue warpper-white' }} "  bindtap="changeShowType2" data-value="{{index}}">
+              <view class="h50rpx lh50rpx {{index == 1 ? 'bor-blue bor-solid-1l bor-solid-1r' : ''}}">
+                {{item}}
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <view class='clear2'></view>
+
+      <!-- 临场 -->
+      <block wx:if="{{showType2 == 0}}">
+        临场
+      </block>
+      
+      <!-- 临场 -->
+      <block wx:if="{{showType2 == 0}}">
+        基本面
+      </block>
+
+      <!-- 临场 -->
+      <block wx:if="{{showType2 == 0}}">
+        临场
+      </block>
+
+    </view>
+  </block>
+  
+  <!-- 点评 -->
+  <block wx:if="{{showType == 4}}">
+    <view class="pa15 warpper-gray-1">
+      <view class="pa25 warpper-white">
+
+        <view class='wb100 F24'>
+          点评胜负（0人参与） <text class='Fgray-2 fr'>大神，点下方“支持”来点评结果吧</text>
+        </view>
+
+        <view class='clear1'></view>
+
+        <view class='w100rpx h100rpx warppr-red'>
+          主胜
+        </view>
+
+        <view class='w100rpx 100rpx warppr-green'>
+          平局
+        </view>
+        
+        <view class='w100rpx 100rpx warppr-blue'>
+          客胜
+        </view>
+
+      </view>
+
+    </view>
+
+    <!--  -->
+
+  </block>
+
+  <!-- 大咖 -->
+  <block wx:if="{{showType == 5}}">
+    <view class='wb100'>
+
+      <block wx:for="{{[1, 2, 3]}}" wx:key="{{index}}">
+
+        <view class='pal25 par25'>
+          <view class='w60rpx h60rpx fl'>
+          </view>
+
+          <view class='w400rpx h60rpx lh30rpx F28'>
+            <view class='wb100'>以球会友</view>
+            <view class='wb100'>
+              已带红3111 人次
+            </view>
+          </view>
+
+          <view class='clear2'></view>
+
+          <view class='wb100 F28 lh40rpx h40rpx'>
+            <view class='fl'>
+              已收米8期懂球客最长24连红
+            </view>
+            <view class='fr'>
+              <text class='Fred'>17小时</text>后截止
+            </view>
+          </view>
+
+          <view class='clear2'></view>
+
+          <view class="wb100 bor-red bor-solid-1a radius10 text-center">
+
+            <view class="pa15 warpper-white radius10 bor-gray bor-solid-1l bor-solid-1t box-shadow-gray3 relative">
+
+              <image src='/images/icon-sift.png' class='absolute' style='right:0rpx; top:0rpx; width:64rpx; height:64rpx;'> </image>
+
+              <view class='clear2'></view>
+
+              <view class="wb100 F28">
+                <view class='wb333 fl'>
+                  <view class="w80rpx h80rpx center">
+                    <image src='/images/icon-seven.png' class='w60rpx h60rpx'></image>
+                  </view>
+                  <view class="h60rpx lh60rpx wb100">
+                    霍芬海姆
+                  </view>
+                </view>
+                <view class='wb333 fl'>
+
+                  <view class="wb100 h90rpx pat10 pab10 Fgray-2 text-center F24">
+
+                    <view class='wb100'>
+                      11-07 04：00
+                    </view>
+
+                    <view class='wb100'>
+                      欧冠
+                    </view>
+
+                    <view class='clear2'></view>
+
+                    <view class='wb100'>
+                      亚盘单关
+                    </view>
+
+                  </view>
+                  
+                </view>
+                <view class='wb333 fl'>
+                  <view class="w80rpx h80rpx center">
+                    <image src='/images/icon-ten.png' class='w60rpx h60rpx'></image>
+                  </view>
+                  <view class="h60rpx lh60rpx wb100">
+                    斯图加特
+                  </view>
+                </view>
+              </view>
+
+              <view class='clear'></view>
+
+            </view>
+          </view>
+
+        </view>
+
+        <view class='clear2'></view>
+        <view class='clear2 warpper-gray-1'></view>
+        <view class='clear2'></view>
+
+      </block>
+
+    </view>
+  </block>
+
+</view>

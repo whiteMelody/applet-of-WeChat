@@ -1,0 +1,5 @@
+/* pages/rank/rank.wxss */
+page {
+  background-color:#4E84E5;
+  height: 100%
+}

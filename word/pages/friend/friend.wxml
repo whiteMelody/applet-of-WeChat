@@ -1,0 +1,253 @@
+<!--pages/friend/friend.wxml-->
+<view class="wb100">
+
+  <!-- 登录组件 -->
+  <login-tag id="login" bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
+  </login-tag>
+
+  <block wx:if="{{dialog}}">
+    <view class="dialogBg"></view>
+    <view class="warpper-white absolute radius3 text-center w600rpx h300rpx" style='z-index:9999;top:33%;left: 0;right: 0;margin: auto'>
+      <view class="F36 h100rpx lh100rpx">提示</view>
+      <view class="Fgray-2 F32 pal60 par60">你的对手已退出</view>
+      <view class="bor-solid-1t absolute wb100 bor-gray2 h80rpx lh80rpx F36" style='bottom:0;color:#09BB07' bindtap="determine">确定</view>
+    </view>
+  </block>
+
+  <block wx:if="{{full}}">
+    <view class="dialogBg"></view>
+    <view class="warpper-white absolute radius3 text-center w600rpx h300rpx" style='z-index:9999;top:33%;left: 0;right: 0;margin: auto'>
+      <view class="F36 h100rpx lh100rpx">提示</view>
+      <view class="Fgray-2 F32 pal60 par60">房间已满</view>
+      <view class="bor-solid-1t absolute wb100 bor-gray2 h80rpx lh80rpx F36" style='bottom:0;color:#09BB07' bindtap="determine">确定</view>
+    </view>
+  </block>
+
+  <block wx:if="{{wait}}">
+    <view class="wb100">
+      <image class="wb100 absolute" style='background-color:#6152AD;height:{{bgHeight}}px;z-index:-1' src='/images/bg.png'></image>
+
+      <block wx:if="{{back}}">
+        <view class="pal30 pat30">
+          <view class="" bindtap="back">
+            <image src='/images/icon_left.png' class="w16rpx h30rpx fl"></image>
+            <view class="Fwhite F30 fl h30rpx lh30rpx mal10">返回首页</view>
+          </view>
+        </view>
+      </block>
+
+      <view class="clear h200rpx"></view>
+      <view class="w500rpx center text-center Fwhite">
+        <view class="fl">
+          <block wx:if="{{showStart}}">
+            <image class="w124rpx h124rpx radius50per bor-solid-8a bor-white" src='{{headA}}'></image>
+            <view class="F30">{{userA}}</view>
+          </block>
+          <block wx:else>
+            <block wx:if="{{waitStart}}">
+              <image class="w124rpx h124rpx radius50per bor-solid-8a bor-white" src='{{headA}}'></image>
+              <view class="F30">{{userA}}</view>
+            </block>
+            <block wx:else>
+              <image class="w124rpx h124rpx radius50per bor-solid-8a bor-white" src='{{head}}'></image>
+              <view class="F30">{{name}}</view>
+            </block>
+          </block>
+        </view>
+        <text class="h140rpx lh140rpx F80 text-center wb100">vs</text>
+        <view class="fr">
+          <block wx:if="{{showStart}}">
+            <image class="w124rpx h124rpx radius50per bor-solid-8a bor-white" src='{{headB}}'></image>
+            <view class="F30">{{userB}}</view>
+          </block>
+          <block wx:else>
+            <block wx:if="{{waitStart}}">
+              <image class="w124rpx h124rpx radius50per bor-solid-8a bor-white" src='{{headB}}'></image>
+              <view class="F30">{{userB}}</view>
+            </block>
+            <block wx:else>
+              <image class="w124rpx h124rpx radius50per bor-solid-8a bor-white" src='/images/head.png'></image>
+              <view class="F30">未知对手</view>
+            </block>
+          </block>
+        </view>
+      </view>
+
+      <view class="clear h90rpx"></view>
+
+      <block wx:if="{{invite}}">
+        <button class="w520rpx h100rpx lh100rpx text-center center warpper-white F48 Fb radius10 confirm Fwhite box-shadow-purple4" open-type="share">邀请好友</button>
+      </block>
+
+      <block wx:if="{{waitFriend}}">
+        <view class="F36 Fwhite text-center h100rpx lh100rpx">等待好友加入...</view>
+      </block>
+
+      <block wx:if="{{showStart}}">
+        <view class="w520rpx h100rpx lh100rpx text-center center warpper-white F48 Fb radius10 confirm Fwhite box-shadow-purple4" bindtap="start">开始对战</view>
+      </block>
+
+      <block wx:if="{{waitStart}}">
+
+        <block wx:if="{{dialog}}">
+          <view class="F36 Fwhite text-center h100rpx lh100rpx">你的对手已退出</view>
+        </block>
+
+        <block wx:else>
+          <view class="F36 Fwhite text-center h100rpx lh100rpx">等待好友开始对战</view>
+        </block>
+
+      </block>
+
+      <view class="clear h40rpx"></view>
+      <view class="w520rpx h100rpx lh100rpx text-center center warpper-white F36 Fblack-1 Fb radius10 box-shadow-purple4" bindtap="giveUp">放弃</view>
+    </view>
+  </block>
+
+
+  <!-- 用户对战信息 -->
+  <block wx:if="{{userInfo}}">
+    <view class="pal20 par20 pat20">
+      <view class="wb100 h100rpx">
+        <view class="wb50 h100rpx fl warpper-blue-13 radius50-left">
+          <view class="h80rpx mat10">
+            <image class="fl w72rpx h72rpx warpper-black radius50per mal15 bor-solid-4a bor-white" src='{{headA}}'></image>
+            <view class="fl mal20 Fwhite">
+              <view class="F20 h40rpx lh40rpx w150rpx text-over-hidden1">{{userA}}</view>
+              <view class="F40 h40rpx lh40rpx">{{scoreA}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="wb50 h100rpx fr warpper-red-9 radius50-right">
+          <view class="h80rpx mat10">
+            <image class="fr w72rpx h72rpx warpper-black radius50per mar15 bor-solid-4a bor-white" src='{{headB}}'></image>
+            <view class="fr mar20 Fwhite">
+              <view class="F20 h40rpx lh40rpx w150rpx text-over-hidden1 text-right">{{userB}}</view>
+              <view class="F40 fr h40rpx lh40rpx">{{scoreB}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="clear h95rpx"></view>
+    <!-- 倒计时 -->
+    <view class="w130rpx center text-center">
+      <view class="w100rpx h100rpx lh100rpx radius50per warpper-blue-14 absolute Fwhite F48 bor-solid-20a" style='top:0rpx;z-index:99'>{{time}}</view>
+    </view>
+    <!-- 题目进行进度条 -->
+    <view class="w14rpx h800rpx warpper-blue-15 absolute radius20" style='top:240rpx;left:10rpx'>
+      <view class="w10rpx center warpper-blue-16 absolute radius20" style='bottom:2rpx;left:2rpx;height:{{height}}rpx'></view>
+    </view>
+    <view class="w14rpx h800rpx warpper-blue-15 absolute radius20" style='top:240rpx;right:10rpx'>
+      <view class="w10rpx center warpper-blue-16 absolute radius20" style='bottom:2rpx;left:2rpx;height:{{height}}rpx'></view>
+    </view>
+  </block>
+
+  <!-- 对战内容 -->
+  <block wx:if="{{content}}">
+    <block wx:if="{{multiple == 2}}">
+      <view class="F24 warpper-orange-7 Fwhite w140rpx h50rpx lh50rpx text-center radius10 bor-solid-4a bor-white absolute" style='left:60rpx'>双倍积分</view>
+    </block>
+    <view class="clear h25rpx"></view>
+    <view class="w580rpx h140rpx center warpper-white radius15">
+      <view class="pal30 par30">
+        <view class="fl F48 Fblue-7 Fb h140rpx lh140rpx">{{word}}</view>
+        <view class="fr">
+          <image class="w40rpx h40rpx mat50" src='/images/lb.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class="clear h80rpx"></view>
+    <block wx:for="{{questionList}}" wx:key="">
+      <block wx:if="{{item.state == 0}}">
+        <view class="w580rpx h88rpx lh88rpx center text-center radius50 warpper-white F36 Fb Fblue-7 mat40 text-over-hidden1" bindtap="select" data-index="{{index}}">{{item.val}}</view>
+      </block>
+      <block wx:if="{{item.state == 1}}">
+        <view class="w580rpx h88rpx lh88rpx center text-center radius50 warpper-green-5 F36 Fb Fwhite mat40 text-over-hidden1">{{item.val}}</view>
+      </block>
+      <block wx:if="{{item.state == 2}}">
+        <view class="w580rpx h88rpx lh88rpx center text-center radius50 warpper-red-10 F36 Fb Fwhite mat40 text-over-hidden1">{{item.val}}</view>
+      </block>
+    </block>
+  </block>
+
+
+  <!-- 结束结果 -->
+  <block wx:if="{{end}}">
+    <view class="wb100">
+      <image class="wb100 absolute" style='background-color:#6152AD;height:{{bgHeight}}px;z-index:-1' src='/images/bg.png'></image>
+      <block wx:if="{{back}}">
+        <view class="pal30 pat30">
+          <view bindtap="back">
+            <image src='/images/icon_left.png' class="w16rpx h30rpx fl"></image>
+            <view class="Fwhite F30 fl h30rpx lh30rpx mal10">返回首页</view>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{victory}}">
+        <view class="w544rpx h336rpx center">
+          <image class="w544rpx h336rpx" src='/images/victory.png'></image>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="w544rpx h336rpx center">
+          <image class="w544rpx h336rpx" src='/images/failure.png'></image>
+        </view>
+      </block>
+      <view class="w480rpx h340rpx warpper-black-1 center radius10" style='margin-top:-80rpx'>
+        <view class="clear h80rpx"></view>
+        <view class="wb100 text-center Fwhite">
+          <view class="wb50 fl">
+            <view class="w80rpx center">
+              <image class="w72rpx h72rpx warpper-black radius50per bor-solid-4a bor-white" src='{{headA}}'></image>
+            </view>
+            <view class="wb100 bor-solid-1r bor-black1">
+              <view class="pal20 par20">
+                <view class="wb100 F24 text-over-hidden1">{{userA}}</view>
+              </view>
+              <view class="F60">{{scoreA}}</view>
+              <view class="F24 h40rpx lh40rpx">
+                <text>平均耗时：</text>
+                <text class="Fgreen-4">{{avgAnswerA}}</text>
+                <text>秒</text>
+              </view>
+            </view>
+          </view>
+          <view class="wb50 fr">
+            <view class="w80rpx center">
+              <image class="w72rpx h72rpx warpper-black radius50per bor-solid-4a bor-white" src='{{headB}}'></image>
+            </view>
+            <view class="wb100">
+              <view class="pal20 par20">
+                <view class="wb100 F24 text-over-hidden1">{{userB}}</view>
+              </view>
+              <view class="F60">{{scoreB}}</view>
+              <view class="F24 h40rpx lh40rpx">
+                <text>平均耗时：</text>
+                <text class="Fgreen-4">{{avgAnswerB}}</text>
+                <text>秒</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="clear h60rpx"></view>
+      <navigator url="/pages/errorWord/errorWord">
+        <view class="F30 Fwhite text-center">错题回顾</view>
+      </navigator>
+      <view class="clear h40rpx"></view>
+      <view class="w480rpx h100rpx lh100rpx text-center center warpper-white F36 Fblack-1 Fb radius10 box-shadow-purple4" bindtap="challenge">再来一局</view>
+      <view class="clear h40rpx"></view>
+      <block wx:if="{{victory}}">
+        <button class="w480rpx h100rpx lh100rpx text-center center warpper-white F48 Fb radius10 confirm Fwhite box-shadow-purple4" open-type="share">炫耀战绩</button>
+      </block>
+      <block wx:else>
+        <button class="w480rpx h100rpx lh100rpx text-center center warpper-white F36 Fb radius10 confirm Fwhite box-shadow-purple4" open-type="share">分享结果</button>
+      </block>
+
+    </view>
+  </block>
+
+
+
+</view>

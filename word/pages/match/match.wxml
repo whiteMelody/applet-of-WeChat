@@ -1,0 +1,294 @@
+<!--pages/match/match.wxml-->
+<view class="wb100 bg">
+
+  <view class="pal40 par40">
+    <image class="w112rpx h112rpx radius50per bor-solid-4a bor-white fl" src='{{head}}'></image>
+    <view class="fl mal30">
+      <view class="F30 Fwhite h50rpx lh50rpx">{{name}}</view>
+      <view class="clear h25rpx"></view>
+      <view class="h30rpx">
+        <view class="fl Fwhite F24">
+          <text>Lv.</text>
+          <text>{{level}}</text>
+        </view>
+        <view class="w160rpx fl mal20 mat11">
+          <view class="warpper-blue-20 h8rpx radius50 over-hidden">
+            <view class="warpper-blue-16 h8rpx" style='width:{{width}}%'></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- <block wx:if="">
+      <view class="clear h60rpx"></view>
+      <view class="bor-solid-8l bor-blue7 w8rpx h40rpx fl"></view>
+      <view class="F36 Fwhite h40rpx lh40rpx mal20 fl">交通英语单词</view>
+      <view class="fr">
+        <view class="w140rpx h60rpx lh60rpx bor-solid-1a bor-yellow2 Fyellow-3 text-center F30 radius50" style='margin-top:-10rpx'>切换</view>
+      </view>
+    </block> -->
+
+  </view>
+  <view class="clear h60rpx"></view>
+
+
+  <scroll-view scroll-y class="wb100" style="height: {{height * 0.8}}px">
+    <block wx:for="{{levelList}}" wx:key="">
+      <view class="pal40 par40">
+        <!-- <block wx:if="{{level >= item.levelID}}"> -->
+        <!-- <navigator url="/pages/battle/battle?level={{item.levelID}}"> -->
+        <view class="wb100 h200rpx lh200rpx warpper-white radius10" bindtap="battle" data-levelid="{{item.levelID}}">
+
+          <!-- 新手 -->
+          <block wx:if="{{item.levelID == 1}}">
+            <image class="w120rpx h120rpx radius50per fl mat40 mal30" src='/images/novice.png'></image>
+            <view class="F36 fl mal30">{{item.levelName}}</view>
+            <block wx:if="{{level >= 1}}">
+              <block wx:if="{{level == 1}}">
+                <block wx:if="{{exp == 0}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <image class="w36rpx h36rpx fr mar60" src='/images/star.png' style='margin-top:82rpx'></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image class="w50rpx h62rpx fr mar60" src='/images/lock.png' style='margin-top:75rpx'></image>
+            </block>
+          </block>
+
+          <!-- 青铜 -->
+          <block wx:if="{{item.levelID == 2}}">
+            <image class="w120rpx h120rpx radius50per fl mat40 mal30" src='/images/bronze.png'></image>
+            <view class="F36 fl mal30">{{item.levelName}}</view>
+            <block wx:if="{{level >= 2}}">
+              <block wx:if="{{level == 2}}">
+                <block wx:if="{{exp == 0}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp > 0 && exp < 3}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <image class="w36rpx h36rpx fr mar60" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image class="w50rpx h62rpx fr mar60" src='/images/lock.png' style='margin-top:75rpx'></image>
+            </block>
+          </block>
+
+          <!-- 白银 -->
+          <block wx:if="{{item.levelID == 3}}">
+            <image class="w120rpx h120rpx radius50per fl mat40 mal30" src='/images/silver.png'></image>
+            <view class="F36 fl mal30">{{item.levelName}}</view>
+            <block wx:if="{{level >= 3}}">
+              <block wx:if="{{level == 3}}">
+                <block wx:if="{{exp == 0}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp > 0 && exp < 3}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=3  && exp < 5}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <image class="w36rpx h36rpx fr mar60" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image class="w50rpx h62rpx fr mar60" src='/images/lock.png' style='margin-top:75rpx'></image>
+            </block>
+          </block>
+
+          <!-- 黄金 -->
+          <block wx:if="{{item.levelID == 4}}">
+            <image class="w120rpx h120rpx radius50per fl mat40 mal30" src='/images/gold.png'></image>
+            <view class="F36 fl mal30">{{item.levelName}}</view>
+            <block wx:if="{{level >= 4}}">
+              <block wx:if="{{level == 4}}">
+                <block wx:if="{{exp == 0}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp > 0 && exp < 3}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=3  && exp < 5}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=5  && exp < 8}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <image class="w36rpx h36rpx fr mar60" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image class="w50rpx h62rpx fr mar60" src='/images/lock.png' style='margin-top:75rpx'></image>
+            </block>
+          </block>
+
+
+          <!-- 白金 -->
+          <block wx:if="{{item.levelID == 5}}">
+            <image class="w120rpx h120rpx radius50per fl mat40 mal30" src='/images/platinum.png'></image>
+            <view class="F36 fl mal30">{{item.levelName}}</view>
+            <block wx:if="{{level >= 5}}">
+              <block wx:if="{{level == 5}}">
+                <block wx:if="{{exp == 0}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp > 0 && exp < 3}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=3  && exp < 6}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=6  && exp < 9}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=9  && exp < 11}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <image class="w36rpx h36rpx fr mar60" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image class="w50rpx h62rpx fr mar60" src='/images/lock.png' style='margin-top:75rpx'></image>
+            </block>
+          </block>
+
+          <!-- 钻石 -->
+          <block wx:if="{{item.levelID == 6}}">
+            <image class="w120rpx h120rpx radius50per fl mat40 mal30" src='/images/diamond.png'></image>
+            <view class="F36 fl mal30">{{item.levelName}}</view>
+            <block wx:if="{{level >= 6}}">
+              <block wx:if="{{level == 6}}">
+                <block wx:if="{{exp == 0}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp > 0 && exp < 3}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=3  && exp < 5}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=5  && exp < 7}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=7  && exp < 10}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+                <block wx:if="{{exp >=10  && exp < 12}}">
+                  <image class="w36rpx h36rpx fr mar60" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/stars.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                  <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                </block>
+              </block>
+              <block wx:else>
+                <image class="w36rpx h36rpx fr mar60" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+                <image class="w36rpx h36rpx fr mar20" src='/images/star.png' style='margin-top:82rpx'></image>
+              </block>
+            </block>
+            <block wx:else>
+              <image class="w50rpx h62rpx fr mar60" src='/images/lock.png' style='margin-top:75rpx'></image>
+            </block>
+          </block>
+        </view>
+        <view class="clear h30rpx"></view>
+      </view>
+    </block>
+  </scroll-view>
+
+
+
+</view>

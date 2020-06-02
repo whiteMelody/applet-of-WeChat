@@ -1,0 +1,111 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.3",
+	"appid": "wxf38d1bf96b32bbad",
+	"projectname": "exam",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 10,
+			"list": [
+				{
+					"id": -1,
+					"name": "wor",
+					"pathName": "pages/wor/wor",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "exam",
+					"pathName": "pages/exam/exam",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "result",
+					"pathName": "pages/result/result",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "test",
+					"pathName": "pages/test/test",
+					"query": "id=AFF44755-4ED9-4D56-AE7B-766CD36E8A2D"
+				},
+				{
+					"id": -1,
+					"name": "testgif",
+					"pathName": "pages/testgif/testgif",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "examList",
+					"pathName": "pages/examList/examList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "result",
+					"pathName": "pages/result/result",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "testCover",
+					"pathName": "pages/testCover/testCover",
+					"query": "id=AFF44755-4ED9-4D56-AE7B-766CD36E8A2D"
+				},
+				{
+					"id": -1,
+					"name": "testResult",
+					"pathName": "pages/testResult/testResult",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "payFees",
+					"pathName": "pages/payFees/payFees",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "paySuccess",
+					"pathName": "pages/paySuccess/paySuccess",
+					"query": "money=1"
+				}
+			]
+		}
+	}
+}

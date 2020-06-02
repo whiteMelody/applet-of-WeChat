@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/library/library",
+    "pages/book/book",
+    "pages/detail/detail",
+    "pages/read/read",
+    "pages/search/search",
+    "pages/chapter/chapter",
+    "pages/comic/comic",
+    "pages/list/list",
+    "pages/newList/newList",
+    "pages/classify/classify",
+    "pages/history/history",
+    "pages/everyDay/everyDay",
+    "pages/lesson/lesson",
+    "pages/lessonPlay/lessonPlay",
+    "pages/everyList/everyList"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#529BFF",
+    "navigationBarTitleText": "快搜免费",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#529BFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "selectedIconPath": "./images/icon-home-on.png",
+        "iconPath": "./images/icon-home.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "selectedIconPath": "./images/icon-history-on.png",
+        "iconPath": "./images/icon-history.png"
+      }
+    ]
+  }
+}

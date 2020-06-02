@@ -1,0 +1,26 @@
+
+<view class="wb100">
+  <view class="clear1"></view>
+
+  <view class="wb100" wx:for="{{datas}}" wx:key="{{index}}">
+    <view class="pal30">
+      <navigator url='/pages/chapter/chapter?work_id={{item.work_id}}'>
+        <view class="fl w250rpx h160rpx radius10 warpper-gray-3">
+            <image src="{{item.work_thumb}}" class="radius10 w250rpx h160rpx" />
+        </view>
+        <view class="Fgray-3">
+          <view class="lh50rpx h50rpx text-over-hidden1 pal30 Fblack F32">{{item.work_title}}</view>
+
+          <view class="F28 lh60rpx h60rpx text-over-hidden1 pal30 Fgray-3" style='margin-top:60rpx;'>阅读至：{{item.read_title}}</view>
+        </view>
+      </navigator>
+      <view class="clear1 bor-gray bor-solid-1b"></view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+
+  <view class="wb100 text-center Fgray-3 F28 h100rpx lh100rpx" wx:if="{{datas.length == 0}}">
+    还没有阅读历史
+  </view>
+
+</view>

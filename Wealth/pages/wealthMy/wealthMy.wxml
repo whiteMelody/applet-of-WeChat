@@ -1,0 +1,28 @@
+
+<view class="wb100 warpper-red-1">
+  <view class="wb100 relative">
+    <image src='../../images/god_of_wealth_bg.png' style='width:100%; height:{{height}}rpx;'></image>
+    <image src='../../images/god_of_wealth_img.png' style='width:600rpx; height:600rpx; position:absolute; top:220rpx; right:0; left:0; margin:0 auto;'></image>
+  </view>
+
+  <view class="clear h40rpx"></view>
+
+  <!-- 祝福语  -->
+  <view class='pal50 Fyellow-2 F30'>
+    编辑祝福语
+  </view>
+  <view class='pa30'>
+    <view class='bor-yellow bor-solid-1a radius10 pa25 F30 lh40rpx relative' style='border:1rpx solid #FBFFA8; color:#FCBC8C'>
+      踏雪无痕骏马奔，迎来春节福临门。锣鼓喧天庆佳节，大街小巷人沸腾。走家串户去拜年，祝福声声笑盈盈。祝你春节好运伴，生活幸福上一层!
+    </view>
+  </view>
+
+  <view class="pa30">
+    <view class='wb100 lh100rpx h100rpx text-center warpper-yellow-1 radius5 F36 Fred'>
+      给朋友拜年
+    </view>
+  </view>
+
+  <view class="clear"></view>
+
+</view>

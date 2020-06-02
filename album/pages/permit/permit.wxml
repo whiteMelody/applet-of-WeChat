@@ -1,0 +1,45 @@
+<!--pages/permit/permit.wxml-->
+<view class="wb100 warpper-gray-1" style='height:{{windowHeight}}px'>
+
+  <view class="wb100 h110rpx lh110rpx F34 warpper-white" bindtap="select" data-all="0">
+    <view class="pal40 par40">
+      <view class="fl">所有人</view>
+      <block wx:if="{{all == '0'}}">
+        <image class="w44rpx h30rpx fr mat40" src='/images/tick.png'></image>
+      </block>
+    </view>
+  </view>
+
+  <view class="wb100 h110rpx lh110rpx F34 warpper-white" bindtap="select" data-all="1">
+    <view class="pal40 par40">
+      <view class="fl">仅自己</view>
+      <block wx:if="{{all == '1'}}">
+        <image class="w44rpx h30rpx fr mat40" src='/images/tick.png'></image>
+      </block>
+    </view>
+  </view>
+
+  <view class="clear h20rpx"></view>
+
+  <block wx:for="{{users}}" wx:key="{{key}}">
+    <view class="wb100 h110rpx lh110rpx F30 warpper-white" bindtap="permit" data-auth_data="{{item.user_id}}" data-upload_auth="{{item.upload_auth}}">
+      <view class="pal40 par40 warpper-white">
+        <image class="fl w60rpx h60rpx radius50per mat25 " src='{{item.head}}'></image>
+        <view class="fl mal20 w400rpx text-over-hidden1">{{item.name}}</view>
+
+        <block wx:if="{{item.upload_auth == 1}}">
+          <image class="w40rpx h40rpx fr mat35" src='/images/xzzp_pre.png'></image>
+        </block>
+
+        <block wx:else>
+          <image class="w40rpx h40rpx fr mat35 " src='/images/wxz.png'></image>
+        </block>
+      
+
+      </view>
+    </view>
+  </block>
+
+
+
+</view>

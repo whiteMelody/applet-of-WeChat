@@ -1,0 +1,15 @@
+/* pages/match/match.wxss */
+page {
+  background: -webkit-linear-gradient(#07305A, #3F3380); 
+  background: -o-linear-gradient(#07305A, #3F3380); 
+  background: -moz-linear-gradient(#07305A, #3F3380); 
+  background: linear-gradient(#07305A, #3F3380);
+  height: 100%
+}
+
+/* .bg{
+  background: -webkit-linear-gradient(#07305A, #3F3380);
+  background: -o-linear-gradient(#07305A, #3F3380); 
+  background: -moz-linear-gradient(#07305A, #3F3380); 
+  background: linear-gradient(#07305A, #3F3380);
+} */

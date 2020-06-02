@@ -1,0 +1,9 @@
+
+.fixed{position:fixed}
+.absolute{position:absolute}
+.h30rpx{height:30rpx}
+.lh30rpx{line-height:30rpx}
+.text-center{text-align:center}
+.Fgray-2{color:#999}
+.F24{font-size:24rpx}
+

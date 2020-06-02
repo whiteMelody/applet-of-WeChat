@@ -1,0 +1,180 @@
+<!--pages/rank/rank.wxml-->
+<view class="wb100">
+
+  <view class="w670rpx center">
+    <view class="w670rpx h120rpx lh120rpx warpper-white bor-solid-1b bor-gray F36 text-center radius15-top">
+      <view class="wb50 fl h120rpx" bindtap="friendRank">
+        <block wx:if="{{friendRank}}">
+          <view class="h100rpx Fblue-7">好友排行</view>
+          <view class="w60rpx center bor-solid-8b bor-blue6 radius20"></view>
+        </block>
+        <block wx:else>
+          <view class="h100rpx">好友排行</view>
+        </block>
+      </view>
+      <view class="wb50 fr" bindtap="worldRank">
+        <block wx:if="{{worldRank}}">
+          <view class="h100rpx Fblue-7">世界排行</view>
+          <view class="w60rpx center bor-solid-8b bor-blue6 radius20"></view>
+        </block>
+        <block wx:else>
+          <view class="h100rpx">世界排行</view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+
+  <block wx:if="{{worldRank}}">
+    <scroll-view scroll-y class="w670rpx center warpper-white" style="height: {{height*0.75}}px" bindscrolltolower="lower">
+      <block wx:for="{{ranklList}}" wx:key="">
+        <view class="wb100 h160rpx warpper-white bor-solid-1b bor-gray">
+          <view class="pal30 par40">
+            <block wx:if="{{index == 0}}">
+              <image src='/images/1.png' class="fl w40rpx h50rpx mat55"></image>
+            </block>
+            <block wx:elif="{{index == 1}}">
+              <image src='/images/2.png' class="fl w40rpx h50rpx mat55"></image>
+            </block>
+            <block wx:elif="{{index == 2}}">
+              <image src='/images/3.png' class="fl w40rpx h50rpx mat55"></image>
+            </block>
+            <block wx:else>
+              <view class="fl lh160rpx F36 w40rpx text-center">{{index+1}}</view>
+            </block>
+
+            <view class="fl mat30 mal30">
+              <block wx:if="{{item.photoUrl == '' || item.photoUrl == null}}">
+                <image src='/images/head.png' class="w100rpx h100rpx radius50per"></image>
+              </block>
+              <block wx:else>
+                <image src='{{item.photoUrl}}' class="w100rpx h100rpx radius50per"></image>
+              </block>
+            </view>
+            <view class="fl mal30 mat30">
+              <view class="h100rpx">
+                <view class="F30 h50rpx lh50rpx w250rpx text-over-hidden1">{{item.nickName}}</view>
+                <view class="clear h10rpx"></view>
+                <view class="F24 warpper-blue-14 Fwhite w120rpx text-center h30rpx lh30rpx radius5">
+                  <text>lv</text>
+                  <text>{{item.userLevel}}</text>
+                  <text class="mal10">{{item.LevelName}}</text>
+                </view>
+              </view>
+            </view>
+
+            <view class="fr mat30">
+              <view class="h100rpx">
+                <block wx:if="{{item.city == '' || item.city == null}}">
+                  <view class="F24 w150rpx h40rpx lh40rpx text-right">宇宙</view>
+                </block>
+                <block wx:else>
+                  <view class="F24 w150rpx h40rpx lh40rpx text-right text-over-hidden1">{{item.city}}</view>
+                </block>
+                <view class="clear h10rpx"></view>
+                <view class="w150rpx h50rpx">
+                  <view class="F28 text-center h50rpx lh50rpx fr mal10 Fblack">{{item.winCount}}</view>
+                  <image class="w36rpx h36rpx fr mat7" src='/images/star.png'></image>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <view class="w670rpx center">
+      <view class="w670rpx h120rpx lh120rpx Fwhite F30 warpper-blue-17  radius15-bottom" style=''>
+        <view class="w400rpx center">
+          <image class="w52rpx h52rpx radius50per fl bor-solid-4a bor-white mat30" src='{{head}}'></image>
+          <view class="fl mal20">
+            <text>我的世界排名：</text>
+            <text>{{myRank}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+
+  <block wx:if="{{friendRank}}">
+    <scroll-view scroll-y class="w670rpx center warpper-white" style="height: {{height*0.75}}px">
+      <block wx:for="{{friendlList}}" wx:key="">
+        <view class="wb100 h160rpx warpper-white bor-solid-1b bor-gray">
+          <view class="pal30 par40">
+            <block wx:if="{{index == 0}}">
+              <image src='/images/1.png' class="fl w40rpx h50rpx mat55"></image>
+            </block>
+            <block wx:elif="{{index == 1}}">
+              <image src='/images/2.png' class="fl w40rpx h50rpx mat55"></image>
+            </block>
+            <block wx:elif="{{index == 2}}">
+              <image src='/images/3.png' class="fl w40rpx h50rpx mat55"></image>
+            </block>
+            <block wx:else>
+              <view class="fl lh160rpx F36 w40rpx text-center">{{index+1}}</view>
+            </block>
+
+            <view class="fl mat30 mal30">
+              <block wx:if="{{item.photoUrl == '' || item.photoUrl == null}}">
+                <image src='/images/head.png' class="w100rpx h100rpx radius50per"></image>
+              </block>
+              <block wx:else>
+                <image src='{{item.photoUrl}}' class="w100rpx h100rpx radius50per"></image>
+              </block>
+            </view>
+            <view class="fl mal30 mat30">
+              <view class="h100rpx">
+                <view class="F30 h50rpx lh50rpx w250rpx text-over-hidden1">{{item.nickName}}</view>
+                <view class="clear h10rpx"></view>
+                <view class="F24 warpper-blue-14 Fwhite w120rpx text-center h30rpx lh30rpx radius5">
+                  <text>lv</text>
+                  <text>{{item.level}}</text>
+                  <text class="mal10">{{item.levelName}}</text>
+                </view>
+              </view>
+            </view>
+
+            <view class="fr mat30">
+              <view class="h100rpx">
+                <block wx:if="{{item.city == '' || item.city == null}}">
+                  <view class="F24 w150rpx h40rpx lh40rpx text-right">宇宙</view>
+                </block>
+                <block wx:else>
+                  <view class="F24 w150rpx h40rpx lh40rpx text-right text-over-hidden1">{{item.city}}</view>
+                </block>
+                <view class="clear h10rpx"></view>
+                <view class="w150rpx h50rpx">
+                  <view class="F28 text-center h50rpx lh50rpx fr mal10 Fblack">{{item.winCount}}</view>
+                  <image class="w36rpx h36rpx fr mat7" src='/images/star.png'></image>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <view class="w670rpx center">
+      <view class="w670rpx h120rpx lh120rpx Fwhite F30 warpper-blue-17  radius15-bottom" style=''>
+        <view class="w400rpx center">
+          <image class="w52rpx h52rpx radius50per fl bor-solid-4a bor-white mat30" src='{{head}}'></image>
+          <view class="fl mal20">
+            <text>我的好友排名：</text>
+            <text>{{myFriendRank}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+
+
+
+
+
+
+
+</view>

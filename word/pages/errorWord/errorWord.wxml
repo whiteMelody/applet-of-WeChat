@@ -1,0 +1,16 @@
+<!--pages/errorWord/errorWord.wxml-->
+<view class="wb100">
+
+  <block wx:for="{{wordList}}" wx:key="">
+    <view class="pal24 warpper-white">
+      <view class="par24">
+        <view class="clear h40rpx"></view>
+        <view class="F44">{{item.word}}</view>
+        <view class="clear h20rpx"></view>
+        <view class="F30 Fgray-3">{{item.explain}}</view>
+      </view>
+      <view class="clear wb100 h40rpx bor-solid-1b bor-gray5"></view>
+    </view>
+  </block>
+
+</view>

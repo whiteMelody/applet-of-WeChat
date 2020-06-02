@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<view class="wb100">
+
+    <!-- menu -->
+
+    <block wx:if="{{isMenu}}">
+        <view class="fixed" bindtap="hideMenu" style='width:100%; height:100%; top:0; left:0; background:rgba(0,0,0,.5)'>
+        </view>
+
+        <view class='fixed' style='z-index:1; right: 20rpx; top: 100rpx;'>
+            <image src='../../images/bg-menu.png' style='width:243rpx; height:195rpx;'></image>
+
+            <view class='wb100 absolute Fgray-3 F28 h40rpx lh40rpx' bindtap='scanCode' style='top: 40rpx; left:30rpx;'>
+                <image src='../../images/icon-code.png' style='height:40rpx; width:40rpx; float:left;'></image>
+                <view class='fl mal15'>扫码加书</view>
+            </view>
+            
+            <navigator url="../search/search">
+                <view class='wb100 absolute Fgray-3 F28 h40rpx lh40rpx' style='bottom: 40rpx; left:30rpx;'>
+                    <image src='../../images/icon-search.png' style='height:40rpx; width:40rpx; float:left;'></image>
+                    <view class='fl mal15'>搜索加书</view>
+                </view>
+            </navigator>
+
+        </view>
+
+
+    </block>
+
+    <view class='pa30 warpper-gray-1'>
+        <text class='Fgray-3 h60rpx lh60rpx' style='font-size:60rpx;'>0</text>
+        <text class="Fgray-2 F28 mal5">本</text>
+        <image src='../../images/icon-add.png' bindtap="showMenu" class="w60rpx h60rpx fr"></image>
+    </view>
+
+    <!-- books -->
+    <view class="pa30">
+        <block wx:for="{{[1, 2, 3, 4]}}" wx:key="{{index}}">
+            <navigator url="../detail/detail">
+                <view class="w200rpx mal45 mar45 fl mab45" wx:if="{{index % 3 == 1}}">
+                    <view class='wb100 warpper-gray-1 h300rpx'>
+                    </view>
+                    <view class="Fgray-3 F32 h60rpx lh60rpx warpper-white">
+                        {{item}}
+                    </view>
+                </view>
+
+                <view class="w200rpx fl mab45" wx:else>
+                    <view class='wb100 warpper-gray-1 h300rpx'>
+                    </view>
+                    <view class="Fgray-3 F32 h60rpx lh60rpx">
+                        {{item}}
+                    </view>
+                </view>
+            </navigator>
+        </block>
+    </view>
+
+  
+</view>

@@ -1,0 +1,54 @@
+<!--pages/data/data.wxml-->
+<view class="wb100 warpper-gray-3">
+
+  <view class="clear1"></view>
+
+  <block wx:for="{{dataList}}" wx:key="{{index}}">
+
+    <view class="clear h15rpx warpper-gray-1"></view>
+
+    <view class="clear1"></view>
+
+    <view class="wb100">
+      <view class="wb100">
+
+        <view class='text-center h40rpx lh40rpx F32 w200rpx center Fblack'>
+          {{item.categoryName}}
+           <image src="{{item.smallImgUrl}}?x-oss-process=image/resize,m_fill,w_40,h_40" class='w40rpx h40rpx fr' />
+        </view>
+
+      </view>
+    </view>
+
+    <view class='clear1 bor-gray bor-solid-1b'></view>
+
+    <view class="pal30 par30 pat20 pab20">
+
+      <block wx:for="{{item.categoryList}}" wx:key="{{index}}">
+
+        <block wx:if="{{index % 3 == 1}}">
+          <navigator url="/pages/channelList/channelList?categoryID={{item.categoryID}}">
+            <view class="w230rpx fl F28 h40rpx lh40rpx text-center Fgray-3 mab20">
+              <view class="wb100 h40rpx lh40rpx bor-gray bor-solid-1l bor-solid-1r">
+                {{item.categoryName}}
+              </view>
+            </view>
+          </navigator>
+        </block>
+
+        <block wx:else>
+          <navigator url="/pages/channelList/channelList?categoryID={{item.categoryID}}">
+            <view class="w230rpx fl F28 h40rpx lh40rpx text-center Fgray-3 mab20">
+              {{item.categoryName}}
+            </view>
+          </navigator>
+        </block>
+
+      </block>
+
+      <view class="clear"></view>
+
+    </view>
+
+  </block>
+</view>

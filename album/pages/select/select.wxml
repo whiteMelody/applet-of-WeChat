@@ -1,0 +1,42 @@
+<!--pages/select/select.wxml-->
+<view class="wb100">
+  <view class="F36 pal30">选择相册类型</view>
+  <view class="clear1"></view>
+
+  <view class="pal15 par15">
+    <view class="wb100 text-center ">
+      <block wx:for='{{list}}' wx:key=''>
+        <view class="F30 fl wb25 h80rpx lh80rpx pab30">
+
+          <block wx:if="{{type == index}}">
+            <view class="mal15 mar15 radius50 warpper-green-4 Fwhite" bindtap="select" data-index="{{index}}" data-class_id="{{item.id}}" data-detail="{{item.detail}}">{{item.class}}</view>
+          </block>
+
+          <block wx:else>
+            <view class="mal15 mar15 radius50 warpper-gray-1" bindtap="select" data-index="{{index}}" data-class_id="{{item.id}}" data-detail="{{item.detail}}">{{item.class}}</view>
+          </block>
+
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+  <view class="clear1"></view>
+
+  <view class="pa30">
+    <view class='h100rpx lh100rpx warpper-green-4 wb100 text-center F32 Fwhite radius50' bindtap="create">创建相册</view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

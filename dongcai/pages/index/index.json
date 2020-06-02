@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+      "login-tag": "/pages/login/login",
+      "loader": "/pages/loader/loader"
+    }
+}

@@ -1,0 +1,181 @@
+<!--pages/dqzs/dqzs.wxml-->
+
+<view class="warpper-white">
+
+ <view class="pat20 pab20 h60rpx lh60rpx warpper-red Fwhite F32 text-center">
+    <view class="w150rpx fl">
+      <image src='/images/icon-filtrate.png' class='w60rpx h60rpx fl mal50' bindtap='openFiltrate'></image>
+    </view>
+    <view class="w450rpx fl">
+      <view class="w220rpx h60rpx lh60rpx center bor-white bor-solid-2a radius5 F28">
+
+          <block wx:if="{{showType == 0}}">
+            <view class="wb50 fl warpper-white Fred">
+              全部
+            </view>
+            <view class="wb50 fl Fwhite" bindtap='changeShowType' data-value="1">
+              精选
+            </view>
+          </block>
+
+          <block wx:else>
+            <view class="wb50 fl Fwhite" bindtap='changeShowType' data-value="0">
+              全部
+            </view>
+            <view class="wb50 fl warpper-white Fred" >
+              精选
+            </view>
+          </block>
+         
+        </view>
+    </view>
+    <view class="w150rpx fr">
+      <image src='/images/icon-filtrate.png' class='w60rpx h60rpx fr mar50' bindtap='openFiltrate'></image>
+    </view>
+  </view>
+
+  <view class='clear1'></view>
+
+  <view class="wb100">
+
+    <view class="w430rpx center">
+
+      <view class="w40rpx fl h60rpx" bindtap='tomorrow'>
+        <image src='/images/arrow-left.png' style='width:14rpx; height:24rpx; float:left; margin-top:18rpx;'></image>
+      </view>
+
+      <view class="w400rpx fl h60rpx lh60rpx F28 radius30 bor-gray2 bor-solid-1a text-center Fgray-3" style='width:347rpx;' bindtap='changeDate'>
+        {{dates[dateIndex].date}} ({{dates[dateIndex].week}}) 
+      </view>
+
+      <view class="w40rpx fl h60rpx" bindtap='yesterday'>
+        <image src='/images/arrow-right.png' style='width:14rpx; height:24rpx; float:right; margin-top:18rpx;'></image>
+      </view>
+
+    </view>
+  </view>
+
+  <view class='clear2'></view>
+
+  <view class="wb100 text-center F32">
+
+    <block wx:if="{{!showEnd}}">
+      <view class="wb50 fl h80rpx lh80rpx bor-red bor-solid-5b Fred">
+        未结束
+      </view>
+
+      <view class="wb50 fl h80rpx lh80rpx pab5" bindtap='changeShowEnd' data-value="true">
+        已结束
+      </view>
+    </block>
+
+    <block wx:else>
+       <view class="wb50 fl h80rpx lh80rpx pab5" bindtap='changeShowEnd' data-value="false">
+        未结束
+      </view>
+
+      <view class="wb50 fl h80rpx lh80rpx bor-red bor-solid-5b Fred">
+        已结束
+      </view>
+    </block>
+
+  </view>
+
+  <view class="clear"></view>
+
+  <view class="pal20 par20 F26 h60rpx lh60rpx Fgray-3 warpper-gray-1">
+    <!-- 2018-10（共108场，已预测106场，中81场，命中率<text class='Fred'>76</text>%） -->
+
+    {{datas.date}} ( 共{{datas.count}}场，已预测{{over_count}}场，中{{valid_count}}场，命中率<text class='Fred'>{{ data.valid_count / datas.count * 100}}</text>% )
+
+  </view>
+
+  <view class='clear'></view>
+
+  <view class="pa10">
+ 
+    <block wx:for="{{datas.list}}" wx:key="{{index}}">
+
+      <navigator url='/pages/matchDetail/matchDetail?matchID={{item.matchID}}&date={{item.date}}'>
+        <view class="pa15 warpper-white radius10 bor-gray bor-solid-1l bor-solid-1t box-shadow-gray3 relative">
+
+          <image src='/images/icon-sift.png' class='absolute' style='right:0rpx; top:0rpx; width:64rpx; height:64rpx;'> </image>
+
+          <view class="wb100 lh45rpx F28">
+            <view class="h45rpx w130rpx bor-red bor-solid-1a radius50 text-center Forange fl">
+              {{item.number}}
+            </view>
+            <view class="fl Fgray-2 mal15 mar15">
+              {{item.union_name}} {{item.match_start_time}}
+            </view>
+            <view class="h35rpx lh35rpx mat5 w80rpx bor-gray2 bor-solid-1a radius50 text-center F24 Fgray-2 fl">
+              {{item.final_score}}
+            </view>
+            
+          </view>
+
+          <view class='clear2'></view>
+
+          <view class="wb100 F28">
+            <view class='wb333 fl pat25 pab25'>
+              <view class="w60rpx h60rpx fl">
+                <image src='/images/icon-seven.png' class='w60rpx h60rpx'></image>
+              </view>
+              <view class="h60rpx lh60rpx fl mal10">
+                {{item.host_team_name}}
+                {{item.host_rank}}
+              </view>
+            </view>
+            <view class='wb333 fl'>
+
+              <view class="wb100 h90rpx pat10 pab10 Forange bor-orange bor-solid-2a radius10 text-center Fb">
+                <view class="wb100 lh40rpx">
+                  <text style='font-size:50rpx'>{{item.standard_disc * 100}}</text><text class='F24'>%</text>
+                </view>
+
+                <view class="wb100 lh40rpx F28">
+                  标盘预测概率
+                </view>
+
+              </view>
+              
+            </view>
+            <view class='wb333 fl pat25 pab25'>
+              <view class="w60rpx h60rpx fr">
+                <image src='/images/icon-ten.png' class='w60rpx h60rpx'></image>
+              </view>
+              <view class="h60rpx lh60rpx fr mar10">
+                {{item.guest_team_name}}
+                {{item.guest_rank}}
+              </view>
+            </view>
+          </view>
+
+          <view class='clear2'></view>
+
+          <view class="h5rpx warpper-red fl" style='width:{{item.win_percent * 100}}%'>
+          </view>
+
+          <view class="h5rpx warpper-blue fl" style='width:{{item.defeat_percent * 100}}%'>
+          </view>
+
+          <view class="clear"></view>
+
+          <view class="wb100 F28 lh50rpx">
+            <text class='fl Fred'>{{item.win_percent * 100}}%</text>
+            <text class='fr Fblue'>{{item.defeat_percent * 100}}%</text>
+          </view>
+
+          <view class="clear"></view>
+
+        </view>
+      </navigator>
+
+
+      <view class="clear2"></view>
+
+    </block>
+
+  </view>
+
+</view>

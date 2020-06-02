@@ -1,0 +1,160 @@
+<view class="dialog-loading" hidden="{{!loaded}}" bindtap="closeLoad">
+  <image src="../../image/info-list.png" mode="aspectFit" style="position:fixed; top:0; left:0; right:0; bottom:0; margin:auto;"></image>
+</view>
+<view class="dialog-loading" hidden="{{loading}}">
+  <image src="../../image/loading.gif" mode="aspectFit" style=" width:46rpx; height:46rpx; position:fixed; top:0; left:0; right:0; bottom:0; margin:auto;"></image>
+</view>
+<view class="wb100" wx:if="{{noData}}">
+  <image src="../../image/img-no-data.png" mode="aspectFit" style=" position:fixed; bottom:0; left:0; top:0; right:0; margin:auto;"></image>
+</view>
+<view class="wb100 warpper-gray-1" wx:else bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend">
+  <view class="wb100">
+    <navigator url="../list/list?subject={{subject}}&model={{model}}&id={{id}}&number={{number}}" redirect>
+      <view class="nav active" wx:if="{{!study}}">答题模式</view>
+      <view class="nav" wx:else>答题模式</view>
+    </navigator>
+    <navigator url="../list/list?subject={{subject}}&model={{model}}&id={{id}}&number={{number}}&study=true" redirect>
+      <view class="nav active" wx:if="{{study}}">学习模式</view>
+      <view class="nav" wx:else>学习模式</view>
+    </navigator>
+  </view>
+  <view class="clear"></view>
+  <view class="pa30">
+    <view class="wb100 lh50rpx">
+      <view class="F28 pal10 par10 h40rpx lh40rpx mar20 bor-blue bor-solid-1a Fblue fl" wx:if="{{radio}}">
+        单选
+      </view>
+      <view class="F28 pal10 par10 h40rpx lh40rpx mar20 bor-blue bor-solid-1a Fblue fl" wx:else>
+        多选
+      </view>
+      {{current.id}}.{{current.question}}
+    </view>
+    <view class="clear1"></view>
+    <view wx:if="{{current.url != ''}}">
+      <image src="{{current.url}}" mode="aspectFit" class="wb100"></image>
+    </view>
+    <view class="clear1"></view>
+    <view class="h60rpx lh60rpx mab20 Fgray-3 option-item " data-id="{{current.id}}" data-oid="1" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption">
+      <view class="option fl mar10" wx:if="{{current.option1.show}}">A</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option1.class == 'success'}}" src="../../image/icon-success2.png" style="width:30rpx; height:60rpx;"></image>
+        <image wx:elif="{{current.option1.class == 'error'}}" src="../../image/icon-error2.png" style="width:30rpx; height:60rpx;"></image>
+      </view>
+      <view class="{{current.option1.class}} fl" wx:if="{{current.item1 != ''}}"> {{current.item1}} </view>
+      <view class="text fl" wx:else>正确</view>
+    </view>
+    <view class="h60rpx lh60rpx mab20 Fgray-3 option-item " data-id="{{current.id}}" data-oid="2" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption">
+      <view class="option fl mar20" wx:if="{{current.option2.show}}">B</view>
+      <view class="option fl mar20" wx:else>
+        <image wx:if="{{current.option2.class == 'success'}}" src="../../image/icon-success2.png" style="width:60rpx; height:60rpx;"></image>
+        <image wx:elif="{{current.option2.class == 'error'}}" src="../../image/icon-error2.png" style="width:60rpx; height:60rpx;"></image>
+      </view>
+      <view class="text fl {{current.option2.class}}" wx:if="{{current.item2 != ''}}"> {{current.item2}} </view>
+      <view class="text fl" wx:else>正确</view>
+    </view>
+    <view class="h60rpx lh60rpx mab10 Fgray-3 option-item" data-id="{{current.id}}" data-oid="3" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption" wx:if="{{current.item3 != ''}}">
+      <view class="option fl mar10" wx:if="{{current.option3.show}}">C</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option3.class == 'success'}}" src="../../image/icon-success2.png" style="width:60rpx; height:60rpx;"></image>
+        <image wx:elif="{{current.option3.class == 'error'}}" src="../../image/icon-error2.png" style="width:60rpx; height:60rpx;"></image>
+      </view>
+      <view class="text fl {{current.option3.class}}"> {{current.item3}} </view>
+    </view>
+    <view class="h60rpx lh60rpx mab10 Fgray-3 option-item" data-id="{{current.id}}" data-oid="4" data-explains="{{current.explains}}" data-answer="{{current.answer}}" bindtap="tapOption" wx:if="{{current.item4 != ''}}">
+      <view class="option fl mar10" wx:if="{{current.option4.show}}">D</view>
+      <view class="option fl mar10" wx:else>
+        <image wx:if="{{current.option4.class == 'success'}}" src="../../image/icon-success2.png" style="width:60rpx; height:60rpx;"></image>
+        <image wx:elif="{{current.option4.class == 'error'}}" src="../../image/icon-error2.png" style="width:60rpx; height:60rpx;"></image>
+      </view>
+      <view class="text fl {{current.option4.class}}"> {{current.item4}} </view>
+    </view>
+    <block wx:if="{{current.isSelected}}">
+      <view class="clear1"></view>
+      <view style="border-bottom:2rpx solid #e1e1e1; height:20rpx; width:100%;"></view>
+      <view class="text-center h80rpx lh80rpx Fgray-2 w200rpx center warpper-gray-1" style="margin-top:-40rpx;">
+        试题解析
+      </view>
+      <view class="clear1"></view>
+      <view class="pa15 warpper-white">
+        <view>答案：{{current.answer2}}</view>
+        <view class="clear1"></view>
+        <view class="lh50rpx">{{current.explains}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="h120rpx clear"></view>
+  <view class="footer">
+    <block wx:if="{{!opened}}">
+      <view class="pa30 warpper-white bor-gray bor-solid-1t">
+        <view wx:if="{{!study}}">
+          <view class="fl">
+            <image src="../../image/icon-error-list.png" class="middle" style="width:40rpx; height:48rpx;"></image>
+          </view>
+
+          <!--
+                    <view class="fl mal5 F14 Fgray-3" style="line-height:24rpx;">
+                        加入错题集
+                    </view>-->
+          <view class="fl mal30">
+            <image src="../../image/icon-success.png" class="middle" style="width:40rpx; height:40rpx;"></image>
+          </view>
+          <view class="fl mal5" style="line-height:96rpx;">
+            {{correctCount}}
+          </view>
+          <view class="fl mal20">
+            <image src="../../image/icon-error.png" class="middle" style="width:40rpx; height:40rpx;"></image>
+          </view>
+          <view class="fl mal5" style="line-height:48rpx;">
+            {{errorCount}}
+          </view>
+        </view>
+        <view class="fr" bindtap="openFooter">
+          <view class="fl">
+            <image src="../../image/icon-list.png" class="middle" style="width:40rpx; height:40rpx;"></image>
+          </view>
+          <view class="fl mal5" style="line-height:48rpx;">
+            {{id}}/{{datas.length}}
+          </view>
+        </view>
+        <view class="clear"></view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="pa15 warpper-white bor-gray bor-solid-1t">
+        <view class="wb100" wx:if="{{!study}}">
+          <view class="fl pat5">
+            <view class="fl">
+              <image src="../../image/icon-success.png" class="middle" style="width:40rpx; height:40rpx;"></image>
+            </view>
+            <view class="fl mal5" style="line-height:48rpx;">
+              {{correctCount}}
+            </view>
+            <view class="fl mal20">
+              <image src="../../image/icon-error.png" class="middle" style="width:40rpx; height:40rpx;"></image>
+            </view>
+            <view class="fl mal5" style="line-height:48rpx;">
+              {{errorCount}}
+            </view>
+          </view>
+          <view class="h60rpx lh60rpx w200rpx radius5 fr text-center F28" bindtap="clear" style="border:2rpx solid #f25e5e; color:#f25e5e;">清空记录</view>
+        </view>
+        <view class="clear1"></view>
+        <scroll-view scroll-y="true" style="height: 400rpx;">
+          <block wx:for="{{datas}}" wx:key="*this">
+            <view wx:if="{{item.isCorrect == 0}}" bindtap="choose" data-id="{{item.id}}" class="options">
+              {{item.id}}
+            </view>
+            <view wx:elif="{{item.isCorrect == 1}}" bindtap="choose" data-id="{{item.id}}" class="options cor">
+              {{item.id}}
+            </view>
+            <view wx:elif="{{item.isCorrect == 2}}" bindtap="choose" data-id="{{item.id}}" class="options err">
+              {{item.id}}
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+</view>
+<view wx:if="{{opened}}" class="warpper" bindtap="closeFooter">
+</view>

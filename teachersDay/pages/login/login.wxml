@@ -1,0 +1,31 @@
+<!--pages/login/login.wxml-->
+
+<view class="wb100" hidden="{{!isShow}}">
+
+    <view class="dialogBg" bindtap="_cancelEvent"></view>
+    <view style='top:0; bottom:0; right:0; left:0; margin:auto; position:fixed; border-radius:5rpx; z-index:9999; width:550rpx; height:300rpx; background-color:#ffffff; '>
+
+        <view class="clear1"></view>
+        <view class="clear1"></view>
+
+        <view style='font-size:36rpx; text-align: center; color:#333;'>温馨提示</view>
+
+        <view class="clear1"></view>
+        <view class="clear1"></view>
+
+        <view style='text-align: center; color:#aaa; font-size:28rpx; line-height:40rpx; padding: 0 60rpx;'>检测到未登录成功，请前往登录，以保证功能的正常使用</view>
+
+        <view class="clear1"></view>
+        <view class="clear1"></view>
+
+        <view class="wb100" style='border-bottom:1rpx solid #e1e1e1'></view>
+
+        <button open-type="getUserInfo" class="{{disabled ? 'login-dis' : 'login-btn'}}" lang="zh_CN" bindgetuserinfo="onGotUserInfo">立即登录</button>
+
+
+    </view>
+
+  
+</view>
+
+

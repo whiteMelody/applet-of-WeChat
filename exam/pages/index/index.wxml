@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<view class='wb100'>
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+    </login-tag>
+
+  <view class="pa25 text-center F28">
+    
+    <!-- <block wx:for="{{[1,2,3,4,5,6,7,8]}}">
+        <navigator url="/pages/">
+          <view class="wb25 fl">
+            <image src='/images/dktj_qz.png' class='w120rpx h120rpx'></image>
+            <view class="wb100">
+              {{item}}
+            </view>
+          </view>
+        </navigator>
+    </block> -->
+
+    <navigator url="/pages/examList/examList">
+      <view class="wb25 fl">
+        <image src='/images/icon-exam.png' class='w80rpx h80rpx'></image>
+        <view class="wb100 lh60rpx">
+          考试
+        </view>
+      </view>
+    </navigator>
+
+    <navigator url="/pages/testList/testList">
+      <view class="wb25 fl">
+        <image src='/images/icon-test.png' class='w80rpx h80rpx'></image>
+        <view class="wb100 lh60rpx">
+          心理测验
+        </view>
+      </view>
+    </navigator>
+
+    <navigator url="/pages/payFees/payFees">
+      <view class="wb25 fl">
+        <image src='/images/icon-payFees.png' class='w80rpx h80rpx'></image>
+        <view class="wb100 lh60rpx">
+          预缴费
+        </view>
+      </view>
+    </navigator>
+
+  </view>
+
+  <!-- 其他内容 -->
+  <view class="wb100">
+  </view>
+
+</view>

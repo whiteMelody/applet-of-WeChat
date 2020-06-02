@@ -1,0 +1,33 @@
+<!--pages/paySuccess/paySuccess.wxml-->
+<view class="wb100">
+
+  <view class="clear h50rpx"></view>
+
+  <view class="w200rpx center text-center">
+    <image src='/images/true.png' class='w120rpx h120rpx'></image>
+    <view class='wb100 F32 Fgreen lh60rpx'>
+      支付成功
+    </view>
+  </view>
+  
+  <view class="clear h50rpx"></view>
+
+  <view class="clear h50rpx"></view>
+
+  <view class="wb100 text-center lh80rpx">
+    <view class="wb100 F28">
+      预交费
+    </view>
+    <view class="wb100 Fgray-3">
+      <text class='F24'>￥</text>
+      <text style='font-size:60rpx;'>{{money}}</text> 
+    </view>
+  </view>  
+
+  <view class='clear h500rpx'></view>
+
+  <view class="w400rpx h100rpx lh100rpx radius20 warpper-green Fwhite text-center F32 center" bindtap='backHome'>
+      返回首页
+  </view>
+
+</view>

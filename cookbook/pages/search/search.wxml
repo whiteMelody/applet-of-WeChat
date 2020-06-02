@@ -1,0 +1,91 @@
+<!--pages/search/search.wxml-->
+<view class="wb100"> 
+    <view class="pa30 warpper-gray-1 relative" style='padding-left:90rpx'>
+
+        <view class="w80rpx h70rpx warpper-white absolute" style='left:30rpx; top:30rpx;'>
+            <image src='../../images/icon-search2.png' style='height:40rpx; width:40rpx; float:left; margin-left:15rpx; margin-top:15rpx;'></image>
+        </view>        
+
+        <input placeholder="请输入关键字" value="{{keyword}}" bindinput="eInput" bindconfirm="toSearch" class='wb88 fl h70rpx lh70rpx warpper-white radius5 F28 Fgray-3' />
+
+        <view class="fr F30 Fblue lh60rpx h60rpx Fpink" bindtap="toSearch">搜索</view>
+
+       <view class="clear"></view>
+    </view>
+
+    <view class="wb100">
+
+      <block wx:if="{{category_id == 0 || category_id == ''}}">
+          <view class='pa15 wauto fl F28 Fpink bor-pink bor-solid-1a ma15'>
+            全部
+        </view>
+      </block>
+
+      <block wx:else>
+        <view class='pa15 wauto fl F28 Fgray-3 bor-gray bor-solid-1a ma15' bindtap='changeCate' data-id='0'>
+          全部
+        </view>
+      </block>
+
+      <block wx:for="{{cateList}}" wx:key="{{index}}">
+
+        <block wx:if="{{category_id == item.next_level[0].id}}">
+          <view class='pa15 wauto fl F28 Fpink bor-pink bor-solid-1a ma15' >
+            {{item.cate_name}}
+          </view>
+        </block>
+
+        <block wx:else>
+          <view class='pa15 wauto fl F28 Fgray-3 bor-gray bor-solid-1a ma15' bindtap='changeCate' data-id="{{item.next_level[0].id}}">
+            {{item.cate_name}}
+          </view>
+        </block>
+
+      </block>
+
+    </view>
+
+    <view class="clear"></view>
+
+    <view class="pa15 Fgray-3 lh100rpx F28 text-center" wx:if="{{empty}}">
+      没有找到相关菜谱
+    </view>
+
+    <view class="wb100" wx:else>
+         <block wx:for="{{datas}}" wx:key="{{index}}">
+         
+            <navigator url='/pages/detail/detail?id={{item.id}}'>
+
+              <view class="pat30 pab30 par30 relative h240rpx" style='padding-left:240rpx;'>
+                  
+                  <view class="w180rpx h240rpx warpper-gray-1 absolute" style='left:30rpx; top:30rpx;'>
+                    <image src='{{item.img_path}}' class='w180rpx h240rpx' mode='aspectFill'></image>
+                  </view>
+
+                  <view class="Fblack F32 h50rpx lh50rpx text-over-hidden1">{{item.food_name}}</view>
+                  <view class="clear h10rpx"></view>
+                  <view class="Fgray-2 F28 h90rpx lh45rpx text-over-hidden2">{{item.food_desc ? item.food_desc : '暂无简介'}}</view>
+                  <view class="clear1"></view>
+
+                  <view class="wb100 h50rpx">
+
+                    <view class="w300rpx fl Fgray-2 F24 lh50rpx">
+                      {{item.looked_num}}人做过 {{item.collection_num}}人收藏
+                    </view>
+
+                    <view class="w100rpx fr F24 Fgray-3 lh50rpx">
+                      <image src='/images/icon-star-on.png' class='h50rpx w50rpx fr' wx:if="{{item.isFav}}"></image>
+                      <image src='/images/icon-star.png' class='h50rpx w50rpx fr' wx:else></image>
+                      <!-- 收藏 -->
+                    </view>
+                  </view>
+            </view>
+
+            </navigator>
+
+            <view class="clear bor-gray bor-solid-1b"></view>
+
+        </block>
+    </view>
+
+</view>

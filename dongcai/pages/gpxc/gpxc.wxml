@@ -1,0 +1,96 @@
+<!--pages/gpxc/gpxc.wxml-->
+  <view class="pat20 pab20 h60rpx lh60rpx warpper-red Fwhite F32 text-center">
+    <view class="w150rpx fl Fred">
+      1
+    </view>
+    <view class="w450rpx fl">
+      高赔选场
+    </view>
+    <view class="w150rpx fr">
+      <image src='/images/icon-filtrate.png' class='w60rpx h60rpx fr mar50' bindtap='openFiltrate'></image>
+    </view>
+  </view>
+
+  <view class='clear2'></view>
+
+  <!-- 命中率走势 -->
+  <view class='wb100'>
+
+  </view>
+
+  <!-- 列表 -->
+  <view class='wb100'>
+
+    <block wx:for="{{datas}}" wx:key="{{index}}">
+
+      <navigator url="/pages/faDetail/faDetail?dateNo={{date_no}}">
+        <view class='wb100 warpper-white'>
+          <view class='pal50 par50 pat25 pab25'>
+            
+            <view class="w120rpx fl relative"> 
+
+              <view class="circle bor-gray bor-solid-1a" style='background:#ffebe4'>
+                                                  
+                <block wx:if="{{(100 - item.rate * 100) < 50}}">
+                  <view class="circle_left" style='background:#ff8444'>
+                    <view class="clip_left"></view>
+                  </view>
+                  <view class="circle_right" style="transform:rotate({{(100 - item.rate * 100)*3.6}}deg); background:#ff8444">
+                    <view class="clip_right"></view>
+                  </view>
+                </block>
+
+                <block wx:else>
+                  <view class="circle_left" style="transform:rotate({{((100 - item.rate * 100)-50)*3.6}}deg); background:#ff8444">
+                    <view class="clip_left"></view>
+                  </view>
+                  <view class="circle_right" style="transform:rotate(0deg); background: #ffebe4">
+                    <view class="clip_right"></view>
+                  </view>
+                </block>
+
+                <view class="mask Fred bor-gray bor-solid-1a">
+                  {{item.rate * 100}}%
+                </view>
+              </view>
+
+              <view class="wb100 lh50rpx h50rpx text-center F24 Fgray-2">
+                命中概率
+              </view>
+
+            </view>
+
+            <view class='w450rpx mal25 pal25 fl bor-gray bor-solid-1l F28 Fgray-2'>
+
+              <view class='wb100'>
+                <text class='Fred Fb h50rpx lh50rpx' style='font-size:40rpx'>{{item.lower_back}} - {{item.high_back}}</text>倍回报 
+                
+                <view class="w120rpx h40rpx lh40rpx bor-red bor-solid-1a F24 Fred fr text-center radius10">数据预测</view>
+                
+              </view>
+
+              <view class='clear h50rpx'></view>
+
+              <view class='wb100 F24 h50rpx lh50rpx'>
+                <text class='Fblack'>{{item.date}}期</text> 截止时间：
+                <text class='Fgray-2' wx:if="{{item.program_start_time2 == '已截止'}}">{{item.program_start_time2}}</text>
+                <text class='Fred' wx:else>{{item.program_start_time2}}</text>
+
+              </view>
+
+            </view>
+
+            <view class='clear'></view>
+
+          </view>
+        </view>
+      </navigator>
+
+     
+
+      <view class='clear2 warpper-gray-1'></view>
+
+    </block>
+
+  
+  </view>

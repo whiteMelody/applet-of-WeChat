@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/recite/recite",
+    "pages/wordList/wordList",
+    "pages/material/material",
+    "pages/shorthand/shorthand",
+    "pages/spell/spell",
+    "pages/mean/mean",
+    "pages/vocabulary/vocabulary",
+    "pages/test/test",
+    "pages/match/match",
+    "pages/battle/battle",
+    "pages/rank/rank",
+    "pages/friend/friend",
+    "pages/errorWord/errorWord"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#07305A",
+    "navigationBarTitleText": "单词记忆王",
+    "navigationBarTextStyle": "white"
+  }
+}

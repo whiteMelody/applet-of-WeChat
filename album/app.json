@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/select/select",
+    "pages/make/make",
+    "pages/upload/upload",
+    "pages/share/share",
+    "pages/preview/preview",
+    "pages/download/download",
+    "pages/dynamic/dynamic",
+    "pages/set/set",
+    "pages/member/member",
+    "pages/cover/cover",
+    "pages/permit/permit",
+    "pages/home/home",
+    "pages/sync/sync",
+    "pages/syncAlbum/syncAlbum",
+    "pages/join/join",
+    "pages/delete/delete",
+    "pages/preview2/preview2",
+    "pages/detail/detail",
+    "pages/activeHall/activeHall",
+    "pages/activeDetail/activeDetail"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "相册时光",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#63DAB9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "相册",
+        "selectedIconPath": "./images/xc_pre.png",
+        "iconPath": "./images/xc_nor.png"
+      },
+      {
+        "pagePath": "pages/dynamic/dynamic",
+        "text": "动态",
+        "selectedIconPath": "./images/dt_pre.png",
+        "iconPath": "./images/dt_nor.png"
+      }
+    ]
+  }
+}

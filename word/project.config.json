@@ -1,0 +1,111 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "wxd29bf32047596885",
+	"projectname": "word",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 11,
+			"list": [
+				{
+					"id": -1,
+					"name": "背单词",
+					"pathName": "pages/recite/recite",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "单词列表",
+					"pathName": "pages/wordList/wordList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "选择教材",
+					"pathName": "pages/material/material",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "单词速记",
+					"pathName": "pages/shorthand/shorthand",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "单词拼写",
+					"pathName": "pages/spell/spell",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "词义强化",
+					"pathName": "pages/mean/mean",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "词汇强化",
+					"pathName": "pages/vocabulary/vocabulary",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "单元测试",
+					"pathName": "pages/test/test",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "对战",
+					"pathName": "pages/battle/battle",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "对战匹配",
+					"pathName": "pages/match/match",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "排行榜",
+					"pathName": "pages/rank/rank",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "好友对战",
+					"pathName": "pages/friend/friend"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,172 @@
+<!--pages/read/read.wxml-->
+<view class="wb100" style='background-color:{{bgcolor}}'>
+
+  <block wx:if="{{loading}}">
+    <view class="loadingBg">
+      <view class="absolute w400rpx h400rpx" style='top:0;bottom:0;left:0;right:0;margin:auto'>
+        <image src='/images/loading.gif' class="w400rpx h400rpx"></image>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{scroll}}">
+    <scroll-view scroll-y class="wb100 fixed" scroll-top="{{top}}" style="height:{{height}}rpx;background-color:{{bgcolor}}">
+      <view class="wb100" bindtap="click">
+        <view class="pal30 par30 lh60rpx" style='color:{{fcolor}};font-size:{{fontSize}}rpx'>
+          <text decode="true">{{article}}</text>
+        </view>
+      </view>
+      <view class="wb100 h100rpx lh100rpx text-center" style='color:{{fcolor}};font-size:{{titleSize}}rpx'>
+        <view class="wb50 fl" bindtap="up">上一章</view>
+        <view class="wb50 fr" bindtap="next">下一章</view>
+      </view>
+    </scroll-view>
+  </block>
+  <block wx:else>
+    <swiper class='wb100' style='height:{{windowHeight}}px' current="{{top}}" bindtouchstart="touchStart" bindchange="getChange" bindtap='click' bindanimationfinish="finish">
+      <block wx:for="{{articleList}}" wx:key="">
+        <swiper-item>
+          <view class="wb100">
+            <view class="pal30 par30" style='color:{{fcolor}};font-size:{{fontSize}}rpx'>
+              <block wx:for="{{item.datas}}" wx:key="">
+                <view class="lh60rpx" style='min-height:60rpx'>{{item}}</view>
+              </block>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </block>
+
+
+  <block wx:if="{{setUp}}">
+    <view class="wb100" style='height:100%;position:fixed;top:0;left:0' bindtap="close"></view>
+    <view class="wb100 fixed warpper-white" style='bottom:0;color:#529BFF'>
+      <block wx:if="{{color}}">
+        <!-- 阅读模式 -->
+        <view class="wb100 h120rpx F32 bor-solid-1b bor-gray2 text-center">
+          <view class="wb50 h120rpx fl">
+            <block wx:if="{{scroll}}">
+              <view class="w300rpx h60rpx lh60rpx bor-solid-1a radius50 center mat30" bindtap="slide">左右侧滑</view>
+            </block>
+            <block wx:else>
+              <view class="w300rpx h60rpx lh60rpx bor-solid-1a radius50 center mat30 Fwhite warpper-blue-21">左右侧滑</view>
+            </block>
+          </view>
+          <view class="wb50 h100rpx fr">
+            <block wx:if="{{scroll}}">
+              <view class="w300rpx h60rpx lh60rpx bor-solid-1a radius50 center mat30 Fwhite warpper-blue-21">上下滚动</view>
+            </block>
+            <block wx:else>
+              <view class="w300rpx h60rpx lh60rpx bor-solid-1a radius50 center mat30" bindtap="scroll">上下滚动</view>
+            </block>
+          </view>
+        </view>
+        <!-- 字体大小 -->
+        <view class="wb100 h120rpx F32 bor-solid-1b bor-gray2 text-center">
+          <view class="wb50 h120rpx fl">
+            <view class="w300rpx h60rpx lh60rpx bor-solid-1a radius50 center mat30" bindtap="cut">A-</view>
+          </view>
+          <view class="wb50 h100rpx fr">
+            <view class="w300rpx h60rpx lh60rpx bor-solid-1a radius50 center mat30" bindtap="add">A+</view>
+          </view>
+        </view>
+        <view class="wb100 h120rpx bor-solid-1b bor-gray2">
+          <view class="wb25 h120rpx fl" bindtap="selectColor" data-bgcolor="{{'#faf6ed'}}" data-fcolor="{{'#000000'}}">
+            <view class="w80rpx h80rpx radius50per bor-solid-1a center mat20" style='background-color:#faf6ed'>
+              <block wx:if="{{bgcolor == '#faf6ed'}}">
+                <view class="w40rpx h28rpx center mat26">
+                  <image class="w40rpx h28rpx" src='/images/select.png' style='display:block'></image>
+                </view>
+              </block>
+            </view>
+          </view>
+          <view class="wb25 h120rpx fl" bindtap="selectColor" data-bgcolor="{{'#efe7cc'}}" data-fcolor="{{'#000000'}}">
+            <view class="w80rpx h80rpx radius50per bor-solid-1a center mat20" style='background-color:#efe7cc'>
+              <block wx:if="{{bgcolor == '#efe7cc'}}">
+                <view class="w40rpx h28rpx center mat26">
+                  <image class="w40rpx h28rpx" src='/images/select.png' style='display:block'></image>
+                </view>
+              </block>
+            </view>
+          </view>
+          <view class="wb25 h120rpx fl" bindtap="selectColor" data-bgcolor="{{'#daceb4'}}" data-fcolor="{{'#000000'}}">
+            <view class="w80rpx h80rpx radius50per bor-solid-1a center mat20" style='background-color:#daceb4'>
+              <block wx:if="{{bgcolor == '#daceb4'}}">
+                <view class="w40rpx h28rpx center mat26">
+                  <image class="w40rpx h28rpx" src='/images/select.png' style='display:block'></image>
+                </view>
+              </block>
+            </view>
+          </view>
+          <view class="wb25 h120rpx fl" bindtap="selectColor" data-bgcolor="{{'#191919'}}" data-fcolor="{{'#7f7f7f'}}">
+            <view class="w80rpx h80rpx radius50per bor-solid-1a center mat20" style='background-color:#191919'>
+              <block wx:if="{{bgcolor == '#191919'}}">
+                <view class="w40rpx h28rpx center mat26">
+                  <image class="w40rpx h28rpx" src='/images/select.png' style='display:block'></image>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="wb100 h100rpx lh100rpx F32">
+          <view class="wb100 absolute text-center F32" style='z-index:-1'>
+            <view class="center w450rpx text-over-hidden1">{{title}}</view>
+          </view>
+          <view class="pal30 par30 h100rpx bor-solid-1b bor-gray2">
+            <view class="fl" bindtap="up">上一章</view>
+            <view class="fr" bindtap="next">下一章</view>
+          </view>
+        </view>
+      </block>
+      <view class="wb100 h120rpx">
+        <view class="pal60 par60">
+          <view class="wb100">
+            <view class="wb50 fl h120rpx" bindtap="set">
+              <view class="center w50rpx">
+                <image class="w50rpx h50rpx mat35" src='/images/icon_chapter.png'></image>
+              </view>
+            </view>
+            <view class="wb50 fr h120rpx" bindtap="change">
+              <view class="center w50rpx">
+                <image class="w50rpx h50rpx mat35" src='/images/icon_font.png'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+
+  <block wx:if="{{chapter}}">
+    <view class="wb100 dialogBg" bindtap="set"></view>
+    <view class="wb90 warpper-white" style='height: 100%; position: fixed; z-index: 99999; top:0; left:0'>
+      <view class="clear h60rpx"></view>
+      <view class="absolute lh40rpx h40rpx pal20">
+        <view class="w50rpx pal10" bindtap="set">
+          <image class="w14rpx h26rpx" src='/images/icon_left.png'></image>
+        </view>
+      </view>
+      <view class="w520rpx center text-center F32 h40rpx lh40rpx">{{title}}</view>
+      <view class="clear h60rpx bor-solid-1b bor-gray2"></view>
+      <view class="pal30">
+        <scroll-view scroll-y class="wb100" style="height:{{height-161}}rpx">
+          <block wx:for="{{chapterList}}" wx:key="">
+            <block wx:if="{{item.title == title}}">
+              <view class="wb100 h80rpx lh80rpx F28 bor-solid-1b bor-gray text-over-hidden1" style='color:#529BFF'>{{item.title}}</view>
+            </block>
+            <block wx:else>
+              <view class="wb100 h80rpx lh80rpx F28 bor-solid-1b bor-gray text-over-hidden1" bindtap="select" data-index="{{index}}">{{item.title}}</view>
+            </block>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </block>
+
+
+
+</view>

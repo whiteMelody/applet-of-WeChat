@@ -1,0 +1,68 @@
+<view class="wb100 warpper-gray-1">
+  <view class="wb100 h300rpx warpper-blue-1 pat40 pab40">
+    <view class="w160rpx h160rpx radius50per center over-hidden warpper-white">
+      <image src="{{userIcon}}" class="middle" style="width:160rpx; height:160rpx;"></image>
+    </view>
+  </view>
+  <view class="pa50 lh60rpx Fgray-2" style="margin-top:-200rpx;">
+    <view class="warpper-white radius5 over-hidden bor-gray bor-solid-1a">
+      <view class="h40rpx warpper-gray-1 wb100"></view>
+      <view class="pal30 par30">
+        <view class="text-center h100rpx lh100rpx F32 {{color}}">{{title}}</view>
+        <view class="pa30 relative F28" style="z-index:9;">
+          <view class="fl">考生姓名</view>
+          <view class="fr Fgray-3">{{userName}}</view>
+          <view class="clear1"></view>
+          <view class="fl">报考车型</view>
+          <view class="fr Fgray-3">{{testType}}</view>
+          <view class="clear1"></view>
+          <view class="fl">考试科目</view>
+          <view class="fr Fgray-3">{{testSub}}</view>
+          <view class="clear1"></view>
+          <view class="fl">考试成绩</view>
+          <view class="fr {{color}}">{{testPoint}}</view>
+          <view class="clear1"></view>
+          <view class="fl">考试地点</view>
+          <view class="fr Fgray-3">{{testAddress}}</view>
+          <view class="clear1"></view>
+          <view class="w200rpx h200rpx radius50per center over-hidden warpper-white" style="position:absolute; bottom:30rpx; right:0rpx;z-index:-1;">
+            <image src="../../image/img-qualified.png" wx:if="{{ testPoint>60 }}" class="middle" style="width:200rpx; height:200rpx;"></image>
+            <image src="../../image/img-disqualification.png" class="middle" style="width:200rpx; height:200rpx;"></image>
+          </view>
+
+          <!--<view class="clear1"></view>-->
+
+          <!--<view class="text-center F16">{{time}}</view>-->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="clear1"></view>
+  <view class=" text-center pa50 Fgray-2">
+    <view class="wb33 fl" bindtap="viewError">
+      <view class="h80rpx lh80rpx">
+        <image src="../../image/icon-error-list2.png" class="middle" style="width:40rpx; height:48rpx;"></image>
+      </view>
+      <view class="lh80rpx F28">
+        看错题
+      </view>
+    </view>
+    <view class="wb33 fl" bindtap="viewPaper">
+      <view class="h80rpx lh80rpx">
+        <image src="../../image/icon-show-paper.png" class="middle" style="width:42rpx; height:48rpx;"></image>
+      </view>
+      <view class="lh80rpx F28">
+        查试卷
+      </view>
+    </view>
+    <view class="wb33 fl" bindtap="reTest">
+      <view class=" h80rpx lh80rpx">
+        <image src="../../image/icon-re-test.png" class="middle" style="width:46rpx; height:42rpx;"></image>
+      </view>
+      <view class="lh80rpx F28">
+        重新考
+      </view>
+    </view>
+    <view class="clear"></view>
+  </view>
+</view>

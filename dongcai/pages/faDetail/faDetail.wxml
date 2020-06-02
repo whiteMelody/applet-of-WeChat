@@ -1,0 +1,246 @@
+<!--pages/faDetail/faDetail.wxml-->
+
+<view class="wb100">
+  <view class='wb100 warpper-white'>
+      <view class='pa25'>
+        
+        <view class="w120rpx fl relative"> 
+
+          <view class="circle bor-gray bor-solid-1a" style='background:#ffebe4'>
+                                              
+            <block wx:if="{{item.per < 50}}">
+              <view class="circle_left" style='background:#ff8444'>
+                <view class="clip_left"></view>
+              </view>
+              <view class="circle_right" style="transform:rotate({{item.per*3.6}}deg); background:#ff8444">
+                <view class="clip_right"></view>
+              </view>
+            </block>
+
+            <block wx:else>
+              <view class="circle_left" style="transform:rotate({{(item.per-50)*3.6}}deg); background:#ff8444">
+                <view class="clip_left"></view>
+              </view>
+              <view class="circle_right" style="transform:rotate(0deg); background: #ffebe4">
+                <view class="clip_right"></view>
+              </view>
+            </block>
+
+            <view class="mask Fred bor-gray bor-solid-1a">
+              {{100 - item.per}}%
+            </view>
+          </view>
+
+          <view class="wb100 lh50rpx h50rpx text-center F24 Fgray-2">
+            命中概率
+          </view>
+
+        </view>
+
+        <view class='w500rpx mal25 pal25 fl bor-gray bor-solid-1l F28 Fgray-2 pat10 pab10'>
+
+          <view class='wb100'>
+            订单编号：{{datas.match.date_no}}
+          </view>
+
+          <view class='clear1'></view>
+
+          <view class='wb100 F24 h50rpx lh50rpx'>
+          <view class="w120rpx h40rpx lh40rpx bor-red bor-solid-1a F24 Fred fl text-center radius10 mar10">数据预测</view>
+            <text class='Fblack'>{{datas.match.match_start_time}}期 </text> 截止时间： 
+            <text class='Fgray-2' wx:if="{{datas.match.program_start_time2 == '已截止'}}">{{datas.match.program_start_time2}}</text>
+            <text class='Fred' wx:else>{{datas.match.program_start_time2}}</text>
+          </view>
+
+        </view>
+
+        <view class='clear'></view>
+
+      </view>
+  </view>
+
+  <view class='clear2 warpper-gray-1'></view>
+
+  <view class='wb100'>
+
+    <view class='pal25 par25 h60rpx lh60rpx bor-gray bor-solid-1b F28'>
+      单场 预计回报：<text class='Forange'>0.90-1.57</text>倍
+    </view>
+
+    <view class='pa25'>
+
+      <view class='wb100 Fgray-2 lh30rpx F24'>
+        {{datas.match.number}} {{datas.match.union_name}} {{datas.match.match_start_time}} 赛果：{{datas.match.final_score}}
+      </view>
+
+      <view class='clear2'></view>
+
+      <view class='wb100'>
+          <view class="pa15 warpper-white radius10 ">
+
+            <view class="wb100 F28">
+              <view class='wb333 fl pat25 pab25'>
+                <view class="w80rpx h80rpx fl">
+                  <image src='/images/icon-seven.png' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="h80rpx lh40rpx fl mal10">
+                  <view class="wb100">{{datas.match.host_team_name}}</view>
+                  <view class='wb100 Fgray-2'>{{datas.match.host_team_rank}}</view>
+                </view>
+              </view>
+              <view class='wb333 fl F24'>
+
+                <view class='w110rpx h40rpx lh40rpx bor-red bor-solid-1a radius10 center'>
+                  <view class='h40rpx lh40rpx text-center w40rpx warpper-red Fwhite fl'>
+                    胜
+                  </view>
+                  <view class='w70rpx fr Fred text-center'>
+                    {{datas.match.hit_odd}}
+                  </view>
+                </view>
+
+                <view class='clear2'></view>
+
+                <view class='w110rpx h40rpx lh40rpx bor-gray bor-solid-1a radius10 center'>
+                  <view class='h40rpx lh40rpx text-center w40rpx warpper-gray-1 Fgray-3 fl'>
+                    平
+                  </view>
+                  <view class='w70rpx fr Fgray-3 text-center'>
+                    {{datas.match.flat_odd}}
+                  </view>
+                </view>
+                
+              </view>
+              <view class='wb333 fl pat25 pab25'>
+                <view class="w80rpx h80rpx fr">
+                  <image src='/images/icon-ten.png' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="h80rpx lh40rpx fr mar10">
+                  <view class='wb100'>{{datas.match.guest_team_name}}</view>
+                  <view class='wb100 Fgray-2'>{{datas.match.guest_team_rank}}</view>
+                </view>
+              </view>
+            </view>
+
+            <view class='clear'></view>
+
+          </view>
+
+      </view>
+
+      <view class='clear2 bor-gray bor-solid-1t'></view>
+
+      <view class='wb100 F24 Fgray-2 text-center'>市场态度</view>
+
+      <view class='wb100'>
+                  
+        <view class="wb100 center" style='width:460rpx;'>
+          <view class="w120rpx fl h200rpx relative">
+            <view class="absolute w120rpx" style='bottom:0rpx'>
+              <view class='F28 lh40rpx text-center Fred'>{{datas.match.win_support_rate}}</view>
+              <view class="w120rpx warpper-red" style='height:{{ datas.match.win_support_rate2 }}rpx;'>
+              </view>
+              <view class='F24 lh40rpx text-center'>胜<text class='Fgray-2'>{{datas.match.win_ticket}}</text></view>
+            </view>
+          </view>
+
+          <view class="w120rpx fl h200rpx relative mal50 mar50">
+            <view class="absolute w120rpx" style='bottom:0rpx'>
+              <view class='F24 lh40rpx text-center Forange'>{{datas.match.flat_support_rate}}</view>
+              <view class="w120rpx warpper-orange" style='height:{{ datas.match.flat_support_rate2 }}rpx;'>
+              </view>
+              <view class='F24 lh40rpx text-center'>平<text class='Fgray-2'>{{datas.match.flat_ticket}}</text></view>
+            </view>
+          </view>
+
+          <view class="w120rpx fl h200rpx relative">
+            <view class="absolute w120rpx" style='bottom:0rpx'>
+              <view class='F24 lh40rpx text-center Fyellow'>{{datas.match.defeat_support_rate}}</view>
+              <view class="w120rpx warpper-yellow" style='height:{{ datas.match.defeat_support_rate2 }}rpx;'>
+              </view>
+              <view class='F24 lh40rpx text-center'>负<text class='Fgray-2'>{{datas.match.defeat_ticket}}</text></view>
+            </view>
+          </view>
+          
+        </view>
+
+      </view>
+
+      <view class='clear2'></view>
+
+      <view class='clear2 bor-gray bor-solid-1t'></view>
+
+      <view class='wb100 F28 Fgray-2 h40rpx lh40rpx'>
+        <view class='fl'>
+          本次盈亏：<text class='Fred'>1.15</text>
+        </view>
+
+        <view class='fr'>
+          方案采取平均奖金优化
+        </view>
+
+      </view>      
+    
+    </view>
+
+
+  </view>
+
+  <view class='warpper-gray-1 pa15'>
+     <view class="wb100 warpper-white">
+      <view class='text-center wb100 Fgray-3 F24 lh60rpx'>实力对比</view>
+      <view class="clear1 bor-gray bor-solid-1t"></view>
+
+      <view class="pal25 par25 F28">
+        <view class="wb100 h40rpx lh40rpx">
+          <view class='wb33333 fl text-left Fred'>
+            {{datas.compute.complex_home_power2}}%
+          </view>
+          <view class='wb33333 fl text-center Fblack F40'>
+            vs
+          </view>
+          <view class='wb33333 fl text-right Fblue'>
+            {{datas.compute.complex_away_power2}}%
+          </view>
+        </view>
+
+        <view class='clear2'></view>
+
+        <view class='wb100'>
+          <view class="h20rpx warpper-red fl" style='width:{{datas.compute.complex_home_power2}}%'></view>
+          <view class="h20rpx warpper-blue fl" style='width:{{datas.compute.complex_away_power2}}%'></view>
+        </view>
+
+        <view class="clear2"></view>
+        <view class='w120rpx fl text-left h50rpx lh50rpx'>进攻实力</view>
+        <view class="wb60 fl mat15" style='width:430rpx'>
+          <view class="h20rpx warpper-red fl" style='width:{{datas.compute.attack_home_power2}}%'></view>
+          <view class="h20rpx warpper-blue fl" style='width:{{datas.compute.attack_away_power2}}%'></view>
+        </view>
+        <view class='w120rpx fr text-right h50rpx lh50rpx'>进攻实力</view>
+
+        <view class="clear2"></view>
+        <view class='w120rpx fl text-left h50rpx lh50rpx'>防守实力</view>
+        <view class="wb60 fl mat15" style='width:430rpx'>
+          <view class="h20rpx warpper-red fl" style='width:{{datas.compute.attend_home_power2}}%'></view>
+          <view class="h20rpx warpper-blue fl" style='width:{{datas.compute.attend_away_power2}}%'></view>
+        </view>
+        <view class='w120rpx fr text-right h50rpx lh50rpx'>防守实力</view>
+
+        <view class="clear2"></view>
+        <view class='w120rpx fl text-left h50rpx lh50rpx'>近期交锋</view>
+        <view class="wb60 fl mat15" style='width:430rpx'>
+          <view class="h20rpx warpper-red fl" style='width:{{datas.compute.cross_home_power2}}%'></view>
+          <view class="h20rpx warpper-blue fl" style='width:{{datas.compute.cross_away_power2}}%'></view>
+        </view>
+        <view class='w120rpx fr text-right h50rpx lh50rpx'>近期交锋</view>
+
+      </view>
+
+      <view class="clear2"></view>
+
+    </view>
+
+  </view>
+
+</view>

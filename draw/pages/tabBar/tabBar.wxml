@@ -1,0 +1,29 @@
+<view class="clear h120rpx"></view>
+<view class="wb100 h100rpx fixed F22 warpper-white pat20" style='bottom:0; left:0; z-index:9999'>
+  <view class="wb100">
+
+    <block wx:for="{{navs.list}}" wx:key="{{index}}">
+      <view class="wb33333 fl text-center">
+        <block wx:if="{{index == selected}}">
+          <view class="wb100">
+            <image src='{{item.selectedIconPath}}' class='h50rpx w50rpx'></image>
+            <view class="h45rpx lh45rpx" style='color:{{navs.selectedColor}}'>
+              {{item.text}}
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='wb100' bindtap='toPage' data-url="{{item.pagePath}}">
+            <image src='{{item.iconPath}}' class='h50rpx w50rpx'></image>
+            <view class="h45rpx lh45rpx" style='color:{{navs.color}}'>
+              {{item.text}}
+            </view>
+          </view>
+        </block>
+      </view>
+
+    </block>
+
+    
+  </view>
+</view>

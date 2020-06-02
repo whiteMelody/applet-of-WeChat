@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="wb100" style='background:url("https://album.31un.com/teachersDay/images/teacherBg.jpg"); background-position:center center; background-size:auto {{minHeight + 100}}px; min-height:{{minHeight}}px'>
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+    </login-tag>
+
+  <view class="wb100">
+
+    <view class="wb100 absolute" style='bottom: 100rpx'>
+
+      <navigator url='/pages/subject/subject'>
+        <view style='width:300rpx; height:112rpx;' class='fl mal50'>
+          <image src='/images/btn-start.png' style='width:300rpx; height:112rpx;'></image>
+        </view>
+      </navigator>
+
+      <button open-type='share' style='width:300rpx; height:112rpx;' class='fr mar50'>
+        <image src='/images/btn-share.png' style='width:300rpx; height:112rpx;'></image>
+      </button>
+
+    </view>
+
+  </view>
+
+
+</view>

@@ -1,0 +1,68 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxdd2c3c126d0e1994",
+	"projectname": "english",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 3,
+			"list": [
+				{
+					"id": -1,
+					"name": "资料库",
+					"pathName": "pages/data/data",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "课程主页",
+					"pathName": "pages/lesson/lesson",
+					"query": "channelID=937FB1A1-D8DA-426E-8E88-B27BAB87CC13"
+				},
+				{
+					"id": 2,
+					"name": "音频播放",
+					"pathName": "pages/lessonPlay/lessonPlay",
+					"query": "lessonID=32232"
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/user/user",
+					"query": ""
+				}
+			]
+		}
+	}
+}

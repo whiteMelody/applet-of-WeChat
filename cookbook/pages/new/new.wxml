@@ -1,0 +1,20 @@
+<!--pages/new/new.wxml-->
+<view class='wb100'>
+
+    <view class="pa30 warpper-gray-1">
+        <view class="pa30 warpper-white">
+            <textarea placeholder='这里将记录你看书时的想法' class='F32 Fgray-3 wb100 h300rpx'>
+            
+            </textarea>
+        </view>
+
+        <view class="clear1"></view>
+
+        <view class='w100rpx h100rpx pa15 warpper-white radius10 bor-gray bor-solid-1a'>
+            <image src='../../images/icon-new.png' style='width:100rpx; height:100rpx;'></image>
+        </view>
+
+        <view class="clear1"></view>
+
+    </view>
+</view>

@@ -1,0 +1,149 @@
+<view class="wb100">
+  <view class="dialog-loading" hidden="{{!loaded}}" bindtap="closeLoad">
+    <image src="../../image/info-index.png" mode="aspectFit" style=" position:absolute; bottom:-50rpx; left:10rpx;"></image>
+  </view>
+  <view class="dialog-warpper" hidden="{{dialog}}" bindtap="openPanle"></view>
+  <view class="left-panle text-center" hidden="{{dialog}}">
+    <view class="clear h30rpx"></view>
+    <view class="w50rpx h50rpx lh50rpx text-center warpper-white radius50per relative" bindtap="selectModel" data-model="c1">
+      <image wx:if="{{model=='c1'}}" src="../../image/icon-active.png" class="middle" style="width:20rpx; height:20rpx; position: absolute; right: 0; top: 0;"></image>
+      <image src="../../image/icon-car1.png" class="middle" style="width:23rpx; height:16rpx;"></image>
+    </view>
+    <view class="clear1"></view>
+    <view class="w50rpx h50rpx lh50rpx text-center warpper-white radius50per relative" bindtap="selectModel" data-model="b2">
+      <image wx:if="{{model=='b2'}}" src="../../image/icon-active.png" class="middle" style="width:20rpx; height:20rpx; position: absolute; right: 0; top: 0;"></image>
+      <image src="../../image/icon-car2.png" class="middle" style="width:23rpx; height:27rpx;"></image>
+    </view>
+    <view class="clear1"></view>
+    <view class="w50rpx h50rpx lh50rpx text-center warpper-white radius50per relative" bindtap="selectModel" data-model="a1">
+      <image wx:if="{{model=='a1'}}" src="../../image/icon-active.png" class="middle" style="width:20rpx; height:20rpx; position: absolute; right: 0; top: 0;"></image>
+      <image src="../../image/icon-car3.png" class="middle" style="width:23rpx; height:26rpx;"></image>
+    </view>
+    <view class="clear1"></view>
+
+    <!--<view class="w50rpx h50rpx lh50rpx text-center warpper-white radius50per relative" bindtap="selectModel" data-model="d">
+        <image wx:if="{{model=='d'}}" src="../../image/icon-active.png" class="middle" style="width:20rpx; height:20rpx; position: absolute; right: 0; top: 0;"></image>
+        <image src="../../image/icon-car4.png" class="middle" style="width:23rpx; height:34rpx;"></image>
+      </view>
+      <view class="clear1"></view>-->
+  </view>
+  <view class="w50rpx h50rpx lh50rpx text-center warpper-blue-1 radius50per left-btn" bindtap="openPanle">
+    <view wx:if="{{dialog}}">
+      <image src="../../image/icon-model.png" style="width:30rpx; height:30rpx; margin:10rpx;"></image>
+    </view>
+    <view wx:else>
+      <image src="../../image/icon-close.png" style="width:20rpx; height:20rpx; margin:15rpx;"></image>
+    </view>
+  </view>
+  <view class="clear1"></view>
+  <view class="wb100">
+    <navigator url="index?subject=1&model={{model}}" redirect>
+      <view class="nav active" wx:if="{{subject==1}}">科目一</view>
+      <view class="nav" wx:else>科目一</view>
+    </navigator>
+    <navigator url="index?subject=4&model={{model}}" redirect>
+      <view class="nav active" wx:if="{{subject==4}}">科目四</view>
+      <view class="nav" wx:else>科目四</view>
+    </navigator>
+  </view>
+  <view class="clear1 bor-gray bor-solid-1t"></view>
+  <view class="wb100">
+    <navigator url="../list/list?subject={{subject}}&model={{model}}&id={{testId}}&number={{testNum}}">
+      <view class="h300rpx text-center wb495 fl Fgray-3 bor-gray bor-solid-1r">
+        <view>
+          <image src="../../image/icon-type1.png" class="h160rpx w160rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-2 F28 ">
+          已完成：{{orderCount}}题
+        </view>
+        <view class="lh80rpx Fgray-3 F32">
+          顺序练习
+        </view>
+      </view>
+    </navigator>
+    <navigator url="../randList/randList?subject={{subject}}&model={{model}}&test=true&id={{examId}}&number={{examNum}}">
+      <view class="h300rpx text-center wb495 fr Fgray-3">
+        <view>
+          <image src="../../image/icon-type2.png" class="h160rpx w160rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-2 F28">
+          平均成绩：{{point}}分
+        </view>
+        <view class="lh80rpx Fgray-3 F32">
+          模拟考试
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class="clear1 bor-gray bor-solid-1b"></view>
+  <view class=" text-center pa30">
+    <navigator url="../randList/randList?subject={{subject}}&model={{model}}">
+      <view class="wb33 fl">
+        <view>
+          <image src="../../image/icon-type3.png" class="h80rpx w80rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-3 F28">
+          随机练习
+        </view>
+      </view>
+    </navigator>
+    <navigator url="../classify/classify?subject={{subject}}&model={{model}}">
+      <view class="wb33 fl">
+        <view>
+          <image src="../../image/icon-type5.png" class="h80rpx w80rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-3 F28">
+          专项练习
+        </view>
+      </view>
+    </navigator>
+    <navigator url="../classify/classify?subject={{subject}}&model={{model}}&intensify=true">
+      <view class="wb33 fl">
+        <view>
+          <image src="../../image/icon-type6.png" class="h80rpx w80rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-3 F28">
+          强化练习
+        </view>
+      </view>
+      <view class="clear"></view>
+    </navigator>
+  </view>
+  <view class="clear bor-gray bor-solid-1b"></view>
+  <view class=" text-center pa30">
+    <navigator url="../errorList/errorList">
+      <view class="wb33 fl">
+        <view>
+          <image src="../../image/icon-type7.png" class="h80rpx w80rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-3 F28">
+          错题集
+        </view>
+      </view>
+    </navigator>
+    <navigator url="../record/record?subject={{subject}}&model={{model}}">
+      <view class="wb33 fl">
+        <view>
+          <image src="../../image/icon-type8.png" class="h80rpx w80rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-3 F28">
+          练习统计
+        </view>
+      </view>
+    </navigator>
+    <navigator url="../testList/testList?subject={{subject}}&model={{model}}">
+      <view class="wb33 fl">
+        <view>
+          <image src="../../image/icon-type9.png" class="h80rpx w80rpx"></image>
+        </view>
+        <view class="lh60rpx Fgray-3 F28">
+          考试记录
+        </view>
+      </view>
+    </navigator>
+    <view class="clear"></view>
+  </view>
+  <view class="clear"></view>
+  
+  <view class="clear"></view>
+</view>

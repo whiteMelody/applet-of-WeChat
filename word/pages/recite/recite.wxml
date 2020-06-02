@@ -1,0 +1,111 @@
+<!--pages/recite/recite.wxml-->
+<view class="wb100">
+  <view class="clear h40rpx"></view>
+
+  <view class="w670rpx h540rpx warpper-white center radius20 box-shadow-gray4">
+    <view class="clear h50rpx"></view>
+    <view class="F36 text-center">{{title}}</view>
+    <view class="clear h50rpx"></view>
+
+    <view class="pal60 par60 text-center">
+
+      <view class="wb100">
+        <view class="fl wb50">
+          <view class="F30 Fgray-2">已背单词</view>
+          <view>
+            <text class="F88">{{rememberNum}}</text>
+            <text class="F30">个</text>
+          </view>
+        </view>
+        <view class="fr wb50">
+          <view class="F30 Fgray-2">剩余</view>
+          <view>
+            <text class="F88">{{surplusNum}}</text>
+            <text class="F30">个</text>
+          </view>
+        </view>
+      </view>
+      <view class="clear h40rpx"></view>
+
+      <!-- 进度条 -->
+      <view class="wb100">
+        <view class="warpper-gray-8 h14rpx radius50 over-hidden">
+          <view class="warpper-blue-12 h14rpx" style='width:{{width}}%'></view>
+        </view>
+      </view>
+
+      <view class="clear h70rpx"></view>
+      <view class="wb100 F30 h40rpx lh40rpx">
+        <!-- 选择教材 -->
+        <navigator url="/pages/material/material">
+          <view class="fl">
+            <view class="fl">{{grade}}</view>
+            <image src='/images/icon_right.png' class="w14rpx h24rpx fl mat8 mal10"></image>
+          </view>
+        </navigator>
+        <!-- 单词列表 -->
+        <view class="fr" bindtap="getWordList">
+          <view class="fl">单词列表</view>
+          <image src='/images/icon_right.png' class="w14rpx h24rpx fl mat8 mal10"></image>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="clear h60rpx"></view>
+
+  <!-- 单词速记 -->
+  <view class="w670rpx h88rpx lh88rpx center warpper-blue-12 Fwhite text-center radius50 F36" bindtap="remember">速记</view>
+
+  <view class="clear h60rpx"></view>
+
+  <view class="w670rpx F24 text-center center Fgray-3">
+    <view class="wb100">
+      <view class="wb25 fl" bindtap="spell">
+        <image class="w48rpx h48rpx center" src='/images/dcpx.png'></image>
+        <view class="clear h20rpx"></view>
+        <view>单词拼写</view>
+      </view>
+      <view class="wb25 fl" bindtap="mean">
+        <image class="w48rpx h48rpx center" src='/images/cyqh.png'></image>
+        <view class="clear h20rpx"></view>
+        <view>词义强化</view>
+      </view>
+      <view class="wb25 fl" bindtap="vocabulary">
+        <image class="w48rpx h48rpx center" src='/images/chqh.png'></image>
+        <view class="clear h20rpx"></view>
+        <view>词汇强化</view>
+      </view>
+      <view class="wb25 fl" bindtap="test">
+        <image class="w48rpx h48rpx center" src='/images/dycs.png'></image>
+        <view class="clear h20rpx"></view>
+        <view>单元测试</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="clear h60rpx"></view>
+
+  <view class="w670rpx h88rpx warpper-white center">
+    <view class="F30 h88rpx">
+      <view class="wb50 fl h88rpx" bindtap="last">
+        <view class="bor-solid-1r h40rpx bor-gray2 mat24">
+          <view class="w150rpx center">
+            <image src='/images/sydy.png' class="w16rpx h20rpx fl mat10"></image>
+            <view class='fl mal10'>上一单元</view>
+          </view>
+        </view>
+      </view>
+      <view class="wb50 fr h88rpx" bindtap="next">
+        <view class="w150rpx center mat24">
+          <view class="fl">下一单元</view>
+          <image src='/images/xydy.png' class="w16rpx h20rpx fl mal10 mat10"></image>
+        </view>
+      </view>
+    </view>
+    <view class="clear"></view>
+  </view>
+
+
+</view>

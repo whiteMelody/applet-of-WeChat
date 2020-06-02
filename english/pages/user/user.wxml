@@ -1,0 +1,114 @@
+<!--pages/user/user.wxml-->
+<view class="wb100">
+  <view class="wb100 h320rpx" style="background: url('/images/bg-user.png') repeat-x center center">
+    <view class="clear1"></view>
+    <view class="pa50 text-center">
+      <block wx:if="{{!isLogin}}">
+        <button open-type="getUserInfo" class="wb100 text-center" bindgetuserinfo="onGotUserInfo">
+          <image src='/images/head-default.png' class='h120rpx w120rpx'></image>
+          <view class='F28 Fwhite h50rpx lh50rpx'>前去登录</view>
+        </button>
+      </block>
+      <block wx:else>
+        <view class="wb100">
+          <image src='/images/head-default.png' class='h120rpx w120rpx'></image>
+          <view class='F28 Fwhite h50rpx lh50rpx'>用户名</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="clear1"></view>
+
+  <!-- E代币 -->
+  <view class='wb100'>
+
+    <view class="wb100 F32 text-center h100rpx lh100rpx">
+      我的E代币：<text class='Forange' style='font-size:50rpx;'>1</text>
+    </view>
+
+    <view class='clear'></view>
+
+    <view class="w500rpx center">
+      <block wx:for="{{[1,2,3]}}">
+        <view class="w100rpx h100rpx bor-gray bor-solid-1a fl mar25">
+        </view>
+      </block>
+      <view class="w100rpx h100rpx bor-gray bor-solid-1a fr text-center lh90rpx Fgray-1" style='font-size:80rpx;'>
+        +
+      </view>
+    </view>
+    
+    <view class='clear'></view>
+
+    <view class="wb100 h100rpx lh100rpx F28 Fgray-3 text-center">
+      每天邀请3名好友即可获得一枚E代币
+    </view>
+
+    <view class='clear'></view>
+
+    <view class="F28 pal50 par50 center Fgray-2 lh50rpx">
+      <view class="wb100 F30 Fgray-3">
+        补充说明：
+      </view>
+      <view class="wb100">
+        1.E代币可以换购7天英语小程序的所有课程
+      </view>
+      <view class="wb100">
+        2.E代币每天只能获得1枚，邀请3位好友即可
+      </view>
+      <view class="wb100">
+        3.本活动最终解释权归@7天英语所有
+      </view>
+
+    </view>
+    
+  </view>
+  
+  <view class="clear1"></view>
+
+  <view class='clear h15rpx warpper-gray-1'></view>
+
+  <view class='clear1'></view>
+
+  <view class='wb100'>
+    <view class='h40rpx lh40rpx fl bor-blue bor-solid-10l mal30 mar30 pal15 w200rpx F32'>
+      已换购课程
+    </view>
+  </view>
+
+  <!-- 已换购课程 -->
+  <view class='wb100'>
+    <!-- <view class="wb100">
+      <view class="wb100" wx:for="{{datas}}" wx:key="{{index}}">
+        <view class="pal30">
+          <navigator url='/pages/lesson/lesson?channelID={{item.channelID}}'>
+            <view class="fl w100rpx h100rpx radius10 warpper-gray-3">
+                <image src="{{item.iconURL}}?x-oss-process=image/resize,m_fixed,h_100,w_100" class="radius10 w100rpx h100rpx" />
+            </view>
+            <view class="Fgray-3">
+                <view class="lh50rpx h50rpx text-over-hidden1 pal30 Fblack F28">{{item.channelName}}</view>
+                <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">{{item.subtitle}}</view>
+            </view>
+          </navigator>
+          <view class="clear1 bor-gray bor-solid-1b"></view>
+        </view>
+        <view class="clear1"></view>
+      </view>
+    </view> -->
+  </view>
+
+  <view class="clear1"></view>
+
+  <view class='clear h15rpx warpper-gray-1'></view>
+
+  <view class='clear1'></view>
+
+  <view class='wb100'>
+    <view class='h40rpx lh40rpx fl bor-blue bor-solid-10l mal30 mar30 pal15 w200rpx F32'>
+      精品推荐
+    </view>
+  </view>
+
+
+</view>

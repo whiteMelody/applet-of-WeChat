@@ -1,0 +1,266 @@
+<!--index.wxml-->
+<view class="wb100">
+
+  <block wx:if="{{!isVerify}}">
+
+    <!-- banner -->
+    <view class='wb100 warpper-blue-2' style='height:469rpx;'>
+        <view class='wb100'>
+          <swiper indicator-dots="true" indicator-color="#909399" indicator-active-color="#409EFF"
+            interval="5000" duration="1000" auto="true"
+            class="warpper-white radius5 relative" style='height: 469rpx;  box-shadow: 0rpx 0rpx 5rpx rgba(225, 225, 225, .35);'>
+            <block wx:for="{{banner}}" wx:key="{{index}}">
+              <swiper-item>
+                <navigator url='/pages/chapter/chapter?work_id={{item.id}}'>
+                  <view class='wb100' >
+                      <image src='{{item.thumb}}' style='width:750rpx; height:469rpx;' ></image>
+                  </view>
+                </navigator>
+              </swiper-item>
+            </block>
+          </swiper>
+      </view>
+    </view>
+
+    <view class='clear'></view>
+
+    <view class='pa25 warpper-white-1'>
+      <view class="wb100 h100px">
+        <view class='w220rpx fl h100rpx relative'>
+          <view class='wb100 h100 absolute radius10' style='top:0; left:0; background:rgba(0,0,0,.4); z-index:2;'>
+          </view>
+          <view class='wb100 h100 absolute radius10' style='top:0; left:0; z-index:1;'>
+            <image src='/images/bg1.jpg' style='width:220rpx; height:100rpx;'></image>
+          </view>
+
+          <navigator url='/pages/list/list?type=1'>
+            <view class="wb100 h100rpx text-center Fwhite absolute F26" style='top:0; left:0; z-index:3;'>
+              <view class="h40rpx w150rpx center lh40rpx mat30">
+                <image src='/images/icon-new.png' style='width:40rpx; height:40rpx; float:left;'></image>
+                <text class='fr'>最新更新</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        <view class='w220rpx fl h100rpx relative mal20 mar20'>
+          <view class='wb100 h100 absolute radius10' style='top:0; left:0; background:rgba(0,0,0,.4); z-index:2;'>
+          </view>
+          <view class='wb100 h100 absolute radius10' style='top:0; left:0; z-index:1;'>
+            <image src='/images/bg2.jpg' style='width:220rpx; height:100rpx;'></image>
+          </view>     
+          <navigator url='/pages/list/list?type=2'>
+
+            <view class="wb100 h100rpx text-center Fwhite absolute F26" style='top:0; left:0; z-index:3;'>
+              <view class="h40rpx w150rpx center lh40rpx mat30">
+                <image src='/images/icon-hot.png' style='width:40rpx; height:40rpx; float:left;'></image>
+                <text class='fr'>热门推荐</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        <view class='w220rpx fl h100rpx relative'>
+          <view class='wb100 h100 absolute radius10' style='top:0; left:0; background:rgba(0,0,0,.4); z-index:2;'>
+          </view>
+          <view class='wb100 h100 absolute radius10' style='top:0; left:0; z-index:1;'>
+            <image src='/images/bg3.jpg' style='width:220rpx; height:100rpx;'></image>
+          </view>
+          <navigator url='/pages/classify/classify'>
+            <view class="wb100 h100rpx text-center Fwhite absolute F26" style='top:0; left:0; z-index:3;'>
+              <view class="h40rpx w150rpx center lh40rpx mat30">
+                <image src='/images/icon-tags.png' style='width:40rpx; height:40rpx; float:left;'></image>
+                <text class='fr'>漫画分类</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        
+      </view>
+      <view class='clear'></view>
+    </view>
+
+    <view class='clear'></view>
+
+    <!-- 本周主打推荐 -->
+    <view class="wb100">
+      <view class='h50rpx lh50rpx pa25 F32'>
+        本周主打推荐  
+        <navigator url='/pages/list/list?type=3' class='w80rpx fr'>
+          <view class="w80rpx fr">
+            <text class='fl F28'>更多</text>
+            <image src='/images/icon_right.png' style='width:14rpx; height:26rpx; float:right; margin-top:12rpx;'></image>
+          </view>
+        </navigator>
+      </view>
+
+      <view class='pa25'>
+        <block wx:for="{{inedxData.main}}" wx:key="{{index}}">
+
+          <navigator url='/pages/chapter/chapter?work_id={{item.id}}'>
+            <view class="w220rpx h360rpx fl mab20 {{index % 3 == 1 ? 'mal20 mar20' : ''}} ">
+              <view class='wb100 h300rpx radius15 over-hidden'>
+                <image src='{{item.image}}' style='width:220rpx; height:300rpx;'></image>
+              </view>
+              <view class="wb100 h60rpx lh60rpx text-center F32">
+                {{item.book_name}}
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+
+    </view>
+
+    <view class="clear1"></view>
+
+    <!-- 最佳推荐 -->
+    <view class="wb100">
+      <view class='h50rpx lh50rpx pa25 F32'>
+        最佳推荐  
+        <navigator url='/pages/list/list?type=4' class='w80rpx fr'>
+          <view class="w80rpx fr">
+            <text class='fl F28'>更多</text>
+            <image src='/images/icon_right.png' style='width:14rpx; height:26rpx; float:right; margin-top:12rpx;'></image>
+          </view>
+        </navigator>
+      </view>
+
+      <view class='clear'></view>
+
+      <view class='pa25'>
+        <block wx:for="{{inedxData.optimal}}" wx:key="{{index}}">
+          <navigator url='/pages/chapter/chapter?work_id={{item.id}}'>
+            <view class="w220rpx h360rpx fl mab20 {{index % 3 == 1 ? 'mal20 mar20' : ''}} ">
+              <view class='wb100 h300rpx radius15 over-hidden'>
+                <image src='{{item.image}}' style='width:220rpx; height:300rpx;'></image>
+              </view>
+              <view class="wb100 h60rpx lh60rpx text-center F32">
+                {{item.book_name}}
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+      
+    </view>
+    
+    <view class="clear1"></view>
+
+    <!-- 精品推荐 -->
+    <view class="wb100">
+      <view class='h50rpx lh50rpx pa25 F32'>
+        精品推荐  
+        <navigator url='/pages/list/list?type=5' class='w80rpx fr'>
+          <view class="w80rpx fr">
+            <text class='fl F28'>更多</text>
+            <image src='/images/icon_right.png' style='width:14rpx; height:26rpx; float:right; margin-top:12rpx;'></image>
+          </view>
+        </navigator>
+      </view>
+
+      <view class='clear'></view>
+
+      <view class='pa25'>
+        <block wx:for="{{inedxData.fine}}" wx:key="{{index}}">
+          <navigator url='/pages/chapter/chapter?work_id={{item.id}}'>
+            <view class="w220rpx h360rpx fl mab20 {{index % 3 == 1 ? 'mal20 mar20' : ''}} ">
+              <view class='wb100 h300rpx radius15 over-hidden'>
+                <image src='{{item.image}}' style='width:220rpx; height:300rpx;'></image>
+              </view>
+              <view class="wb100 h60rpx lh60rpx text-center F32">
+                {{item.book_name}}
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+      
+    </view>
+
+    <view class="clear1"></view>
+  
+  </block>
+
+  <block wx:else>
+
+    <view class="clear1"></view>
+
+    
+    <!-- 最近更新 -->
+    <view class='wb100'>
+
+      <view class='wb100'>
+        <view class='h40rpx lh40rpx fl bor-blue bor-solid-10l mal30 mar30 pal15 w200rpx F36'>
+          最近更新
+        </view>
+
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="pal30 par30 over-scroll">
+        <view style="width: {{210 * newList.length}}rpx">
+          <block wx:for="{{ newList }}" wx:key="{{index}}">
+            <navigator url="/pages/lesson/lesson?channelID={{item.channelID}}">
+              <view class="warpper-white box-shadow-gray3 radius10 fl mar30 w180rpx over-hidden mab10">
+                <view class='wb100'>
+                  <view class='w180rpx h180rpx'>
+                    <image src="{{item.iconURL}}?x-oss-process=image/resize,m_fill,w_180,h_180" style='width:180rpx; height:180rpx;' />
+                  </view>
+                  <view class="F24 h60rpx lh60rpx text-over-hidden1 Fgray3 pal10 par10 text-center">
+                    {{item.channelName}}
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </block>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="clear1"></view>
+    <view class="clear1"></view>
+
+    <!-- 热门音频 -->
+    <view class='wb100'>
+
+      <view class='wb100'>
+        <view class='h40rpx lh40rpx fl bor-blue bor-solid-10l mal30 mar30 pal15 w200rpx F36'>
+          热门推荐
+        </view>
+
+        <navigator url='/pages/audioList/audioList'>
+          <view class="h40rpx lh40rpx fr mar30 Fblue F28">
+            更多 <image src="/images/icon-arrow-right.png" style='width:14rpx; height:26rpx; margin-top:6.5rpx; float:right; margin-left:10rpx;' />
+          </view>
+        </navigator>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="pal15 par15">
+
+        <block wx:for="{{audioList}}" wx:key="{{index}}">
+
+          <navigator url="/pages/lesson/lesson?channelID={{item.channelID}}">
+            <view class="ma15 fl w330rpx warpper-white box-shadow-gray3 radius10 over-hidden">
+              <view class="wb100 warpper-blue" style='height:208rpx'>
+                <image src="{{item.iconURL}}?x-oss-process=image/resize,m_fill,w_330,h_208" style='width:330rpx; height:208rpx;' />
+              </view>
+              <view class="F24 h60rpx lh60rpx text-over-hidden1 Fgray3 pal10 par10 text-center">
+                {{item.channelName}}
+              </view>
+            </view>
+          </navigator>
+
+        </block>
+
+      </view>
+
+    </view>
+
+    <view class="clear1"></view>
+    
+  </block>
+
+</view>

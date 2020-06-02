@@ -1,0 +1,4 @@
+/**index.wxss**/
+.nav{ width:50%;  text-align: center; float: left;}
+
+

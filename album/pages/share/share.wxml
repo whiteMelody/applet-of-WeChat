@@ -1,0 +1,44 @@
+<!--pages/share/share.wxml-->
+<view class="wb100" style='height:{{windowHeight}}px'>
+
+  <view class="wb100 center radius10">
+
+    <view class="w750rpx h750rpx center relative">
+      <view class="dialogBg" style=' position: absolute; z-index:10'></view>
+      <image class="w750rpx h750rpx" src='{{cover}}' mode='aspectFill'></image>
+
+      <view class="w650rpx h250rpx absolute text-center lh70rpx Fwhite" style='margin:0; top:70rpx; left:50rpx; z-index:20'>
+        <view class='pa10 pa10 bor-white bor-solid-1a w150rpx h150rpx radius50per center'>
+          <image class="w150rpx h150rpx radius50per" mode='aspectFill' src='{{head}}'></image>
+        </view>
+        <view class="clear h35rpx"></view>
+        <view class="F40">
+           {{name}} 
+        </view>
+         <view class='F28'>
+          这是我们的相册
+        </view>
+         <view class='F28'>
+          我们都在
+        </view>
+         <view class='F32'>
+          你也加入吧
+        </view>
+      </view>
+
+    </view>
+
+    <view class='clear h100rpx'></view>
+
+    <view class="pal30 par30">
+      <button class='h80rpx lh80rpx warpper-green-4 w400rpx Fwhite radius50 F30' open-type="share" style='outline:none'>
+        <view class="center" style='width:320rpx'>
+          <image class="fl" src='/images/wx.png' style='width:44rpx;height:36rpx;margin-top:22rpx'></image>
+          <view class="fr">分享到微信群或好友</view>
+        </view>
+      </button>
+    </view>
+
+  </view>
+
+</view>

@@ -1,0 +1,627 @@
+<!--pages/detail/detail.wxml-->
+<view class='wb100'>
+
+  <view class="wb100" id='matchDetail' style='background-image:url("/images/match_bg.png"); background-size:100% 100%;'>
+
+    <view class='wb100 h70rpx pat10 pab10 text-center F24 Fwhite'>
+      <view class="wb100 lh35rpx">
+        {{match.league}} {{match.round ? match.round : ''}}
+      </view>
+      <view class="wb100 lh35rpx">
+      {{match.match_start_time}}
+      </view>
+    </view>
+
+    <view class="clear2"></view>
+
+    <!-- 队伍信息 -->
+    <view class="wb100 Fwhite">
+
+      <view class='pal50 par50'>
+
+        <view class='clear'></view>
+
+        <view class='wb100'>
+          <view class="w250rpx fl">
+            <view class="w75rpx h75rpx center">
+              <image src='{{match.home_logo}}' class='w75rpx h75rpx'></image>
+            </view>
+            <view class="text-center F32 h80rpx lh80rpx wb100">
+              {{match.home}}
+            </view>
+          </view>
+
+          <view class="w150rpx fl text-center">
+            <view class="w80rpx h50rpx lh50rpx F32 radius5 center" style='background:rgba(255,255,255,.4)'>
+              未
+            </view>
+
+            <view class="clear2"></view>
+            <view class="wb100 h80rpx lh80rpx">
+              VS
+            </view>
+
+          </view>
+
+          <view class="w250rpx fr">
+            <view class="w75rpx h75rpx center">
+              <image src='{{match.away_logo}}' class='w75rpx h75rpx'></image>
+            </view>
+            <view class="text-center F32 h80rpx lh80rpx wb100">
+              {{match.away}}
+            </view>
+          </view>
+        </view>
+
+        <view class="clear1"></view>
+
+        <view class="wb100 F28">
+
+          <view class="w200rpx fl h45rpx lh45rpx">
+            <view class="w35rpx h45rpx warpper-red text-center Fwhite fl">
+              主
+            </view>
+            <view class="fl mal10">
+              {{match.league}}{{match.home_rank}}
+            </view>
+          </view>
+
+          <view class="w250rpx fl text-center">
+            动画直播
+          </view>
+
+          <view class="w200rpx fr h45rpx lh45rpx">
+            <view class="w35rpx h45rpx warpper-blue text-center Fwhite fr">
+              客
+            </view>
+            <view class="fr mar10">
+              {{match.league}}{{match.away_rank}}
+            </view>
+          
+          </view>
+        </view>
+
+        <view class="clear2"></view>
+
+        <view class="h10rpx warpper-red fl" style='width:{{match.win_percent2}}%'>
+        </view>
+
+        <view class="h10rpx warpper-blue fl" style='width:{{match.defeat_percent2}}%'>
+        </view>
+
+        <view class="clear"></view>
+
+        <view class="wb100 F28 lh50rpx">
+          <text class='fl Fred'>{{match.win_percent2}}%</text>
+          <text class='fr Fblue'>{{match.defeat_percent2}}%</text>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="clear"></view>
+
+    <!-- 文字直播/聊天互动 -->
+    <!-- <view class="wb100 text-center">
+      <view class="wb50 fl">
+        文字直播
+      </view>
+      <view class="wb50 fr">
+        聊天互动
+      </view>
+    </view> -->
+
+    <view class="clear"></view>
+
+  </view>
+
+  <!-- <view class="clear1"></view> -->
+
+  <!-- 比赛数据 -->
+  <view class="pa25 warpper-gray-1">
+
+    <view class='bor-red bor-solid-8l pal10 Fblack F28 fl h40rpx lh40rpx F30'>
+      {{match.home}}
+    </view>
+
+    <view class='bor-blue bor-solid-8r par10 Fblack F28 fr h40rpx lh40rpx F30'>
+      {{match.away}}
+    </view>
+
+    <view class="clear2"></view>
+
+    <view class="wb100 over-auto" style='height:{{detailHeight}}px;'>
+
+      <!-- 文字直播 -->
+      <block wx:if="{{showType == 0}}">
+
+        <view class="wb100">
+
+          <view class="clear2"></view>
+
+          <block wx:for="{{liveWord}}" wx:key="{{index}}">
+            <view class="wb100 warpper-red radius10" wx:if="{{item.msg_place == 1}}">
+              <view class="lh50rpx pa10 warpper-white w670rpx fr F28">
+                {{item.time2 ? item.time2 + "`" : '未开' }}
+                {{item.msg_text }}
+              </view>
+              <view class="clear"></view>
+            </view>
+
+            <view class="wb100 warpper-blue radius10" wx:if="{{item.msg_place == 2}}">
+              <view class="lh50rpx pa10 warpper-white w670rpx fr F28">
+                {{item.time2 ? item.time2 + "`" : '未开' }}
+                {{item.msg_text }}
+              </view>
+              <view class="clear"></view>
+            </view>
+            <view class="clear2"></view>
+          </block>
+
+          <view class="clear2"></view>
+        </view>
+
+      </block>
+
+      <!-- 数据统计 -->
+      <block wx:if="{{showType == 1}}">
+        <view class='wb100 warpper-white'>
+          <view class="wb100">
+            <view class="wb333 fl">
+
+              <view class='pa25 text-center F28'>
+                <view class="wb100">
+                  进攻
+                </view>
+
+                <view class="wb100 relative h130rpx">
+                  <view class="wb50 fl">
+                    <view class="par10 absolute w80rpx" style='bottom:0rpx'>
+                      <view class='F24 lh40rpx'>{{liveStatistics[0].attack_count}}</view>
+                      <view class="w80rpx warpper-red" style='height:{{ liveStatistics[0].attack_count == 0 && liveStatistics[1].attack_count == 0 ? 10 : liveStatistics[0].attack_count / (liveStatistics[0].attack_count + liveStatistics[1].attack_count) * 100 }}rpx;'>
+                      </view>
+                    </view>
+                  </view>
+                  
+                  <view class="wb50 fr">
+                    <view class="pal10 absolute w80rpx" style='bottom:0rpx'>
+                      <view class='F24 lh40rpx'>{{liveStatistics[1].attack_count}}</view>
+                      <view class="w80rpx warpper-blue" style='height:{{ liveStatistics[0].attack_count == 0 && liveStatistics[1].attack_count == 0 ? 10 : liveStatistics[1].attack_count / (liveStatistics[0].attack_count + liveStatistics[1].attack_count) * 100 }}rpx;'>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+
+            </view>
+
+            <view class="wb333 fl">
+
+              <view class='pa25 bor-gray bor-solid-1l bor-solid-1r'>
+                <view class="text-center F28">
+                  控球率
+                </view>
+
+                <view class="clear1"></view>
+
+                <view class="w100rpx center relative">
+
+                  <view class="w50rpx absolute h100rpx lh100rpx F24" style='left:-55rpx;top:0;'>
+                      {{liveStatistics[0].ball_control_rate}}%
+                    </view>
+                
+                  <view class="circle">
+                    <block wx:if="{{liveStatistics[1].ball_control_rate < 50}}">
+                      <view class="circle_left">
+                        <view class="clip_left"></view>
+                      </view>
+                      <view class="circle_right" style="transform:rotate({{liveStatistics[1].ball_control_rate*3.6}}deg)">
+                        <view class="clip_right"></view>
+                      </view>
+                    </block>
+
+                    <block wx:else>
+                      <view class="circle_left" style="transform:rotate({{(liveStatistics[1].ball_control_rate-50)*3.6}}deg)">
+                        <view class="clip_left"></view>
+                      </view>
+                      <view class="circle_right" style="transform:rotate(0deg); background: #0b7ed4">
+                        <view class="clip_right"></view>
+                      </view>
+                    </block>
+
+                    <view class="mask"></view>
+                  </view>
+
+                  <view class="w50rpx absolute h100rpx lh100rpx F24" style='right:-55rpx;top:0;'>
+                    {{liveStatistics[1].ball_control_rate}}%
+                  </view>
+
+                </view>
+
+                <!-- <view class="w100rpx center">
+                  <view class="w100rpx h100rpx relative warpper-white ">
+                    <view class="w50rpx absolute h100rpx warpper-red" style='left:0rpx;top:0; border-radius: 50rpx 0 0 50rpx;'>
+                    </view>
+                    <view class="w50rpx absolute h100rpx warpper-blue" style='right:0rpx;top:0; border-radius: 0 50rpx 50rpx 0'>
+                    </view>
+                    <view class="absolute warpper-white radius50per" style='left:10rpx;top:10rpx; width:80rpx; height:80rpx; transform: rotateZ(100deg);'>
+                    </view>
+
+                    <view class="w50rpx absolute h100rpx lh100rpx F24" style='left:-55rpx;top:0;'>
+                      {{liveStatistics[0].ball_control_rate}}%
+                    </view>
+
+                    <view class="w50rpx absolute h100rpx lh100rpx F24" style='right:-55rpx;top:0;'>
+                      {{liveStatistics[1].ball_control_rate}}%
+                    </view>
+
+                  </view>
+                </view>  -->
+
+                
+              </view>
+
+            </view>
+
+            <view class="wb333 fl">
+
+              <view class='pa25 text-center F28'>
+                <view class="wb100">
+                  危险进攻
+                </view>
+
+                <view class="wb100 relative h130rpx">
+                  <view class="wb50 fl">
+                    <view class="par10 absolute w80rpx" style='bottom:0rpx'>
+                      <view class='F24 lh40rpx'>{{liveStatistics[0].danger}}</view>
+                      <view class="w80rpx warpper-red" style='height:{{ liveStatistics[0].danger == 0 && liveStatistics[1].danger == 0 ? 10 : liveStatistics[0].danger / (liveStatistics[0].danger + liveStatistics[1].danger) * 100 }}rpx;'>
+                      </view>
+                    </view>
+                  </view>
+                  
+                  <view class="wb50 fr">
+                    <view class="pal10 absolute w80rpx" style='bottom:0rpx'>
+                      <view class='F24 lh40rpx'>{{liveStatistics[1].danger}}</view>
+                      <view class="w80rpx warpper-blue" style='height:{{ liveStatistics[0].danger == 0 && liveStatistics[1].danger == 0 ? 10 : liveStatistics[1].danger / (liveStatistics[0].danger + liveStatistics[1].danger) * 100 }}rpx;'>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            
+            </view>
+
+            <view class="clear bor-gray bor-solid-1b"></view>
+
+            <view class="wb100 F24 pat10 pab10">
+              <view class="wb333 fl">
+                <view class="wb333 fl text-center">
+                  <image src='/images/ic_score_corner_kick.png' class='w40rpx h40rpx '></image>
+                  <view class="wb100 mat10">
+                    {{liveStatistics[0].corner}}
+                  </view>
+                </view>
+                <view class="wb333 fl text-center">
+                  <image src='/images/ic_score_event_red.png' class='w50rpx h50rpx '></image>
+                  <view class="wb100">
+                    {{liveStatistics[0].rc}}
+                  </view>
+                </view>
+                <view class="wb333 fl text-center">
+                  <image src='/images/ic_score_event_yellow.png' class='w50rpx h50rpx '></image>
+                  <view class="wb100">
+                    {{liveStatistics[0].yc}}
+                  </view>
+                </view>
+              </view>
+              <view class="wb333 fl">
+                <view class="pal10 par10">
+                
+                  <view class='clear2'></view>
+
+                  <view class="wb333 fl text-left">
+                    {{liveStatistics[0].power2}}%
+                  </view>
+                  <view class="wb333 fl text-center">
+                    活力
+                  </view>
+                  <view class="wb333 fl text-right">
+                    {{liveStatistics[1].power2}}%
+                  </view>
+
+                  <view class='clear2'></view>
+
+                  <view class="h15rpx warpper-red fl" style='width:{{liveStatistics[0].power2}}%'></view>
+
+                  <view class="h15rpx warpper-blue fl" style='width:{{liveStatistics[1].power2}}%'></view>
+
+                </view>
+              </view>
+              <view class="wb333 fl">
+                <view class="wb333 fl text-center">
+                  <image src='/images/ic_score_corner_kick.png' class='w40rpx h40rpx '></image>
+                  <view class="wb100 mat10">
+                    {{liveStatistics[1].corner}}
+                  </view>
+                </view>
+                <view class="wb333 fl text-center">
+                  <image src='/images/ic_score_event_red.png' class='w50rpx h50rpx '></image>
+                  <view class="wb100">
+                    {{liveStatistics[1].rc}}
+                  </view>
+                </view>
+                <view class="wb333 fl text-center">
+                  <image src='/images/ic_score_event_yellow.png' class='w50rpx h50rpx '></image>
+                  <view class="wb100">
+                    {{liveStatistics[1].yc}}
+                  </view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+
+          <view class="clear2"></view>
+        </view>
+
+        <view class="clear2"></view>
+
+        <view class="wb100">
+
+        </view>
+
+        <view class="clear2"></view>
+
+        <view class="wb100 warpper-white F28">
+
+          <view class='pa50'>
+
+            <view class="wb100 text-center h50rpx lh50rpx">
+              射门次数
+            </view>
+            <view class="clear"></view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[0].all_shots}}</view>
+            <view class="wb80 fl mat20">
+              <view class="h10rpx warpper-red fl" style='width:{{ liveStatistics[0].all_shots == 0 && liveStatistics[1].all_shots == 0 ? 50 : liveStatistics[0].all_shots / (liveStatistics[0].all_shots + liveStatistics[1].all_shots) * 100 }}%'></view>
+              <view class="h10rpx warpper-blue fl" style='width:{{ liveStatistics[0].all_shots == 0 && liveStatistics[1].all_shots == 0 ? 50 : liveStatistics[1].all_shots / (liveStatistics[0].all_shots + liveStatistics[1].all_shots) * 100 }}%'></view>
+            </view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[1].all_shots}}</view>
+
+            <view class="clear"></view>
+
+            <view class="wb100 text-center h50rpx lh50rpx">
+              射正球门
+            </view>
+            <view class="clear"></view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[0].shot}}</view>
+            <view class="wb80 fl mat20">
+              <view class="h10rpx warpper-red fl" style='width:{{ liveStatistics[0].shot == 0 && liveStatistics[1].shot == 0 ? 50 : liveStatistics[0].shot / (liveStatistics[0].shot + liveStatistics[1].shot) * 100 }}%'></view>
+              <view class="h10rpx warpper-blue fl" style='width:{{ liveStatistics[0].shot == 0 && liveStatistics[1].shot == 0 ? 50 : liveStatistics[1].shot / (liveStatistics[0].shot + liveStatistics[1].shot) * 100 }}%'></view>
+            </view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[1].shot}}</view>
+
+            <view class="clear"></view>
+
+            <view class="wb100 text-center h50rpx lh50rpx">
+              球门球
+            </view>
+            <view class="clear"></view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[0].rc}}</view>
+            <view class="wb80 fl mat20">
+              <view class="h10rpx warpper-red fl" style='width:{{ liveStatistics[0].rc == 0 && liveStatistics[1].rc == 0 ? 50 : liveStatistics[0].rc / (liveStatistics[0].rc + liveStatistics[1].rc) * 100 }}%'></view>
+              <view class="h10rpx warpper-blue fl" style='width:{{ liveStatistics[0].rc == 0 && liveStatistics[1].rc == 0 ? 50 : liveStatistics[1].rc / (liveStatistics[0].rc + liveStatistics[1].rc) * 100 }}%'></view>
+            </view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[1].rc}}</view>
+
+            <view class="clear"></view>
+
+            <view class="wb100 text-center h50rpx lh50rpx">
+              任意球
+            </view>
+            <view class="clear"></view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[0].hit}}</view> 
+            <view class="wb80 fl mat20">
+              <view class="h10rpx warpper-red fl" style='width:{{ liveStatistics[0].hit == 0 && liveStatistics[1].hit == 0 ? 50 : liveStatistics[0].hit / (liveStatistics[0].hit + liveStatistics[1].hit) * 100 }}%'></view>
+              <view class="h10rpx warpper-blue fl" style='width:{{ liveStatistics[0].hit == 0 && liveStatistics[1].hit == 0 ? 50 : liveStatistics[1].hit / (liveStatistics[0].hit + liveStatistics[1].hit) * 100 }}%'></view>
+            </view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[1].hit}}</view>
+
+            <view class="clear"></view>
+
+            <view class="wb100 text-center h50rpx lh50rpx">
+              越位
+            </view>
+            <view class="clear"></view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[0].off_side}}</view>
+            <view class="wb80 fl mat20">
+              <view class="h10rpx warpper-red fl" style='width:{{ liveStatistics[0].off_side == 0 && liveStatistics[1].off_side == 0 ? 50 : liveStatistics[0].off_side / (liveStatistics[0].off_side + liveStatistics[1].off_side) * 100 }}%'></view>
+              <view class="h10rpx warpper-blue fl" style='width:{{ liveStatistics[0].off_side == 0 && liveStatistics[1].off_side == 0 ? 50 : liveStatistics[1].off_side / (liveStatistics[0].off_side + liveStatistics[1].off_side) * 100 }}%'></view>
+            </view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[1].off_side}}</view>
+
+            <view class="clear"></view>
+
+
+            <view class="wb100 text-center h50rpx lh50rpx">
+              犯规
+            </view>
+            <view class="clear"></view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[0].foul}}</view>
+            <view class="wb80 fl mat20">
+              <view class="h10rpx warpper-red fl" style='width:{{ liveStatistics[0].foul == 0 && liveStatistics[1].foul == 0 ? 50 : liveStatistics[0].foul / (liveStatistics[0].foul + liveStatistics[1].foul) * 100 }}%'></view>
+              <view class="h10rpx warpper-blue fl" style='width:{{ liveStatistics[0].foul == 0 && liveStatistics[1].foul == 0 ? 50 : liveStatistics[1].foul / (liveStatistics[0].foul + liveStatistics[1].foul) * 100 }}%'></view>
+            </view>
+            <view class='wb10 fl text-center h50rpx lh50rpx'>{{liveStatistics[1].foul}}</view>
+
+            <view class="clear"></view>
+
+          </view>
+
+        </view>
+
+      </block>
+      
+      <!-- 事件记录 -->
+      <block wx:if="{{showType == 2}}">
+
+        <view class='wb100 warpper-white'>
+          
+          <view class="clear2"></view>
+
+          <block wx:for="{{['进球', '乌龙球', '点球', '角球', '换人', '黄牌', '黄变红' , '红牌']}}" wx:key="{{index}}">
+          
+            <view class="w85rpx fl F24 lh40rpx text-center">
+              <image src='/images/ic_score_event_jq.png' class='h40rpx w40rpx' wx:if="{{index == 0}}"></image>
+              <image src='/images/ic_score_event_wlq.png' class='h40rpx w40rpx' wx:if="{{index == 1}}"></image>
+              <image src='/images/ic_score_event_dq.png' class='h40rpx w40rpx' wx:if="{{index == 2}}"></image>
+              <image src='/images/ic_score_event_corner.png' class='h40rpx w40rpx' wx:if="{{index == 3}}"></image>
+              <image src='/images/ic_score_event_hr.png' class='h40rpx w40rpx' wx:if="{{index == 4}}"></image>
+              <image src='/images/ic_score_event_yellow.png' class='h40rpx w40rpx' wx:if="{{index == 5}}"></image>
+              <image src='/images/ic_score_event_hbh.png' class='h40rpx w40rpx' wx:if="{{index == 6}}"></image>
+              <image src='/images/ic_score_event_red.png' class='h40rpx w40rpx' wx:if="{{index == 7}}"></image>
+              <view class="wb100 h40rpx lh40rpx">
+                {{item}}
+              </view>
+            </view>
+
+          </block>
+
+          <view class="clear2"></view>
+
+          <view class="wb100 h600rpx over-auto">
+            <view class="wb100">
+
+              <block wx:for="{{liveEvent}}" wx:key="{{index}}">
+
+                <!-- 主队 -->
+                <view class='w300rpx fl'>
+                  <view class="text-right par20 F24 h40rpx lh40rpx">
+                    <block wx:if="{{item.team == 1}}">
+                      <image src='/images/ic_score_event_jq.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 1}}"></image>
+                      <image src='/images/ic_score_event_wlq.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 2}}"></image>
+                      <image src='/images/ic_score_event_dq.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 3}}"></image>
+                      <image src='/images/ic_score_event_corner.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 4}}"></image>
+                      <image src='/images/ic_score_event_hr.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 5}}"></image>
+                      <image src='/images/ic_score_event_yellow.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 6}}"></image>
+                      <image src='/images/ic_score_event_hbh.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 7}}"></image>
+                      <image src='/images/ic_score_event_red.png' class='h40rpx w40rpx fr mal10' wx:if="{{item.scoreType == 8}}"></image>
+                      第{{item.count}}个{{item.desc2}}
+                    </block>
+                  </view>
+                </view>
+
+                <!-- 时间 -->
+                <view class='w100rpx fl relative'>
+                  <view class="w50rpx h30rpx lh30rpx F24 Fwhite text-center radius5 warpper-green-3 center relative mat5 mab5" style='z-index:2'>
+                    {{item.time2}}'
+                  </view>
+                  <view style='width:2rpx; height:400rpx; z-index:1; background-color:#efefef;position: absolute; left:0; right:0; top:0;  margin:0 auto'>
+                  </view>
+                </view>
+
+                <!-- 客队 -->
+                <view class="w300rpx fr">
+                  <view class="text-left pal20 F24 h40rpx lh40rpx">
+                    <block wx:if="{{item.team == 2}}">
+                    <image src='/images/ic_score_event_jq.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 1}}"></image>
+                      <image src='/images/ic_score_event_wlq.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 2}}"></image>
+                      <image src='/images/ic_score_event_dq.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 3}}"></image>
+                      <image src='/images/ic_score_event_corner.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 4}}"></image>
+                      <image src='/images/ic_score_event_hr.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 5}}"></image>
+                      <image src='/images/ic_score_event_yellow.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 6}}"></image>
+                      <image src='/images/ic_score_event_hbh.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 7}}"></image>
+                      <image src='/images/ic_score_event_red.png' class='h40rpx w40rpx fl mar10' wx:if="{{item.scoreType == 8}}"></image>
+                      第{{item.count}}个{{item.desc2}}
+                    </block>
+                  </view>
+                </view>
+
+                <view class='clear2'></view>
+
+              </block>
+
+            </view>
+          </view>
+
+          <view class="clear2"></view>
+          
+        </view>
+
+      </block>
+
+      <!-- 首发阵容 -->
+      <block wx:if="{{showType == 3}}">
+
+        <view class="wb100">
+
+            <view class="clear2"></view>
+
+            <view class="pa20 warpper-white F28 lh50rpx">
+              <view class='wb50 fl text-left'>
+                <view class='wb100'>
+                  主队首发
+                </view>
+                <block wx:for="{{liveBattle.home_line_up}}" wx:key="{{index}}">
+                  <view class="wb100">
+                    {{item.name}}
+                  </view>
+                </block>
+              </view>
+
+              <view class="wb50 fr text-right">
+              <view class='wb100'>
+                  客队首发
+                </view>
+                <block wx:for="{{liveBattle.away_line_up}}" wx:key="{{index}}">
+                  <view class="wb100">
+                    {{item.name}}
+                  </view>
+                </block>
+              </view>
+              <view class="clear2"></view>
+            </view>
+
+          <view class="clear2"></view>
+        </view>
+
+      </block>
+
+    </view>
+
+    <view class="clear2"></view>
+
+    <view class='wb100 Fgreen text-center bor-green bor-solid-1a radius5 F28 lh60rpx'>
+
+      <view class="wb25 h60rpx {{showType == 0 ? 'warpper-green Fwhite' : 'Fgreen'}} fl" bindtap='changeShowType' data-value="0">
+        <view class="wb100 bor-green bor-solid-1r">
+          文字直播
+        </view>
+      </view>
+       <view class="wb25 h60rpx {{showType == 1 ? 'warpper-green Fwhite' : 'Fgreen'}} fl" bindtap='changeShowType' data-value="1">
+        <view class="wb100 bor-green bor-solid-1r">
+          数据统计
+        </view>
+      </view> 
+      <view class="wb25 h60rpx {{showType == 2 ? 'warpper-green Fwhite' : 'Fgreen'}} fl" bindtap='changeShowType' data-value="2">
+        <view class="wb100 bor-green bor-solid-1r">
+          事件记录
+        </view>
+      </view> 
+      <view class="wb25 h60rpx {{showType == 3 ? 'warpper-green Fwhite' : 'Fgreen'}} fl" bindtap='changeShowType' data-value="3">
+        <view class="wb100">
+          首发阵容
+        </view>
+      </view>
+
+      <view class="clear"></view>
+
+    </view>
+    
+  </view>
+
+ 
+
+</view>

@@ -1,0 +1,64 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.1",
+	"appid": "wx6bfc4dfe8d898c16",
+	"projectname": "Wealth",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": 0,
+					"name": "我的财神（wealth）",
+					"pathName": "pages/wealth/wealth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的财神模板（完成后）",
+					"pathName": "pages/wealthDone/wealthDone",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "我收到的祝福",
+					"pathName": "pages/wish/wish",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "财神拜年",
+					"pathName": "pages/wealthGod/wealthGod",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "编辑财神模板(wealthMy)",
+					"pathName": "pages/wealthMy/wealthMy",
+					"query": ""
+				}
+			]
+		}
+	}
+}

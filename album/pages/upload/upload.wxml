@@ -1,0 +1,79 @@
+<!--pages/upload/upload.wxml-->
+
+<view class="wb100">
+
+  <block wx:if="{{isUpload}}">
+
+    <view class="pal40 par40">
+      <text class='fl F24 lh40rpx Fgray-2'>正在上传{{plan}}%</text>
+      <text class='fr F24 lh40rpx Fgray-2'>上传中请勿关闭程序</text>
+
+      <view class="clear"></view>
+
+      <view class="h20rpx wb100 warpper-gray-4 radius20">
+        <view class="h20rpx fl warpper-green radius20" style='width:{{plan}}%'>
+
+        </view>
+      </view>
+    </view>
+
+    <view class="clear1"></view>
+
+  </block>
+
+  <view class="wb100">
+
+    <view class="pal40 par40">
+      <textarea placeholder="写下此刻心情…" bindinput='emotionChange' placeholder-style="color:#404040" class="radius10 h240rpx F30 warpper-gray-1 wb100 pat30 pab30" />
+    </view>
+
+    <view class="pal40 par40 h120rpx lh120rpx F30" bindtap="locate">
+      <view class="wb100 bor-solid-1b bor-gray">
+        <image class="w30rpx h36rpx fl mat42" src='/images/wz.png'></image>
+        <view class="fl mal20 h120rpx lh120rpx w500rpx over-hidden">{{address}}</view>
+        <image class="w18rpx h30rpx fr mat45" src='/images/shape_r.png'></image>
+        <view class="clear"></view>
+      </view>
+    </view>
+
+    <!-- 2018年5月16日18:03:44  -->
+    <!-- 暂时关闭上传时同步 -->
+
+    <!-- <view class="pal40 par40 h120rpx lh120rpx F30" bindtap='openSyncList'>
+      <view class="wb100">
+        <image class="w30rpx h30rpx fl mat45" src='/images/tb_2.png'></image>
+        <view class="fl mal20">同步到相册</view>
+        <image class="w18rpx h30rpx fr mat45" src='/images/shape_r.png'></image>
+        <view class="clear"></view>
+      </view>
+    </view> -->
+
+    <view class="clear1"></view>
+
+
+    <view class="pal30 par30">
+      <view class="w216rpx h216rpx F26 Fgray-2 text-center fl warpper-gray-1 mal6 mar6 mab10" bindtap="select">
+        <view class="w60rpx h60rpx warpper-green-4 center mat54 radius50per lh60rpx Fwhite" style='font-size:50rpx'>
+          +
+        </view>
+        <view class="mat20">继续添加</view>
+      </view>
+      <block wx:for="{{photoList}}" wx:key="{{key}}">
+        <view class='relative w216rpx h216rpx fl mal6 mar6 mab10'>
+          <image class="w216rpx h216rpx" mode='aspectFill' src='{{item.path}}'></image>
+          <image class="w40rpx h40rpx absolute" src='/images/sc.png' style='right:10rpx; top:10rpx' bindtap="delete" data-index="{{index}}"></image>
+        </view>
+      </block>
+    </view>
+
+    <view class="clear h25rpx"></view>
+
+    <view class="pa40">
+      <view class='h100rpx lh100rpx warpper-green-4 wb100 text-center F32 Fwhite radius50' bindtap="upload">立即上传</view>
+    </view>
+
+
+  </view>
+  
+
+</view>

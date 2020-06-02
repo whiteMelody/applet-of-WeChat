@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/data/data",
+    "pages/user/user",
+    "pages/everyDay/everyDay",
+    "pages/lesson/lesson",
+    "pages/lessonPlay/lessonPlay",
+    "pages/everyList/everyList",
+    "pages/audioList/audioList",
+    "pages/videoList/videoList",
+    "pages/channelList/channelList",
+    "pages/videoPlay/videoPlay"
+  ],
+  "tabBar": {
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#007aff",
+    "color": "#999999",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon-home.png",
+        "selectedIconPath": "images/icon-home-on.png"
+      },
+      {
+        "pagePath": "pages/data/data",
+        "text": "资料库",
+        "iconPath": "images/icon-data.png",
+        "selectedIconPath": "images/icon-data-on.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/icon-user.png",
+        "selectedIconPath": "images/icon-user-on.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "7天英语",
+    "navigationBarTextStyle": "black"
+  }
+}

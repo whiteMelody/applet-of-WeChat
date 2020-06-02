@@ -1,0 +1,18 @@
+/* pages/friend/friend.wxss */
+page {
+  background-color: #4e84e5;
+  height: 100%;
+}
+
+.slant {
+  -moz-transform: rotate(-45deg); /* Firefox 旋转属性，参数表示角度(deg表示角度)，负数逆时针，正数顺时针 */
+  -webkit-transform: rotate(-45deg); /* Safari和Chrome */
+  -ms-transform: rotate(-45deg); /* IE 9 */
+  -o-transform: rotate(-45deg); /* Opera */
+}
+.confirm {
+  background: -webkit-linear-gradient(#ff954b, #FF4F4D); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#ff954b, #FF4F4D); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#ff954b, #FF4F4D); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#ff954b, #FF4F4D); /* 标准的语法 */
+}

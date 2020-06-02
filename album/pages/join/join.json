@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "相册时光",
+  "usingComponents": {
+    "login-tag": "/pages/login/login"
+  }
+}

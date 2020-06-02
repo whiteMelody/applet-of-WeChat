@@ -1,0 +1,41 @@
+<view class="wb100 h400rpx warpper-red-1">
+    <view class="clear h50rpx"></view>
+    <view class="w120rpx h120rpx center">
+        <image src="../../images/user_head.png" style='width:120rpx; height:120rpx;'></image>
+    </view>
+    <view class="clear"></view>
+    <view class="h80rpx lh80rpx Fwhite text-center F30">lsy 共送出</view>
+    <view class="clear"></view>
+
+    <view class="wb100 h110rpx Fwhite lh55rpx text-center">
+        <view class="wb50 fl">
+            <view class="wb100 bor-white bor-solid-1r h110rpx">
+                <view class="F48">26</view>
+                <view class="F30">祝福</view>
+            </view>
+        </view>
+        <view class="wb50 fl">
+            <view class="F48">66.68</view>
+            <view class="F30">红包（元）</view>
+        </view>
+    </view>
+</view>
+
+<view class="pal30">
+    <block wx:for="{{[1, 2, 3]}}" wx:key="index">
+        <view class="clear h20rpx"></view>
+        <view class="pal100 relative h80rpx par50">
+            <image src="../../images/user_head.png" style='width:80rpx; height:80rpx; position:absolute; top:0; left:0'></image>
+            <view class="Fblack F30 lh50rpx">
+                两只脑斧
+            </view>
+            <view class="Fgray-2 F20 lh30rpx">
+                2-15:15:02
+            </view>
+
+             <image src="../../images/arrow-right.png" style='width:14rpx; height:26rpx; position:absolute; top:27rpx; right:30rpx'></image>
+            
+        </view>
+        <view class="clear h20rpx bor-solid-1b bor-gray"></view>
+    </block>
+</view>

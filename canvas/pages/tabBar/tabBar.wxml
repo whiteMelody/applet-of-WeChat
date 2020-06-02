@@ -1,0 +1,38 @@
+<view class="clear h120rpx"></view>
+<view class="wb100 h100rpx fixed F22 warpper-white pat20" style='bottom:0; left:0; z-index:9999'>
+  <view class="wb100">
+
+    <block wx:if="{{selected == 'album'}}">
+      <view class="wb50 fl text-center">
+        <image src='/images/xc_pre.png' class='h50rpx w50rpx'></image>
+        <view class="h45rpx lh45rpx" style='color:#63DAB9;'>
+          相册
+        </view>
+      </view>
+
+      <view class="wb50 fl text-center" bindtap="changeTab2">
+        <image src="{{ newMsg ? '/images/dt_nor2.png' : '/images/dt_nor.png' }}" class='h50rpx w50rpx'></image>
+        <view class="h45rpx lh45rpx" style='color:#CCCCCC'>
+          动态
+        </view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="wb50 fl text-center" bindtap="changeTab">
+        <image src='/images/xc_nor.png' class='h50rpx w50rpx'></image>
+        <view class="h45rpx lh45rpx" style='color:#CCCCCC;'>
+          相册
+        </view>
+      </view>
+
+      <view class="wb50 fl text-center">
+        <image src="{{ newMsg ? '/images/dt_pre2.png' : '/images/dt_pre.png' }}" class='h50rpx w50rpx'></image>
+        <view class="h45rpx lh45rpx" style='color:#63DAB9'>
+          动态
+        </view>
+      </view>
+    </block>
+    
+  </view>
+</view>

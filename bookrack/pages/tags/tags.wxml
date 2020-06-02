@@ -1,0 +1,30 @@
+
+<view class='warpper-white-2 wb100' style='height: {{height}}px'>
+
+    <view style='padding:50px'>
+        <view class='wb100'>
+            <swiper indicator-dots="true" indicator-color="#909399" indicator-active-color="#409EFF"
+           interval="5000" duration="1000"
+            class="warpper-white radius5 relative" style='height: {{height-100}}px;  box-shadow: 0rpx 0rpx 5rpx rgba(225, 225, 225, .35);'>
+                <block wx:for="{{[1,2,3]}}">
+                    <swiper-item >
+                        <view class='wb100' >
+                            <view class="pa50">
+                                <view class='text-center wb100'>阅读标签</view>
+                                <view class="clear1 bor-gray bor-solid-1b"></view>
+                                <view class="clear1"></view>
+                                <view class="wb100">
+                                    <block wx:for="{{[1, 2, 3, 4, 5, 6]}}" wx:key="{{index}}">
+                                        <text class='fl pa10 mal20 Fwhite F24 h30rpx lh30rpx mab20' style='background-color: #409EFF'>这是一个标签{{item}}</text>
+                                    </block>
+                                </view>
+                            </view>
+                        </view>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+
+    </view>
+
+</view>

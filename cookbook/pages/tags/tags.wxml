@@ -1,0 +1,37 @@
+
+<view class='warpper-white-2 wb100' style='height: {{height}}px'>
+
+  <view class="wb100 h20px lh20rpx F32 Fblack-1 pa30 warpper-gray-1">
+      我的收藏
+  </view>
+  
+  <view class='wb100'>
+    <view class="h200rpx"></view>
+    <view class="text-center Fgray-3 F28">
+      暂无收藏
+    </view>
+  </view>
+
+  <!-- <view class='pa30'>
+      <view class='wb100'>
+          <block wx:for="{{[1, 2, 3, 4, 5]}}">
+
+            <navigator url='/pages/detail/detail?id={{item.id}}'>
+              <view class="wb33333 fl">
+                <view class="pa15">
+                  <view class="warpper-blue h300rpx">
+
+                  </view>
+
+                  <view class="120rpx lh60rpx Fgray-3 text-center F28">
+                    菜名
+                  </view>
+
+                </view>
+              </view>
+            </navigator>
+          </block>
+      </view>
+  </view> -->
+
+</view>

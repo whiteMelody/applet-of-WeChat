@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的",
+  "backgroundColor" : "#f0f0f0",
+  "usingComponents": {
+    "tab-bar": "/pages/tabBar/tabBar"
+  }
+}

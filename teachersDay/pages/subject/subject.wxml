@@ -1,0 +1,69 @@
+<view class="wb100" style='background:url("https://album.31un.com/teachersDay/images/teacherBg3.jpg"); background-position:center center; background-size:auto {{minHeight}}px; min-height:{{minHeight}}px'>
+
+  <view class="pa50">
+    <view class="wb100 warpper-white radius20">
+      <view class="pa30 F36 lh50rpx">
+        {{questions[curIndex].title}}
+
+        <view class="text-center" wx:if="{{questions[curIndex].titleImg}}">
+          <image src='{{questions[curIndex].titleImg}}' style='width:{{questions[curIndex].imgWidth}}; height:{{questions[curIndex].imgHeight}}'></image>
+        </view>
+
+        <block wx:if="{{questions[curIndex].voiceList}}">
+          <block wx:for="{{questions[curIndex].voiceList}}" wx:key='{{index}}'>
+            <view class='clear1'></view>
+            <view class='text-center'>
+              <audio src="{{item}}" id='myAudio + {{index}}' controls loop></audio>
+            </view>
+          </block>
+        </block>
+
+      </view>
+    </view>
+
+    <view class="clear h50rpx"></view>
+
+    <view class="wb100">
+
+        <view class='wb100 center'>
+
+          <block wx:for="{{questions[curIndex].list}}" wx:key="{{index}}">
+            
+            <block wx:if="{{questions[curIndex].small}}">
+              <view class="wb50 radius20 fl" bindtap="select" data-item='{{item}}'>
+                <view class="pa15">
+                  <view class="pa30 F28 lh36rpx warpper-white radius20">
+                  {{item.content}}
+                    <view class="text-center" wx:if="{{item.contentImg}}">
+                      <image src='{{item.contentImg}}' style='width:{{item.imgWidth}}; height:{{item.imgHeight}}'></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </block>
+
+            <block wx:else>
+
+              <view class="pal30 par30" bindtap="select" data-item='{{item}}'>
+                <view class="pa30 F28 lh36rpx warpper-white radius20">
+                  {{item.content}}
+                  <view class="text-center" wx:if="{{item.contentImg}}">
+                    <image src='{{item.contentImg}}' style='width:{{item.imgWidth}}; height:{{item.imgHeight}}'></image>
+                  </view>
+                </view>
+              </view>
+              <view class="clear1"></view>
+
+            </block>
+
+
+          </block>
+
+        </view>
+
+    </view>
+
+
+  </view>
+
+</view>

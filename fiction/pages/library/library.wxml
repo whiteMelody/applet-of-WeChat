@@ -1,0 +1,31 @@
+<!--pages/library/library.wxml-->
+<view class="wb100">
+
+  <block wx:if="{{loading}}">
+    <view class="loadingBg">
+      <view class="absolute w400rpx h400rpx" style='top:0;bottom:0;left:0;right:0;margin:auto'>
+        <image src='/images/loading.gif' class="w400rpx h400rpx"></image>
+      </view>
+    </view>
+  </block>
+
+  <block wx:for="{{libraryList}}" wx:key="">
+    <navigator url="/pages/book/book?name={{item.name}}">
+      <view class="pat30 pab20 pal30 par30 h200rpx">
+        <view class="wb100">
+
+          <image class="w160rpx h200rpx fl absolute warpper-white" src='{{item.url}}' style='z-index:99'></image>
+
+          <image class="w160rpx h200rpx fl absolute" src='/images/book.png' style='z-index:9'></image>
+
+          <view class="fl h200rpx lh200rpx" style='margin-left:180rpx'>
+            <view class="fl F36">{{item.name}}</view>
+            <view class="fl F24 Fgray">（{{item.count}}册）</view>
+          </view>
+          <image class="fr w15rpx h30rpx mat85" src='/images/icon_right.png'></image>
+        </view>
+      </view>
+      <view class="clear h10rpx warpper-gray-8"></view>
+    </navigator>
+  </block>
+</view>

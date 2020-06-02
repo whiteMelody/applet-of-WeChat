@@ -1,0 +1,138 @@
+<!--pages/dynamic/dynamic.wxml-->
+<view class="wb100">
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+    </login-tag>
+
+  <view class="wb100">
+    <block wx:for="{{dynamicsList}}" wx:key="{{key}}">
+        <view class="wb100">
+        
+        <navigator url="../detail/detail?dynamic_id={{item.dynamic_id}}">
+
+          <view class="pal40 par40">
+            <view class="wb100 mat20">
+              <image class="fl w60rpx h60rpx radius50per" src='{{item.user.head}}'></image>
+              
+              <view class="fl mal10 h60rpx">
+                <view class="F30 h30rpx lh30rpx">{{item.user.name}}</view>
+                <view class="F20 mat5 Fgray-2">{{item.createtime}} 来自相册《{{item.photo_name}}》</view>
+              </view>
+
+              <view class="clear h20rpx"></view>
+              <view class="F30">{{item.emotion}}</view>
+              <block wx:if="{{item.location != ''}}">
+                <view class="clear h15rpx"></view>
+                <view class="F24 Fgray-2">
+                  <image class="w24rpx h28rpx fl mat5" src='/images/wz_2.png'></image>
+                  <view class="fl mal10">{{item.location}}</view>
+                </view>
+                <view class="clear h10rpx"></view>
+              </block>
+            </view>
+          </view>
+
+        </navigator>
+
+        <view class="pal30 par30">
+
+          <block wx:for="{{item.images}}" wx:for-item="items" wx:key="" wx:key="{{key}}">
+
+            <image class="w210rpx h210rpx fl mal5 mar5 mab5 mat5" src='{{items.img_path}}' bindtap="getImg" data-index="{{index}}" data-imglist="{{item.images}}" data-img="{{items.img_path}}"  mode="aspectFill"></image>
+
+          </block>
+
+        </view>
+
+        <view class="clear h40rpx"></view>
+        <view class="pal60 par60">
+
+          <image class="w40rpx h40rpx fl" src='/images/xz.png' bindtap="download" data-imglist="{{item.images}}"></image>
+          <image class="w40rpx h40rpx fl mal30 mar30" src='/images/tb.png' bindtap="sync" data-imglist="{{item.images}}"></image>
+          <!-- <image class="w40rpx h40rpx fl mal30" src='/images/share.png'></image> -->
+          <button open-type="share" data-id="{{item.dynamic_id}}" class="w40rpx h40rpx fl mal30" style='margin:0; padding:0; line-height:40rpx; background:#fff;'>
+            <image class="w40rpx h40rpx" src='/images/share.png'></image>
+          </button>
+
+          <view class="fr" bindtap="like" data-index="{{index}}" data-dynamic_id="{{item.dynamic_id}}" data-like_count="{{item.like_count}}" data-is_liked="{{item.is_liked}}">
+            <block wx:if="{{item.is_liked != 0}}">
+              <view class="fl F30 mar15 Fgreen-2 mat5">{{item.like_count}}</view>
+              <image class="fr w40rpx h40rpx" src='/images/dz_pre.png'></image>
+            </block>
+            <block wx:else>
+              <view class="fl F30 mar15 mat5 Fgray-3">{{item.like_count}}</view>
+              <image class="fr w40rpx h40rpx" src='/images/dz_nor.png'></image>
+            </block>
+          </view>
+        </view>
+        <view class="clear h20rpx"></view>
+        <view class="pal40 par40 F30"  wx:if="{{allow_comment !=0 && allow_comment !='0'}}">
+          <block wx:for="{{item.comments}}" wx:key="{{index2}}" wx:for-item="item2" wx:for-index="index2">
+     
+              <block wx:if="{{item2.atuser_info.length == 0}}">
+                <view class="wb100 F32 lh50rpx" style='overflow-wrap: break-word;' data-id="{{item.dynamic_id}}" data-index="{{index}}" bindtap='reply' data-userID='{{item2.user_info.user_id}}' data-userName='{{item2.user_info.name}}' data-commentId='{{item2.comment_id}}'>
+                {{item2.user_info.name}}：<text class="Fgray-2">{{item2.content}}</text>
+                </view>  
+              </block>
+
+              <block wx:else>
+    <view class="wb100 F32 lh50rpx" style='overflow-wrap: break-word;' data-id="{{item.dynamic_id}}" data-index="{{index}}" bindtap='reply' data-userID='{{item2.user_info.user_id}}' data-userName='{{item.user.name}}' data-commentId='{{item2.comment_id}}'>
+               {{item2.user_info.name}}<text class="Fgray-2">回复</text>{{item2.atuser_info.name}}：<text class="Fgray-2">{{item2.content}}</text>
+              </view>  
+
+              </block>
+
+              
+            <view class="clear"></view>
+            </block>
+
+   <view class="clear"></view>
+            <!-- 查看全部  -->
+              <navigator url="../detail/detail?dynamic_id={{item.dynamic_id}}">
+                <view class="Fgray-2 lh30rpx mat20 F28" wx:if="{{item.cmnt_count>3}}"> 查看所有{{item.cmnt_count}}条评论 > </view>
+              </navigator>
+              <view class="clear"></view>
+
+        </view>
+         <view class="clear h20rpx"></view> 
+        <view class="pal40 par40" bindtap='comment'  wx:if="{{allow_comment !=0 && allow_comment !='0'}}" data-id="{{item.dynamic_id}}" data-index="{{index}}">
+                <!-- <input placeholder="说点什么吧" bindinput="bindinput" class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30" /> -->
+                <view class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 Fgray-2">说点什么吧</view>
+           
+        </view>
+
+        <view class="clear h60rpx"></view>
+      </view>
+
+    </block>
+
+     <block wx:if="{{isReply}}">
+      <view class="dialogBg" bindtap="setReply" data-value='false'></view>
+      <view class="fixed warpper-white radius10 center" style='bottom:{{inputHeight - 48}}px; left:0; z-index:999; width:750rpx; height:120rpx;'>
+        <view class="pa30">
+     
+          <input placeholder="回复{{ReplyVal.userName}}：" bindfocus="inputFocus" focus="true" bindblur="replyBlur" bindinput="replyInput" style='width:470rpx' class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 fl" /> 
+          <view class="fr w150rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30 text-center" bindtap="setReply" data-value='true'>发送</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </block>
+
+
+    <block wx:if="{{isComment}}">
+      <view class="dialogBg" bindtap="setComment" data-value='false'></view>
+      <view class="fixed warpper-white radius10 center" style='bottom:{{inputHeight - 48}}px; left:0; z-index:999; width:750rpx; height:120rpx;'>
+        <view class="pa30">
+          <input placeholder="说点什么吧" bindfocus="inputFocus" focus="true" bindblur="inputBlur" bindinput="commentInput" style='width:470rpx' class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 fl" /> 
+          <view class="fr w150rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30 text-center" bindtap="setComment" data-value='true'>发送</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+
+</view>

@@ -1,0 +1,75 @@
+
+<view wx:if="{{step == 1}}" bindtap="nextStep" data-value="2" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999; background:rgba(0,0,0,.6); over-flow:hidden;">
+      <image src="../../image/info-msg1.png" style="float:left; margin-left:15rpx; width:688rpx; height:983rpx;"></image>
+</view>
+
+<view wx:if="{{step == 2}}" bindtap="nextStep" data-value="3" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:999999; background:rgba(0,0,0,.6); over-flow:hidden;">
+      <image src="../../image/info-msg2.png" style="float:left; margin-top:90rpx; margin-left:5rpx; width:639rpx; height:902rpx;"></image>
+</view>
+
+<!--画板-->
+<view class="draw-board" style="width:{{width2}}px;" animation="{{animationData}}">
+  <scroll-view scroll-y="true" style="height: {{height}}px;" class="text-center">
+    <view class="clear h20rpx"></view>
+    <view class="wb100">
+      <image src="../../image/icon-color.png" bindtap="swicthColorBar" style=" width:40rpx; height:40rpx;"></image>
+    </view>
+    <view class="clear h80rpx"></view>
+    <view bindtap="saveImg" data-type="1">
+      <view class="wb100">
+        <image src="../../image/icon-share.png" style=" width:40rpx; height:40rpx;"></image>
+      </view>
+      <view class="wb100 F20 lh30rpx h30rpx Fwhite">
+        发送朋友
+      </view>
+    </view>
+    <view class="clear h60rpx"></view>
+    <view bindtap="saveImg" data-type="2">
+      <view class="wb100">
+        <image src="../../image/icon-sub.png" style=" width:40rpx; height:40rpx;"></image>
+      </view>
+      <view class="wb100 F20 lh30rpx h30rpx Fwhite">
+        发布作品
+      </view>
+    </view>
+    <view class="clear h90rpx"></view>
+    <view class="wb100">
+      <image src="../../image/icon-prev.png" style=" width:40rpx; height:40rpx;" bindtap="prev"></image>
+    </view>
+    <view class="clear h50rpx"></view>
+    <view class="wb100">
+      <image src="../../image/icon-next.png" style=" width:40rpx; height:40rpx;" bindtap="next"></image>
+    </view>
+    <view class="clear h50rpx"></view>
+    <view class="wb100">
+      <image src="../../image/icon-clear.png" style=" width:40rpx; height:40rpx;" bindtap="clear"></image>
+    </view>
+    <view class="clear h50rpx"></view>
+    <view class="wb100">
+      <image src="../../image/icon-getImg.png" style=" width:40rpx; height:40rpx;" bindtap="prevImg"></image>
+    </view>
+  </scroll-view>
+</view>
+<view style="height:{{height}}px; width:{{width}}px; background:#eeeeee;" class="fr">
+  <view class="color-bar" style=" width:{{width / 2}}px; height:{{width2-10}}px; background:#fff; float:left; ">
+    <scroll-view scroll-x="true" style="width: 100%; white-space: nowrap;">
+      <block wx:for="{{colors}}" wx:key="this">
+        <view style="width:{{width2-20}}px;height:{{width2-20}}px; margin:5px ;position:relative; background-color:#{{item.color}};" data-color="#{{item.color}}" data-index="{{index}}" bindtap="changeColor" class="radius50per scroll-view-item_H">
+          <image src="../../image/select.png" hidden="{{!item.select}}" style=" width:24rpx; height:14rpx; position:absolute; left:0; right:0; bottom:0; top:0; margin:auto;"></image>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view style=" width:{{width / 2 - 10}}px; height:{{width2-10}}px; background:#fff; float:right; ">
+    <image src="../../image/icon-lineSize.png" style=" width:{{width2-20}}px; height:{{width2-20}}px; margin:5px;"></image>
+    <view class="wb70 fr" style="height:20rpx;">
+      <slider bindchange="lineSlider" style="height:20rpx;" value="3" max="10" min="1" show-value/>
+    </view>
+  </view>
+  <view class="clear"></view>
+  <canvas canvas-id="myCanvas" style="height:{{height - width2 + 10}}px; width:{{width}}px;" disable-scroll="false" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  </canvas>
+</view>
+<loading hidden="{{hidden}}">
+  图片生成中...
+</loading>

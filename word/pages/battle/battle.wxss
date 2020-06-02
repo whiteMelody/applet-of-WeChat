@@ -1,0 +1,108 @@
+/* pages/battle/battle.wxss */
+
+page {
+  background-color: #4e84e5;
+  height: 100%;
+}
+
+.slant {
+  -moz-transform: rotate(-45deg); /* Firefox 旋转属性，参数表示角度(deg表示角度)，负数逆时针，正数顺时针 */
+  -webkit-transform: rotate(-45deg); /* Safari和Chrome */
+  -ms-transform: rotate(-45deg); /* IE 9 */
+  -o-transform: rotate(-45deg); /* Opera */
+}
+
+.confirm {
+  background: -webkit-linear-gradient(#ff954b, #ff4f4d); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#ff954b, #ff4f4d); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#ff954b, #ff4f4d); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#ff954b, #ff4f4d); /* 标准的语法 */
+}
+
+.leftmove {
+  animation: leftmove 1s infinite;
+  -webkit-animation: leftmove 1s infinite; /*Safari and Chrome*/
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1; /*Safari and Chrome*/
+}
+
+@keyframes leftmove {
+  from {
+    left: -450rpx;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@-webkit-keyframes leftmove {
+  from {
+    left: -450rpx;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+.rightmove {
+  animation: rightmove 1s infinite;
+  -webkit-animation: rightmove 1s infinite; /*Safari and Chrome*/
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1; /*Safari and Chrome*/
+}
+
+@keyframes rightmove {
+  from {
+    right: -450rpx;
+  }
+
+  to {
+    right: 0;
+  }
+}
+
+@-webkit-keyframes rightmove {
+  from {
+    right: -450rpx;
+  }
+
+  to {
+    right: 0;
+  }
+}
+
+.fadenum {
+  -webkit-animation: fadenum 2s infinite;
+  -moz-animation: fadenum 2s infinite;
+  animation: fadenum 2s infinite;
+   animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1; /*Safari and Chrome*/
+}
+
+@-webkit-keyframes fadenum {
+  /*设置内容由显示变为隐藏*/
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadenum {
+  
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

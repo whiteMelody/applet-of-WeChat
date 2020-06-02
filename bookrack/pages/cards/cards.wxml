@@ -1,0 +1,32 @@
+<!--pages/cards/cards.wxml-->
+<view class='warpper-white-2 wb100' style='height: {{height}}px'>
+
+    <view style='padding:15px'>
+        <view class='radius5 wb100 warpper-white relative' style='height: {{height-30}}px; box-shadow: 0rpx 0rpx 5rpx rgba(225, 225, 225, .35);'>
+
+            <view class="pa30">
+                <text>111111111111</text>
+            </view>
+
+            <view class="wb100 absolute bor-gray bor-solid-1t" style='bottom:30rpx'>
+
+                <view class="pa30">
+                    <view class="w80rpx h80rpx lh80rpx text-center radius50per F14 warpper-gray-1 fl">
+                        用户头像
+                    </view>
+
+                    <view class="w200rpx h80rpx lh40rpx fl mal25">
+                        <view class='F28'>用户昵称</view>
+                        <view class="F24">2018-4-25</view>
+                    </view>
+
+                    <view class="w180rpx h80rpx Fgray-3 fr F24 lh80rpx text-right">
+                        3222225次Up
+                    </view>
+                </view>
+            </view>
+
+        </view>
+    </view>
+
+</view>

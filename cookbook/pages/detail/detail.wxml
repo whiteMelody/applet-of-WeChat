@@ -1,0 +1,39 @@
+<!--pages/detail/detail.wxml-->
+<view class="wb100">
+
+    <view class="pat30 pab30 par30 relative h280rpx" style='padding-left:280rpx;'>
+        
+        <view class="w210rpx h300rpx warpper-gray-1 absolute" style='left:30rpx; top:30rpx;'>
+            <image src='{{food.img_path}}' class='w210rpx h300rpx' mode='aspectFill'></image>
+        </view>
+
+        <view class="Fblack F36 h50rpx lh50rpx text-over-hidden1">{{food.food_name}}</view>
+        <view class="clear2"></view>
+        <view class="Fgray-3 F28 h50rpx lh50rpx text-over-hidden1">{{food.cate_name}}</view>
+        <view class="clear2"></view>
+        <view class="Fgray-2 F24 lh40rpx h80rpx text-over-hidden2">{{food.food_desc ? food.food_desc : '暂无简介'}}</view>
+        <view class="clear1"></view>
+       
+        <view class="Fblack F36 h40rpx lh40rpx">
+          {{food.looked_num}}
+          <text class='Fgray-2 F24'>人做过</text>
+        
+          <view class="w100rpx fr F24 Fgray-3 lh50rpx">
+              <image src='/images/icon-star-on.png' class='h50rpx w50rpx fr' wx:if="{{item.isFav}}"></image>
+              <image src='/images/icon-star.png' class='h50rpx w50rpx fr' wx:else></image>
+              <!-- 收藏 -->
+            </view>
+        </view>
+
+    </view>
+
+    <view class="clear1"></view>
+
+    <view class="pa30">
+
+      <import src="../wxParse/wxParse.wxml"/>
+      <template is="wxParse" data="{{wxParseData:steps.nodes}}"/>
+   
+    </view>
+
+</view>

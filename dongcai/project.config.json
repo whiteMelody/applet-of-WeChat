@@ -1,0 +1,92 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wxfcdc296918467139",
+	"projectname": "dongcai",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": 0,
+					"name": "detail",
+					"pathName": "pages/detail/detail",
+					"query": "matchID=1013081&date=2018-10-14"
+				},
+				{
+					"id": -1,
+					"name": "date",
+					"pathName": "pages/date/date",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "find",
+					"pathName": "pages/find/find",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "懂球指数",
+					"pathName": "pages/dqzs/dqzs",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "赛事分析",
+					"pathName": "pages/matchDetail/matchDetail",
+					"query": "matchID=1008318&date=2018-11-12"
+				},
+				{
+					"id": -1,
+					"name": "高赔选场",
+					"pathName": "pages/gpxc/gpxc",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "方案详情",
+					"pathName": "pages/faDetail/faDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "大咖推荐",
+					"pathName": "pages/dktj/dktj",
+					"query": ""
+				}
+			]
+		}
+	}
+}

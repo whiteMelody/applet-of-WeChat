@@ -1,0 +1,20 @@
+<!--pages/audioList/audioList.wxml-->
+<view class="wb100">
+  <view class="wb100">
+    <view class="wb100" wx:for="{{datas}}" wx:key="{{index}}">
+      <view class="pal30">
+        <navigator url='/pages/lesson/lesson?channelID={{item.channelID}}'>
+          <view class="fl w100rpx h100rpx radius10 warpper-gray-3">
+              <image src="{{item.iconURL}}?x-oss-process=image/resize,m_fixed,h_100,w_100" class="radius10 w100rpx h100rpx" />
+          </view>
+          <view class="Fgray-3">
+              <view class="lh50rpx h50rpx text-over-hidden1 pal30 Fblack F28">{{item.channelName}}</view>
+              <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">{{item.subtitle}}</view>
+          </view>
+        </navigator>
+        <view class="clear1 bor-gray bor-solid-1b"></view>
+      </view>
+      <view class="clear1"></view>
+    </view>
+  </view>
+</view>

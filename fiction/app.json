@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/library/library",
+    "pages/book/book",
+    "pages/detail/detail",
+    "pages/read/read",
+    "pages/search/search"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#529BFF",
+    "navigationBarTitleText": "快搜免费小说",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#529BFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "书架",
+        "selectedIconPath": "./images/sj_pre.png",
+        "iconPath": "./images/sj_nor.png"
+      },
+      {
+        "pagePath": "pages/library/library",
+        "text": "书库",
+        "selectedIconPath": "./images/sk_pre.png",
+        "iconPath": "./images/sk_nor.png"
+      }
+    ]
+  }
+}

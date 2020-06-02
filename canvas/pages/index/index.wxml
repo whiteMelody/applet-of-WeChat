@@ -1,0 +1,91 @@
+<scroll-view scroll-y="true" bindscrolltolower="lower" style="height:{{height}}px;" lower-threshold="200">
+  <view class="wb100 warpper-gray-1">
+
+    <!--搜索框-->
+    <view class="pa15 warpper-white">
+      <block wx:if="{{search === false}}">
+        <view class="wb100 center h60rpx lh60rpx radius10 warpper-white text-center F30 Fgray-2 bor-gray bor-solid-1a" bindtap="openSearch">
+          <view class="w110rpx center h60rpx lh60rpx">
+            搜索
+            <image src="../../image/icon-search.png" class="fr mat15" style="width:30rpx;height:30rpx; "></image>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="wb90 fl h60rpx lh60rpx radius10 warpper-white F30 Fgray-2 bor-gray bor-solid-1a">
+          <image src="../../image/icon-search.png" class="fl ma15" style="width:30rpx;height:30rpx; "></image>
+          <input class="fl wb90 h60rpx lh60rpx Fgray-2 text-left" bindinput="eInput" bindconfirm="toSearch" focus/>
+        </view>
+        <view class="fr F30 Fblue lh60rpx h60rpx" bindtap="toSearch">搜索</view>
+      </block>
+      <view class="clear"></view>
+    </view>
+
+    <!--导航-->
+    <view class="pa15 warpper-white">
+      <view class="wb100 pat15 pab15">
+        <navigator url="../search/search?type=1">
+          <view class="nav active">
+            <view class="h50rpx">
+              <image src="../../image/icon-type-on.png" style="width:45rpx;height:49rpx;"></image>
+            </view>
+            <view class="F24 lh50rpx">更多涂鸦</view>
+          </view>
+        </navigator>
+        <navigator url="../drawRoom/drawRoom">
+          <view class="nav active">
+            <view style="border-left:5rpx solid #f0f0f0;">
+              <view class="h50rpx">
+                <image src="../../image/icon-type2-on.png" style="width:52rpx;height:50rpx;"></image>
+              </view>
+              <view class="F24 lh50rpx">你画我猜</view>
+            </view>
+          </view>
+        </navigator>
+        <view class="clear"></view>
+      </view>
+    </view>
+    <view class="clear1"></view>
+
+    <!--人气榜-->
+    <view class="wb100">
+      <view class="pa15 warpper-white">
+        <view class="F30 h50rpx lh50rpx">
+          <image src="../../image/icon-hot.png" class="fl h40rpx w40rpx mat5"></image>
+          人气榜
+        </view>
+      </view>
+      <view class="clear"></view>
+      <block wx:for="{{datas}}" wx:key="this" wx:if="{{empty === false}}">
+        <navigator url="../detail/detail?id={{item.id}}">
+          <view style="width:{{width2}}px;height:{{width2*1.64 + height2*2 + 5}}px; margin:{{margin}}px 0 0 {{margin}}px; -webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8; " class="fl relative warpper-white radius10 over-hidden">
+            <image src="{{item.imageUrl}}" style="width:{{width2 - 10}}px;height:{{width2 * 1.64 - 10}}px; margin:5px"></image>
+        
+            <view class="wb100 F30 Fgray-3">
+              <image src="{{item.icon == '' ? '../../image/icon-author.png' : item.icon}}" style="width:{{height2}}px;height:{{height2}}px;" class="radius50per fl mal15 mar15"></image>
+              <view style="height:{{height2}}px;line-height:{{height2}}px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.username == '' ? '匿名': item.username}}</view>
+            </view>
+            <view class="F24 Fgray-2 pal15 par15">
+              <view style="height:{{height2}}px;line-height:{{height2}}px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.title == '' ? '无题': item.title}}</view>
+            </view>
+            <view class="fav">
+              <image src="../../image/icon-fav.png" style="width:22rpx;height:20rpx;"></image>
+              <view class="F20 lh20rpx h20rpx fr mal5">{{item.zan}}</view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <block wx:if="{{empty === true}}">
+        <view class="pa30 text-center">
+          <image src="../../image/none-data.png" mode="aspectFit" style=" width:140rpx; height:140rpx;"></image>
+          <view class="h80rpx lh80rpx Fgray-3 F30">暂无数据</view>
+        </view>
+      </block>
+      <view class="clear1"></view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+</scroll-view>
+<loading hidden="{{hidden}}">
+  数据加载中...
+</loading>

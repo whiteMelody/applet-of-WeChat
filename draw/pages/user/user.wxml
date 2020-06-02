@@ -1,0 +1,79 @@
+<view class="wb100" wx:if="{{sysVerify}}">
+  <view class="wb100 text-center warpper-white">
+    <view class="clear1"></view>
+    <image src="{{userInfo.head ? userInfo.head : '../../image/img-1.png'}}" style="height:120px; width:120px; -webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8;" class="radius50per"></image>
+    <view class="clear1"></view>
+    <view class="h30rpx lh30rpx F30" wx:if="{{userInfo.name}}">{{userInfo.name}}</view>
+    <view class="lh50rpx F30 " wx:else>
+     <button open-type="getUserInfo" class='{{isDisabled ? "Fgray-2" : "Fblue"}}' bindgetuserinfo="onGotUserInfo">立即登录</button>
+      <view class="F24 Fgray-2">登录后，您的头像和用户名将会显示在作品上。</view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+  <view class="clear1 bor-gray bor-solid-1b"></view>
+  <view class="pa15 warpper-white">
+    <view class="wb100 pat15 pab15">
+      <view class="nav active"  wx:if="{{type==1}}">
+        <view class="h60rpx">
+          <image src="../../image/icon-myGif-on.png" style="width:60rpx;height:60rpx;"></image>
+        </view>
+        <view class="F30 lh80rpx">我的作品</view>
+      </view>
+      <view class="nav" bindtap="changeType" data-type="1" wx:else>
+        <view class="h60rpx">
+          <image src="../../image/icon-myGif.png" style="width:60rpx;height:60rpx;"></image>
+        </view>
+        <view class="F30 lh80rpx">我的作品</view>
+      </view>
+      <view class="nav active"  wx:if="{{type==2}}">
+        <view style="border-left:5rpx solid #f0f0f0;">
+          <view class="h60rpx">
+            <image src="../../image/icon-myFav-on.png" style="width:60rpx;height:60rpx;"></image>
+          </view>
+          <view class="F30 lh80rpx">我的收藏</view>
+        </view>
+      </view>
+      <view class="nav" bindtap="changeType" data-type="2" wx:else>
+        <view style="border-left:5rpx solid #f0f0f0;">
+          <view class="h60rpx">
+            <image src="../../image/icon-myFav.png" style="width:60rpx;height:60rpx;"></image>
+          </view>
+          <view class="F30 lh80rpx">我的收藏</view>
+        </view>
+      </view>
+      <view class="clear"></view>
+    </view>
+  </view>
+  <view class="wb100 warpper-gray-1">
+    <block wx:for="{{datas}}" wx:key="this" wx:if="{{empty === false}}">
+
+      <navigator url="../detail/detail?id={{item.id}}">
+      
+        <view style="width:{{width2}}px;height:{{width2*1.64 + height2*2 + 5}}px; margin:{{margin}}px 0 0 {{margin}}px; -webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8; " class="fl relative warpper-white radius10 over-hidden">
+          <image src="{{item.preview_url}}" style="width:{{width2 - 10}}px;height:{{width2 * 1.64 - 10}}px; margin:5px"></image>
+          <view class="wb100 F30 Fgray-3">
+            <image src="{{item.head == '' ? '../../image/icon-author.png' : item.head}}" style="width:{{height2}}px;height:{{height2}}px;" class="radius50per fl mal15 mar15"></image>
+            <view style="height:{{height2}}px;line-height:{{height2}}px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.nickname == '' ? '匿名': item.nickname}}</view>
+          </view>
+          <view class="F24 Fgray-2 pal15 par15">
+            <view style="height:{{height2}}px;line-height:{{height2}}px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.title == '' ? '无题': item.title}}</view>
+          </view>
+          <view class="fav">
+            <image src="../../image/icon-fav.png" style="width:22rpx;height:20rpx;"></image>
+            <view class="F20 lh20rpx h20rpx fr mal5">{{item.like_number}}</view>
+          </view>
+        </view>
+      </navigator>
+
+    </block>
+    <block wx:if="{{empty === true}}">
+      <view class="pa30 text-center">
+        <image src="../../image/none-data.png" mode="aspectFit" style=" width:140rpx; height:140rpx;"></image>
+        <view class="h80rpx lh80rpx Fgray-3 F30">暂无数据</view>
+      </view>
+    </block>
+    <view class="clear1"></view>
+  </view>
+  
+ <tab-bar selected='2' wx:if="{{sysVerify}}"></tab-bar>
+</view>

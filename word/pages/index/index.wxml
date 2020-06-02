@@ -1,0 +1,103 @@
+<!--index.wxml-->
+<view class="wb100">
+  <!-- 登录组件 -->
+  <login-tag id="login" bind:cancelEvent="_cancelEvent" bind:confirmEvent="_confirmEvent">
+  </login-tag>
+
+  <!-- <block wx:if="{{isLogin}}"> -->
+  <!-- 头部 -->
+  <view class="w690rpx h260rpx center radius20">
+
+    <image class="w690rpx h260rpx center radius20 absolute" src='/images/top.png' style='z-index:-1'></image>
+
+    <view class="clear h30rpx"></view>
+    <view class="w690rpx absolute" style='z-index:99'>
+      <view class="w100rpx h100rpx center">
+        <image class="w92rpx h92rpx radius50per bor-solid-4a bor-white" src='{{head}}'></image>
+      </view>
+    </view>
+
+    <view class="w690rpx absolute" style='z-index:9;margin-top:60rpx'>
+      <view class="w140rpx h40rpx center">
+        <image src='/images/to.png' class="w140rpx h40rpx"></image>
+      </view>
+    </view>
+
+    <view class="w690rpx absolute" style='z-index:99;margin-top:80rpx'>
+      <view class="w110rpx center text-center h40rpx lh40rpx F24 Fwhite warpper-yellow-7 radius5">{{levelName}}</view>
+    </view>
+
+    <view class="clear h130rpx"></view>
+
+    <view class="F30 text-center h40rpx lh40rpx Fwhite">{{name}}</view>
+
+    <view class="clear"></view>
+    <view class="pal30 par30 F30 h40rpx lh40rpx">
+      <view class="fl Fblue-8">
+        <view class="fl">
+          <text>Lv.</text>
+          <text>{{level}}</text>
+        </view>
+        <!-- 经验条 -->
+        <view class="fl mal10 mat16">
+          <view class="w160rpx">
+            <view class="warpper-blue-18 h12rpx radius50 over-hidden">
+              <view class="warpper-blue-16 h12rpx" style='width:{{width}}%'></view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <navigator url="/pages/errorWord/errorWord">
+        <view class="fr Fwhite">
+          <image class="w40rpx h40rpx fl" src='/images/cc.png'></image>
+          <view class="fl mal20">错题库</view>
+        </view>
+      </navigator>
+    
+
+    </view>
+  </view>
+  <view class="clear h30rpx"></view>
+  <!-- 内容 -->
+  <view class="pal30 par30">
+    <view class="w330rpx fl">
+      <navigator url="/pages/match/match">
+        <view class="w330rpx h360rpx radius20">
+          <image class="w330rpx h360rpx radius20 absolute" src='/images/match.png' style='z-index:-1'></image>
+          <view class="Fwhite F36 Fb pal30 pat30">排位赛</view>
+        </view>
+      </navigator>
+      <view class="clear h30rpx"></view>
+
+      <navigator url="/pages/friend/friend">
+        <view class="w330rpx h220rpx radius20">
+          <image class="w330rpx h220rpx radius20 absolute" src='/images/friend.png' style='z-index:-1'></image>
+          <view class="Fwhite F36 Fb pal30 pat30">好友对战</view>
+        </view>
+      </navigator>
+
+    </view>
+    <view class="w330rpx fr">
+      <navigator url="/pages/rank/rank">
+        <view class="w330rpx h220rpx radius20">
+          <image class="w330rpx h220rpx radius20 absolute" src='/images/rank.png' style='z-index:-1'></image>
+          <view class="Fwhite F36 Fb pal30 pat30">排行榜</view>
+        </view>
+      </navigator>
+      <view class="clear h30rpx"></view>
+
+      <navigator url="/pages/recite/recite">
+        <view class="w330rpx h360rpx radius20">
+          <image class="w330rpx h360rpx radius20 absolute" src='/images/word.png' style='z-index:-1'></image>
+          <view class="Fwhite F36 Fb pal30 pat30">背单词</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- </block> -->
+
+
+
+</view>

@@ -1,0 +1,71 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "wx221d9ddc97c9d85d",
+	"projectname": "%E6%B6%82%E9%B8%A6%E7%A5%9E%E5%99%A8%EF%BC%88%E6%96%B0%EF%BC%89",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 3,
+			"list": [
+				{
+					"id": -1,
+					"name": "发布（publish）",
+					"pathName": "pages/publish/publish",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "画图（draw）",
+					"pathName": "pages/draw/draw",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索（search）",
+					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "详情（detail）",
+					"pathName": "pages/detail/detail",
+					"query": "id=123"
+				},
+				{
+					"id": -1,
+					"name": "我的（user）",
+					"pathName": "pages/user/user",
+					"query": ""
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,75 @@
+<!--index.wxml-->
+<view class="wb100">
+
+  <!-- download -->
+  <view class='wb100' hidden='{{!showDownload}}'>
+    <view class="dialogBg" bindtap="closeDownload"></view>
+    <view style='top:0; bottom:0; right:0; left:0; margin:auto; position:fixed; border-radius:5rpx; z-index:9999; width:550rpx; height:380rpx; background-color:#ffffff; '>
+      <view class="clear1"></view>
+      <view style='font-size:36rpx; text-align: center; color:#333;'>温馨提示</view>
+      <view class="clear1"></view>
+      <view style='text-align: center; color:#aaa; font-size:28rpx; line-height:40rpx; padding: 0 60rpx;'>请下载app体验完整内容，现在前往下载吗？</view>
+      <view class="clear1"></view>
+      <view class="wb100" style='border-bottom:1rpx solid #e1e1e1'></view>
+      <view class="h140rpx lh70rpx pat10 pab10 text-center Fblue F32">
+        <view data-url="">暂无ios版</view>
+        <view class="wb100" data-url="http://appdetailh5.vivo.com.cn/detail/2372484?source=1" bindtap='copyUrl'>安卓版下载地址</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="fixed pal30" style='bottom:30rpx'>
+    <navigator url="/pages/search/search">
+      <view class="w100rpx h100rpx radius50per" style='background:#529BFF'>
+        <view class="w50rpx center pat25">
+          <image class="w50rpx h50rpx" src='/images/icon_search.png'></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="clear1"></view>
+
+  <block wx:for="{{bookShelf}}" wx:key="">
+    <block wx:if="{{check}}">
+      <view class="wb33333 fl mab40" bindtap="showDonwLoad">
+        <view class="center w200rpx h270rpx">
+          <image class="w200rpx h270rpx box-shadow-gray4 absolute" src='{{item.bookImg}}' style='z-index:99'></image>
+          <image class="w200rpx h270rpx box-shadow-gray4 absolute" src='/images/book.png' style='z-index:9'></image>
+        </view>
+        <view class="center F32 w200rpx pat15 text-over-hidden1">{{item.bookName}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <!-- <navigator url="/pages/read/read?bookID={{item.bookID}}&bookName={{item.bookName}}"> -->
+      <view class="wb33333 fl mab40">
+        <view class="center w200rpx h270rpx">
+          <block wx:if="{{bookID == item.bookID}}">
+            <image class="absolute w60rpx h60rpx" src='/images/icon_error.png' style='z-index:9999' bindtap="delete" data-bookid="{{item.bookID}}"></image>
+            <view class="absolute w200rpx h270rpx" style='background: rgba(0,0,0,.5);z-index:999' bindtap="hide"></view>
+          </block>
+
+          <image class="w200rpx h270rpx box-shadow-gray4 absolute" src='{{item.bookImg}}' style='z-index:99' bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongpress="bingLongTap" bindtap="bindTap" data-bookid="{{item.bookID}}" data-bookname="{{item.bookName}}"></image>
+          <image class="w200rpx h270rpx box-shadow-gray4 absolute" src='/images/book.png' style='z-index:9' bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongpress="bingLongTap" bindtap="bindTap" data-bookid="{{item.bookID}}" data-bookname="{{item.bookName}}"></image>
+
+        </view>
+        <view class="center F32 w200rpx pat15 text-over-hidden1">{{item.bookName}}</view>
+      </view>
+      <!-- </navigator> -->
+    </block>
+  </block>
+
+
+  <navigator open-type="switchTab" url="/pages/library/library">
+    <view class="wb33333 fl mab40">
+      <view class="center warpper-gray-1 w200rpx h270rpx box-shadow-gray4">
+        <view class="w70rpx h70rpx center" style='padding-top:100rpx'>
+          <image class="w70rpx h70rpx" src='/images/add.png'></image>
+        </view>
+      </view>
+    </view>
+  </navigator>
+
+
+
+</view>

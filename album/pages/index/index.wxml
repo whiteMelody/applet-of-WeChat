@@ -1,0 +1,123 @@
+<!--index.wxml-->
+<view class="wb100">
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+    </login-tag>
+
+<block wx:if="{{isLogin}}">
+
+  <block wx:if="{{empty}}">
+
+    <view class="text-center wb100 h40px lh40px F44">享受我的美好时光</view>
+
+    <view class="clear" style='height:72rpx'></view>
+
+    <!-- <view class="clear1"></view>
+    <view class="clear1"></view>
+    <view class="clear1"></view>
+    <view class="clear1"></view>
+
+    <view class="text-center F28 lh80rpx Fgray-2">
+      <view>记录 是我们每天都在做的事</view>
+      <view>有爱情 有亲情 有友情</view>
+      <view>回忆 是我们每天都会做的事</view>
+      <view>时精彩 时流水 时深刻</view>
+      <view>相册时光机 记录生活点</view>
+    </view> -->
+
+    <view class="center w500rpx h400rpx">
+      <image class="w500rpx h400rpx" src='/images/description.png'></image>
+    </view>
+
+    <view class="clear h60rpx"></view>
+
+    <view class="pa30">
+      <navigator url='../select/select'>
+        <view class='h100rpx lh100rpx warpper-green-4 wb100 text-center F32 Fwhite radius50'>创建相册</view>
+      </navigator>
+    </view>
+
+  </block>
+
+  <block wx:else>
+
+    <block wx:if="{{photoList.length < 4}}">
+      <view class="text-center wb100 h40px lh40px F44">享受我的美好时光</view>
+      <view class="clear1"></view>
+      <view class="pa30">
+        <navigator url='../select/select'>
+          <view class='h100rpx lh100rpx warpper-green-4 wb100 text-center F32 Fwhite radius50'>创建相册</view>
+        </navigator>
+      </view>
+      <view class="clear1"></view>
+
+      <block wx:if="{{photoList.length != 1}}">
+
+        <view class="wb100">
+          <view class="pa10">
+            <block wx:for='{{photoList}}' wx:key='{{key}}'>
+              <view class="F30 fl wb50 center" bindtap="goAlbum" data-photo_id="{{item.photo_id}}">
+                <view class="pa10">
+                  <image class="radius15 h195rpx w345rpx" mode='aspectFill' src='{{item.cover}}'></image>
+                  <view class="h120rpx">
+                    <view class="pal20 F32 pat20">{{item.name}}</view>
+                    <view class="pal20 F24 Fgray-2 pat15">{{item.mem_count}}个成员</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+
+      </block>
+
+      <block wx:else>
+        
+        <view class="F30 pa30 center" bindtap="goAlbum" data-photo_id="{{photoList[0].photo_id}}">
+            <view class=" radius15 h388rpx wb100">
+              <image class="radius15 h388rpx wb100" mode='aspectFill' src='{{photoList[0].cover}}'></image>
+            </view>
+            <view class="h120rpx">
+              <view class="pal20 F32 pat20">{{photoList[0].name}}</view>
+              <view class="pal20 F24 Fgray-2 pat15">{{photoList[0].mem_count}}个成员</view>
+            </view>
+          </view>
+
+      </block>
+
+    </block>
+
+    <block wx:else>
+      <!-- <block wx:for='{{photoList}}' wx:key='{{key}}'> -->
+        <!-- <navigator url='../make/make?photo_id={{item.photo_id}}'> -->
+
+        <view class="wb100">
+          <view class="wb100">
+            <view class="pa10">
+              <block wx:for='{{photoList}}' wx:key='{{key}}'>
+                <view class="F30 fl wb50 center" bindtap="goAlbum" data-photo_id="{{item.photo_id}}">
+                  <view class="pa10">
+                    <image class="radius15 h195rpx w345rpx" mode='aspectFill' src='{{item.cover}}'></image>
+                    <view class="h120rpx">
+                      <view class="pal20 F32 pat20">{{item.name}}</view>
+                      <view class="pal20 F24 Fgray-2 pat15">{{item.mem_count}}个成员</view>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+        <!-- </navigator> -->
+      <!-- </block> -->
+      <navigator url='../select/select'>
+        <view class="text-center warpper-green-4 w300rpx Fwhite fixed h90rpx lh90rpx radius50 F36 center" style='left:0;right:0;bottom:20rpx'>创建相册</view>
+      </navigator>
+    </block>
+  </block>
+
+</block>
+</view>

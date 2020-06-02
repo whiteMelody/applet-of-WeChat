@@ -1,0 +1,80 @@
+<!--pages/test/test.wxml-->
+<view class="wb100">
+
+  <view class="wb100 h88rpx lh88rpx warpper-white">
+    <view class="pal30 par30 Fgray-3">
+      <view class="F36 fl" bindtap="back">退出</view>
+      <view class="w480rpx pat40 fl mal30">
+        <view class="warpper-gray-8 h14rpx radius50 over-hidden">
+          <view class="warpper-blue-12 h14rpx" style='width:{{width}}%'></view>
+        </view>
+      </view>
+      <view class="F30 fr">
+        <text>{{rememberNum}}</text>
+        <text>/</text>
+        <text>{{wordNum}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="clear h80rpx"></view>
+
+  <view class="w690rpx h160rpx lh160rpx center warpper-white">
+    <view class="w500rpx fl">
+
+      <input class="{{right ? 'Fgreen-3' : error ? 'Fred-4' : 'Fgray-3' }} h160rpx lh160rpx F36 pal30" placeholder="输入你听到的单词" confirm-hold="true" focus="{{focus}}" confirm-type="done" value="{{writeWord}}" bindinput="bindinput" bindconfirm="bindconfirm" />
+
+    </view>
+    <image class="fr w50rpx h50rpx mar30 mat55" bindtap="play" src='/images/lb.png'></image>
+  </view>
+
+  <block wx:if="{{answer}}">
+    <view class="w690rpx h160rpx lh160rpx center warpper-white">
+      <view class="pal30 par30">
+        <view class="wb100 bor-solid-1t bor-gray5">
+          <view class="F36 Fgreen-3">
+            <text>正确答案:</text>
+            <text class="mal20">{{word}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="clear h30rpx"></view>
+    <view class="fr F30 Fgray-3 par30 h40rpx lh40rpx" bindtap="cant">
+      <view class="fl">我不会</view>
+      <image class="fl w14rpx h24rpx mal10 mat8" src='/images/icon_right.png'></image>
+    </view>
+  </block>
+
+  <block wx:if="{{end}}">
+    <view class="dialogBg">
+      <view class="w600rpx h900rpx warpper-white absolute vertical-center radius20">
+        <view class="wb100 h300rpx bor-solid-1b bor-gray2 text-center">
+          <view class="clear h70rpx"></view>
+          <view class="F30">单元测试得分</view>
+          <view class="F100 Fgreen-3">{{score}}</view>
+        </view>
+        <view class="pa30">
+          <view class="F24 Fgray-3">我的错词</view>
+          <view class="clear h30rpx"></view>
+
+          <scroll-view scroll-y class="wb100 h300rpx">
+            <block wx:for="{{errorList}}" wx:key="">
+              <view class="F36">{{item.word}}</view>
+              <view class="F30 Fgray-3">{{item.explain}}</view>
+              <view class="clear h40rpx"></view>
+            </block>
+          </scroll-view>
+
+          <view class="w540rpx h88rpx lh88rpx text-center warpper-blue-12 Fwhite radius50 absolute F36" style='bottom:30rpx' bindtap="back">返回</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 背景时间 -->
+  <view class="absolute warpper-gray-10" style='top:0;z-index:-1;height:{{height}}px;width:{{widthback}}px'></view>
+
+</view>

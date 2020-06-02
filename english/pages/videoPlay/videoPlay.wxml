@@ -1,0 +1,3 @@
+<!--pages/videoPlay/videoPlay.wxml-->
+
+<web-view src="https://h5.7english.cn:444/new/video_wx_play.html?channelID={{channelID}}"></web-view>

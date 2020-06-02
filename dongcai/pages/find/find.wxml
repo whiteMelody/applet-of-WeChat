@@ -1,0 +1,139 @@
+<!--pages/find/find.wxml-->
+<view class="wb100">
+
+  <view class="wb100 text-center F28">
+    
+    <view class='pa25'>
+      <navigator url='/pages/dktj/dktj'>
+        <view class="wb25 fl">
+          <image src='/images/dktj_qz.png' class='w120rpx h120rpx'></image>
+          <view class="wb100">
+            大咖推荐
+          </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/dqzs/dqzs'>
+        <view class="wb25 fl">
+          <image src='/images/dqzs_qz.png' class='w120rpx h120rpx'></image>
+          <view class="wb100">
+            懂球指数
+          </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/gpxc/gpxc'>
+        <view class="wb25 fl">
+          <image src='/images/gpxc_qz.png' class='w120rpx h120rpx'></image>
+          <view class="wb100">
+            高赔选场
+          </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/ypyc/ypyc'>
+        <view class="wb25 fl">
+          <image src='/images/ypyc_qz.png' class='w120rpx h120rpx'></image>
+          <view class="wb100">
+            亚盘预测
+          </view>
+        </view>
+      </navigator>
+      <view class="clear"></view>
+    </view>
+  </view>
+
+  <view class="clear2 warpper-gray-1"></view>
+
+  <!-- 一些文章 -->
+  <view class='wb100'>
+    <view class="wb100">
+      <view wx:for="{{news}}" wx:key="{{index}}">
+
+        <block wx:if="{{item.picImgs.length == 0}}">
+          <view class="pal30 warpper-black-3">
+            <view class="clear bor-black2 bor-solid-1b"></view>
+          </view>
+          <navigator url='/pages/newsDetail/newsDetail?newsID={{item.newsID}}'>
+            <view class="relative warpper-black-3">
+              <view class="clear1"></view>
+              <view class="pal30 par30">
+                <view class="text-over-hidden1 h50rpx lh50rpx F32 Fwhite-1">{{item.title}}</view>
+                <view class="clear h20rpx"></view>
+                <view class="text-over-hidden2 h100rpx lh50rpx F28 Fblack-1">{{item.mcontent}}</view>
+                <view class="clear h20rpx"></view>
+                <view class="h40rpx lh40rpx Fblack-1 F28">
+                  <!--<span class="fl">{{item.leagueName}} </span>-->
+                  <text class="fl"> {{ formatDate(item.date)}} </text>
+                </view>
+              </view>
+              <view class="clear1"></view>
+            </view>
+          </navigator>
+        </block>
+
+        <block wx:if="{{item.picImgs.length < 3 && item.picImgs.length > 0}}">
+          <view class="pal30 warpper-black-3">
+            <view class="clear bor-black2 bor-solid-1b"></view>
+          </view>
+          <navigator url='/pages/newsDetail/newsDetail?newsID={{item.newsID}}'>
+            <view class="relative warpper-black-3" style="padding-right: 300rpx;">
+              <view class="clear1"></view>
+              <view class="w240rpx h160rpx absolute img-area" style="top: 30rpx; right: 30rpx;">
+                <image :src="item.picImgs[0] + '?x-oss-process=image/resize,m_fill,h_160,w_240'"/>
+              </view>
+              <view class="pal30">
+                <view class="text-over-hidden2 h100rpx lh50rpx F32 Fwhite-1">{{item.title}}</view>
+                <view class="clear h20rpx"></view>
+                <view class="h40rpx lh40rpx Fblack-1 F28">
+                  <!--<span class="fl">{{item.leagueName}} </span>-->
+                  <text class="fl"> {{ formatDate(item.date)}} </text>
+                </view>
+              </view>
+              <view class="clear1"></view>
+            </view>
+          </navigator>
+
+        </block>
+
+        <block wx:if="{{item.picImgs.length >= 3}}">
+          <view class="pal30 warpper-black-3">
+            <view class="clear bor-black2 bor-solid-1b"></view>
+          </view>
+          <navigator url='/pages/newsDetail/newsDetail?newsID={{item.newsID}}'>
+            <view class="relative warpper-black-3">
+              <view class="clear1"></view>
+              <view class="pal30 par30">
+                <view class="text-over-hidden1 h40rpx lh40rpx F32 Fwhite-1">{{item.title}}</view>
+                <view class="clear h20rpx"></view>
+                <view class="wb100">
+                  <view class="wb33333 fl img-area">
+                    <view class="center" :style="'width:'+ newsWidth +'px; height:'+ newsWidth * 0.75 +'px; '">
+                      <image :src="item.picImgs[0] + '?x-oss-process=image/resize,m_fill,w_'+ newsWidth * 2 +',h_' + Math.ceil(newsWidth * 1.5)" :style="'width:'+ newsWidth +'px; height:'+ newsWidth * 0.75 +'px; '"/>
+                    </view>
+                  </view>
+                  <view class="wb33333 fl img-area">
+                    <view class="center" :style="'width:'+ newsWidth +'px; height:'+ newsWidth * 0.75 +'px; '">
+                      <image :src="item.picImgs[1] + '?x-oss-process=image/resize,m_fill,w_'+ newsWidth * 2 +',h_' + Math.ceil(newsWidth * 1.5)" :style="'width:'+ newsWidth +'px; height:'+ newsWidth * 0.75 +'px; '"/>
+                    </view>
+                  </view>
+                  <view class="wb33333 fl img-area">
+                    <view class="center" :style="'width:'+ newsWidth +'px; height:'+ newsWidth * 0.75 +'px; '">
+                      <image :src="item.picImgs[2] + '?x-oss-process=image/resize,m_fill,w_'+ newsWidth * 2 +',h_' + Math.ceil(newsWidth * 1.5)" :style="'width:'+ newsWidth +'px; height:'+ newsWidth * 0.75 +'px; '"/>
+                    </view>
+                  </view>
+                </view>
+                <view class="clear h20rpx"></view>
+                <view class="h40rpx lh40rpx Fblack-1 F14">
+                  <text class="fl"> {{ formatDate(item.date)}} </text>
+                </view>
+              </view>
+              <view class="clear1"></view>
+            </view>
+          </navigator>
+
+        </block>
+
+      </view>
+    </view>
+
+  </view>
+
+</view>

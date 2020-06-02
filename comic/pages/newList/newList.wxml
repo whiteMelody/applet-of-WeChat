@@ -1,0 +1,23 @@
+
+<view class="wb100">
+  <view class="wb100">
+
+    <view class="wb100" wx:for="{{datas}}" wx:key="{{index}}">
+      <view class="pal30">
+        <navigator url='/pages/lesson/lesson?channelID={{item.channelID}}'>
+          <view class="fl w250rpx h160rpx radius10 warpper-gray-3">
+              <image src="{{item.iconURL}}" class="radius10 w250rpx h160rpx" />
+          </view>
+          <view class="Fgray-3">
+            <view class="lh50rpx h50rpx text-over-hidden1 pal30 Fblack F28">升职攻略</view>
+            <view class="lh50rpx h50rpx text-over-hidden1 pal30 pat10 Fblack F28 Fgray-3">都市</view>
+            <view class="F24 lh50rpx h50rpx text-over-hidden1 pal30 Fgray-3">更新时间：2018-10-19</view>
+          </view>
+        </navigator>
+        <view class="clear1 bor-gray bor-solid-1b"></view>
+      </view>
+      <view class="clear1"></view>
+    </view>
+
+  </view>
+</view>

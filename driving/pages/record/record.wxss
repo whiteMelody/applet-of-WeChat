@@ -1,0 +1,64 @@
+.wrap,.circle,.percent{  
+    position: absolute;  
+    width: 250px;  
+    height: 250px;  
+    border-radius: 50%;  
+}  
+.wrap{  
+    top:25px;  
+    left:0;
+    right:0;
+    bottom:0;
+    margin: 0 auto;  
+    background-color: #ccc;  
+}  
+.circle{  
+    box-sizing: border-box;  
+    border:20px solid #ccc;  
+    clip:rect(0,250px,250px,125px);  
+}  
+.clip-auto{  
+    clip:rect(auto, auto, auto, auto);  
+}  
+.percent{  
+    box-sizing: border-box;  
+    top:-20px;  
+    left:-20px;  
+}  
+.left-success{  
+    transition:transform ease;  
+    border:20px solid #25b8ee;  
+    clip: rect(0,125px,250px,0);  
+    z-index: 99;
+}  
+.right-success{  
+    border:20px solid #25b8ee;  
+    clip: rect(0,250px,250px,125px);  
+    z-index: 99;
+}  
+
+.left-error{  
+    transition:transform ease;  
+    border:20px solid #f75760;  
+    clip: rect(0,125px,250px,0);  
+    z-index: 9;
+}  
+.right-error{  
+    border:20px solid #f75760;  
+    clip: rect(0,250px,250px,125px);  
+    z-index: 9;
+}  
+
+.wth0{  
+    width:0;  
+} 
+
+.info{
+    position: absolute;  
+    width:210px;
+    height: 210px;
+    background:#fff;
+    border-radius: 50%;  
+    top:20px;
+    left:20px;
+}

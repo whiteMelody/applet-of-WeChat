@@ -1,0 +1,34 @@
+<!--pages/preview/preview.wxml-->
+
+<view class="wb100 warpper-black relative" style='height:{{windowHeight - 20}}px'>
+
+   <view class="Fwhite text-center absolute wb100" style='top:8px; z-index:99;'>{{ index+1}}/{{imgList.length}}</view> 
+
+  <view class="wb100 relative" style='height:{{windowHeight - 20}}px;'>
+
+    <swiper class="wb100 relative" style='height:{{windowHeight - 20}}px;' current="{{index}}" bindchange='myChange'>
+  <block wx:for="{{imgList}}" wx:key="{{key}}">
+    <swiper-item>
+      <image src="{{item.img_path}}" class="slide-image" mode="aspectFit" style='width:100%; height:{{windowHeight - 20}}px'/>
+    </swiper-item>
+  </block>
+</swiper>
+
+  </view>
+
+  <view class="absolute wb100 pat15 pab15 text-center Fwhite" style='bottom: 0; z-index:99;'>
+    <view class="wb50 fl" bindtap="download">
+      <image class="w48rpx h48rpx center" src='/images/xzzp_ckzp.png'></image>
+      <view class='F24 lh50rpx'>
+        下载
+      </view>
+    </view>
+    <view class="wb50 fl" bindtap="original">
+      <image class="w48rpx h46rpx center" src='/images/yt_ckzp.png'></image>
+      <view class='F24 lh50rpx'>
+        原图
+      </view>
+    </view>
+  </view>
+
+</view>

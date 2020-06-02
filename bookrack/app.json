@@ -1,0 +1,41 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/cards/cards",
+        "pages/tags/tags",
+        "pages/search/search",
+        "pages/detail/detail",
+        "pages/new/new"
+    ],
+    "tabBar": {
+        "borderStyle": "black",
+        "backgroundColor": "#FFFFFF",
+        "selectedColor": "#409EFF",
+        "color": "#909399",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "书架",
+                "iconPath": "images/icon-index.png",
+                "selectedIconPath": "images/icon-index-active.png"
+            },
+            {
+                "pagePath": "pages/cards/cards",
+                "text": "读书笔记",
+                "iconPath": "images/icon-cards.png",
+                "selectedIconPath": "images/icon-cards-active.png"
+            },
+            {
+                "pagePath": "pages/tags/tags",
+                "text": "标签",
+                "iconPath": "images/icon-tags.png",
+                "selectedIconPath": "images/icon-tags-active.png"
+            }
+        ]
+    },
+    "window": {
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "书架",
+        "navigationBarTextStyle": "black"
+    }
+}

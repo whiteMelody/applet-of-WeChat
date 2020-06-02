@@ -1,0 +1,324 @@
+<!--pages/make/make.wxml-->
+
+<view class="wb100">
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+    </login-tag>
+
+<block wx:if="{{isUpload}}">
+
+    <view class="pal40 par40">
+      <text class='fl F24 lh40rpx Fgray-2'>正在上传{{plan}}%</text>
+      <text class='fr F24 lh40rpx Fgray-2'>上传中请勿关闭</text>
+
+      <view class="clear"></view>
+
+      <view class="h20rpx wb100 warpper-gray-4 radius20">
+        <view class="h20rpx fl warpper-green radius20" style='width:{{plan}}%'>
+
+        </view>
+      </view>
+    </view>
+
+    <view class="clear1"></view>
+
+  </block>
+
+
+  <view class="fixed h100rpx lh100rpx wb100" style='background: rgba(0,0,0,.7);z-index:99'>
+
+    <view class="pal40 Fwhite F32 fl" bindtap="back">
+      <image class="fl w18rpx h30rpx mat36" src='/images/fhsy_shape.png'></image>
+      <view class="fl mal15">首页</view>
+    </view>
+
+    <view class="fr par40 ">
+      <navigator url='../share/share?name={{name}}&cover={{cover}}&photo_id={{photo_id}}'>
+        <view class="Fwhite F30 radius30 warpper-green-4 w140rpx h60rpx lh60rpx text-center mat20 mal15">
+          <view class="w100rpx center">
+            <image class="fl w28rpx h28rpx mat16" src='/images/yq_jh.png'></image>
+            <view class="fl mal10">邀请</view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <navigator url='../member/member?cover={{cover}}'>
+      <block wx:for="{{users}}" wx:key="{{key}}">
+        <image class="radius50per w50rpx h50rpx fr warpper-green-4 mat25" style='margin-left: -10rpx' src='{{item.head}}'></image>
+      </block>
+    </navigator>
+
+  </view>
+
+  <view class="wb100">
+    <image class="wb100 h421rpx relative" bindtap="editCover" src='{{cover}}' mode='aspectFill'></image>
+    <view class="F54 h60rpx lh60rpx pal40 Fwhite relative" style='margin-top:-160rpx; z-index: 10' bindtap="showName">
+      <view class="fl">{{name}}</view>
+      <image class="fl w45rpx h45rpx mat10 mal15" wx:if="{{is_admin}}" src='/images/bjmc.png'></image>
+ <block wx:if="{{empty}}">
+      <navigator url='../home/home?name={{name}}&cover={{cover}}&photoid={{photo_id}}'>
+        <view class="fr w120rpx h70rpx warpper-white relative" style='border-radius: 100rpx 0px 0px 100rpx;margin-top:-160rpx；z-index: 20'>
+          <image class="radius50per w60rpx h60rpx mal5 mat5 fl" src='{{myHead}}'></image>
+          <image class="fl w18rpx h30rpx mal20 mat20" src='/images/shape_r.png'></image>
+        </view>
+      </navigator>
+    </block>
+      
+    </view>
+    <view class="F24 Fwhite pat30 pal40 fl relative" style=' z-index: 10'>{{mem_count}}个成员</view>
+    <view class="F24 Fwhite pat30 pal40 fl relative" style=' z-index: 10'>{{img_count}}张照片</view>
+
+   
+  </view>
+
+  <view class="clear1"></view>
+
+  <block wx:if="{{empty}}">
+    <view class="pa40">
+      <view class='wb100 text-left F32'>
+        <view class="fl" bindtap="select" data-type="{{0}}">
+          <block wx:if="{{type == 0}}">
+            <view class="Fgreen-2">时间轴</view>
+            <view class="w40rpx h5rpx warpper-green-4 center mat5"></view>
+          </block>
+          <block wx:if="{{type == 1}}">
+            <view class="Fgray-2">时间轴</view>
+          </block>
+        </view>
+        <view class="pal80 fl" bindtap="select" data-type="{{1}}">
+          <block wx:if="{{type == 0}}">
+            <view class="Fgray-2">照片墙</view>
+          </block>
+          <block wx:if="{{type == 1}}">
+            <view class="Fgreen-2">照片墙</view>
+            <view class="w40rpx h5rpx warpper-green-4 center mat5"></view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class="clear1"></view>
+
+    <block wx:if="{{type == 0}}">
+      <view class="wb100">
+        <block wx:for="{{timelineList}}" wx:key="{{key}}">
+          <view class="pal40 par40">
+            <view class="wb100 bor-solid-1l bor-gray">
+              <view class="pat15 absolute" style='z-index:9'>
+                <view class="warpper-green-4 radius50per w15rpx h15rpx fl" style='margin-left:-7rpx'></view>
+              </view>
+
+                <view class="pal20">
+
+                  <navigator url="../detail/detail?dynamic_id={{item.dynamic_id}}">
+
+                  <view class="w600rpx fl">
+                    <view class="F30">{{item.createtime}}</view>
+                    <view class="wb100 mat20">
+                      <image class="fl w60rpx h60rpx radius50per" src='{{item.user.head}}'></image>
+                      <view class="F30 fl h60rpx lh60rpx mal10 w500rpx text-over-hidden1">{{item.user.name}}</view>
+                    
+                      <view class="clear h10rpx"></view>
+                      <view class="F30 lh40rpx">{{item.emotion}}</view>
+                      <view class="clear h10rpx"></view>
+                      <block wx:if="{{item.location != ''}}">
+                        <view class="clear h15rpx"></view>
+                        <view class="F24 Fgray-2">
+                          <image class="w24rpx h28rpx fl mat5" src='/images/wz_2.png'></image>
+                          <view class="fl mal10">{{item.location}}</view>
+                        </view>
+                        <view class="clear h20rpx"></view>
+                      </block>
+                    </view>
+                  
+                   </view>
+
+                    </navigator>
+
+                     <view class="fr relative mat50 h50rpx w50rpx" wx:if="{{userID == item.user_id}}" bindtap="delete" data-imglist="{{item.images}}" data-dynamic_id="{{item.dynamic_id}}" data-photo_id="{{item.photo_id}}">
+                      <image src='/images/delete.png' style='width:36rpx;height:36rpx' class="mat10"></image>
+                    </view>
+
+
+                    <view class="clear"></view>
+
+                </view>
+
+              
+
+              <view class="pal15">
+                <block wx:for="{{item.images}}" wx:for-item="items" wx:key="" wx:key="{{key}}">
+                   <image class="w210rpx h210rpx fl mal5 mar5 mab5 mat5" src='{{items.img_path}}' bindtap="getImg" data-imglist="{{item.images}}" data-index="{{index}}" data-img="{{items.img_path}}"  mode="aspectFill"></image>
+                </block>
+              </view>
+              <view class="clear h40rpx"></view>
+              <view class="pal40 par40">
+
+                <image class="w40rpx h40rpx fl" src='/images/xz.png' bindtap="download" data-imglist="{{item.images}}"></image>
+                <image class="w40rpx h40rpx fl mal30 mar30" src='/images/tb.png' bindtap="sync" data-imglist="{{item.images}}"></image>
+
+                <button open-type="share" data-id="{{item.dynamic_id}}" class="w40rpx h40rpx fl mal30" style='margin:0; padding:0; line-height:40rpx; background:#fff;'>
+                  <image class="w40rpx h40rpx" src='/images/share.png'></image>
+                </button>
+
+                <!-- <navigator url='../join/join?dynamic_id={{item.dynamic_id}}'>
+
+                  <text class='fl'>前往详情页</text>
+
+                </navigator> -->
+
+                <view class="fr" bindtap="like" data-index="{{index}}" data-dynamic_id="{{item.dynamic_id}}" data-like_count="{{item.like_count}}" data-is_liked="{{item.is_liked}}">
+                  <block wx:if="{{item.is_liked != 0}}">
+                    <view class="fl F30 mar15 Fgreen-2 mat5">{{item.like_count}}</view>
+                    <image class="fr w40rpx h40rpx" src='/images/dz_pre.png'></image>
+                  </block>
+                  <block wx:else>
+                    <view class="fl F30 mar15 mat5 Fgray-3">{{item.like_count}}</view>
+                    <image class="fr w40rpx h40rpx" src='/images/dz_nor.png'></image>
+                  </block>
+                </view>
+              </view>
+              <view class="clear"></view>
+              
+              <view class="pa20" wx:if="{{allow_comment !=0 && allow_comment !='0'}}">
+               <block wx:for="{{item.comments}}" wx:key="{{index2}}" wx:for-item="item2" wx:for-index="index2">
+     
+              <block wx:if="{{item2.atuser_info.length == 0}}">
+                <view class="wb100 F32 lh50rpx" style='overflow-wrap: break-word;' data-id="{{item.dynamic_id}}" data-index="{{index}}" bindtap='reply' data-userID='{{item2.user_info.user_id}}' data-userName='{{item2.user_info.name}}' data-commentId='{{item2.comment_id}}'>
+                {{item2.user_info.name}}：<text class="Fgray-2">{{item2.content}}</text>
+                </view>  
+              </block>
+
+              <block wx:else>
+    <view class="wb100 F32 lh50rpx" style='overflow-wrap: break-word;' data-id="{{item.dynamic_id}}" data-index="{{index}}" bindtap='reply' data-userID='{{item2.user_info.user_id}}' data-userName='{{item.user.name}}' data-commentId='{{item2.comment_id}}'>
+               {{item2.user_info.name}}<text class="Fgray-2">回复</text>{{item2.atuser_info.name}}：<text class="Fgray-2">{{item2.content}}</text>
+              </view>  
+
+              </block>
+
+            </block>
+
+              <view class="clear"></view>
+            <!-- 查看全部  -->
+              <navigator url="../detail/detail?dynamic_id={{item.dynamic_id}}">
+                <view class="Fgray-2 lh30rpx mat20 F28" wx:if="{{item.cmnt_count>3}}"> 查看所有{{item.cmnt_count}}条评论 > </view>
+              </navigator>
+              <view class="clear"></view>
+            </view>
+
+              <!-- <view class="clear h20rpx"></view> -->
+              <view class="pa20" bindtap='comment' wx:if="{{allow_comment !=0 && allow_comment !='0'}}"  data-id="{{item.dynamic_id}}" data-index="{{index}}">
+                <!-- <input placeholder="说点什么吧" bindinput="bindinput" class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30" /> -->
+                <view class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 Fgray-2">说点什么吧</view>
+              </view>
+
+              <view class="clear h60rpx"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- 照片墙 -->
+    <block wx:if="{{type == 1}}">
+
+      <view class="wb100">
+        <block wx:for="{{wallList}}" wx:key="{{key}}">
+          <view class="wb100">
+            <view class="pal30 par30">
+              <view class="F36 pal10">{{item.day}}</view>
+              <block wx:for="{{item.images}}" wx:for-item="items" wx:key="" wx:key="{{key}}">
+
+              <image class="w210rpx h210rpx fl mal5 mar5 mab5 mat5" src='{{items.img_path}}' bindtap="getImg" data-index="{{index}}" data-imglist="{{item.images}}" data-img="{{items.img_path}}"  mode="aspectFill"></image>
+
+                <!-- <image class="w210rpx h210rpx fl  mal10 mar10 mab10 mat10" src='{{items.img_path}}' bindtap="getImg" data-imglist="{{item.images}}" data-img="{{items.img_path}}"></image>  -->
+
+                <!-- <view class="w210rpx h210rpx fl mal5 mar5 mab5 mat5" style='background:url({{items.img_path}});background-repeat: no-repeat;background-position:center center' bindtap="getImg" data-imglist="{{item.images}}" data-img="{{items.img_path}}"></view> -->
+              </block>
+              <view class="clear1"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+    </block>
+  </block>
+
+  <block wx:else>
+    <view class='clear h120rpx'></view>
+    <view class="w244rpx center">
+      <image class="w244rpx h190rpx" src='/images/wu.png'></image>
+    </view>
+    <view class="pa30">
+      <view class="text-center F36 Fgray-2">还没有任何照片哦，快去上传吧</view>
+    </view>
+  </block>
+
+
+
+  <view class="clear h120rpx"></view>
+
+  <view class="wb100 fixed h120rpx lh120rpx warpper-white" style='bottom:0;z-index:99'>
+
+    <view class="fl F28 pal40">
+      <navigator url='../set/set?is_admin={{is_admin}}&photo_id={{photo_id}}&mem_count={{mem_count}}&name={{name}}&cover={{cover}}'>
+        <!-- <view class="fl w45rpx h45rpx warpper-gray-1 mat40"></view> -->
+        <image class="fl w45rpx h45rpx mat38" src='/images/sz.png'></image>
+        <view class="fl mal20">相册设置</view>
+      </navigator>
+    </view>
+
+    <navigator url='../upload/upload'>
+      <view class="fr F36 par40">
+        <view class="w300rpx h80rpx lh80rpx text-center warpper-green-4 Fwhite mat20 radius50">上传照片</view>
+      </view>
+    </navigator>
+
+  </view>
+
+  <block wx:if="{{albumName}}">
+    <view class="dialogBg"></view>
+    <view class="fixed warpper-white w560rpx h350rpx radius10 center" style='top:400rpx;left:0;right:0;z-index:999'>
+      <view class="F36 pat30 text-center">修改相册名称</view>
+      <view class="pal60 par60 pat40">
+        <view class="wb100 bor-solid-1b bor-gray">
+          <input type="text" maxlength="9" placeholder="" value="{{name}}" bindinput="bindKeyInput" class="h70rpx lh70rpx F30 fl" />
+          <view class="fr h70rpx lh70rpx F30 Fgray-2">{{length}}/9</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+      <view class="pal60 par60 pat40 text-center F30">
+        <view class="fl w180rpx h60rpx lh60rpx warpper-gray-7 Fwhite radius30" bindtap="cancelName">取消</view>
+        <view class="fr w180rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30" bindtap="setName">确定</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{isReply}}">
+      <view class="dialogBg" bindtap="setReply" data-value='false'></view>
+      <view class="fixed warpper-white radius10 center" style='bottom:{{inputHeight}}px; left:0; z-index:999; width:750rpx; height:120rpx;'>
+        <view class="pa30">
+     
+          <input placeholder="回复{{ReplyVal.userName}}：" bindfocus="inputFocus" focus="true" bindblur="replyBlur" bindinput="replyInput" style='width:470rpx' class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 fl" /> 
+          <view class="fr w150rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30 text-center" bindtap="setReply" data-value='true'>发送</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </block>
+
+
+    <block wx:if="{{isComment}}">
+      <view class="dialogBg" bindtap="setComment" data-value='false'></view>
+      <view class="fixed warpper-white radius10 center" style='bottom:{{inputHeight}}px; left:0; z-index:999; width:750rpx; height:120rpx;'>
+        <view class="pa30">
+          <input placeholder="说点什么吧" bindfocus="inputFocus" focus="true" bindblur="inputBlur" bindinput="commentInput" style='width:470rpx' class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 fl" /> 
+          <view class="fr w150rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30 text-center" bindtap="setComment" data-value='true'>发送</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </block>
+
+</view>

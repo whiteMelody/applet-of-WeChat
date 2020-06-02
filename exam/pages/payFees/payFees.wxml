@@ -1,0 +1,366 @@
+<!--pages/payFees/payFees.wxml-->
+<view class="wb100 warpper-gray-3" style='min-height: {{height}}px'>
+
+ <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+  </login-tag>
+
+  <block wx:if="{{showHelp}}">
+    <view class="warpper-white fixed" style='z-index:99999; width:100%; height:100%; left:0; top:0;'>
+        <view class='w100rpx h30rpx lh30rpx Fblue F28 absolute' bindtap='closeHelp' style='top:30rpx; left:30rpx;'>
+          <image src='/images/icon-back.png' class='fl' style='width:14rpx; height:26rpx; margin:2rpx 10rpx;'></image> 返回
+        </view>
+
+        <view class="wb100 F32 Fgreen h90rpx lh90rpx text-center bor-solid-1b bor-gray">
+          支付宝支付方式操作帮助
+        </view>
+
+        <view class="clear1"></view>
+
+        <view class="wb100 F28 Fblack text-center lh50rpx">
+          <scroll-view
+              scroll-y
+              style='height: {{height - 60}}px'
+            >
+
+            <view class="w600rpx center" bindtap='saveImg'>
+              第一步：保存学校收款二维码到手机相册<text class='Fred'>（点击下方二维码保存）</text>。
+            </view>
+
+            <image src='/images/alipay-img.jpg' style='width:600rpx; height:900rpx;' bindtap='saveImg'></image>
+
+            <view class='clear1'></view>
+
+            <view class="w600rpx center">
+              第二步：打开支付宝手机APP。
+            </view>
+
+            <image src='/images/help2.jpg' style='width:600rpx; height:1067rpx;'></image>
+
+            <view class='clear1'></view>
+
+            <view class="w600rpx center">
+              第三步：打开支付宝APP里的“扫一扫”功能。选择相册里刚刚保存的 收款码。
+            </view>
+
+            <image src='/images/help3.jpg' style='width:600rpx; height:1067rpx;'></image>
+
+            <view class='clear1'></view>
+
+
+            <view class="w600rpx center">
+              第四步：等待手机识别收款码后，<text class='Fred'>一定要检查识别后显示的收款方（成都指南针职业技术学校），</text>确认无误后，输入需要支付金额，完成后续操作，等待老师确认。
+            </view>
+
+            <image src='/images/help4.jpg' style='width:600rpx; height:1067rpx;'></image>
+
+            <view class='clear1'></view>
+
+           </scroll-view>
+
+        </view>
+        
+    </view>
+  
+  </block>
+
+  <block wx:if="{{showAlipay}}">
+    <view class="dialogBg" bindtap='closeAliPay'></view>
+
+    <view class="center warpper-white pa50 fixed" style='z-index:999; margin:auto; width:400rpx; height:800rpx; left:0; right:0; bottom:0; top:0;'>
+      <image src='/images/alipay-img.jpg' style='width:400rpx; height:600rpx;'></image>
+
+      <view class='clear h20rpx'></view>
+
+      <view class="wb100 h80rpx lh80rpx radius20 warpper-blue Fwhite text-center F32 center" bindtap='saveImg'>
+        保存二维码
+      </view>
+
+      <view class='clear h20rpx'></view>
+      
+      <view class="wb100 h80rpx lh80rpx radius20 warpper-green Fwhite text-center F32 center" bindtap='openHelp'>
+        查看教程
+      </view>
+    </view>
+
+   
+  </block>
+
+  <block wx:if="{{step == 0}}">
+
+    <view class="clear h50rpx"></view>
+ 
+    <view class="w550rpx center warpper-white pa50">
+
+      <view class="wb100 text-center F32 Fgray-3">
+        填写基本资料
+      </view>
+
+      <view class="clear1"></view>
+      
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          学生姓名:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="name" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          学生性别:
+        </view>
+        <view class="w350rpx fl mal20">
+          <view class="wb100 Fgray-3 lh50rpx F28 ">
+            <view class="wb40 fl" bindtap='changeSex' data-value="M">
+              男
+              <image src='{{ userInfo.sex == "M" ? "/images/radio-on.png" : "/images/radio.png" }}' class='h40rpx w40rpx fr mat5' ></image>
+            </view>
+            <view class="wb40 fr" bindtap='changeSex' data-value="F">
+              女
+              <image src='{{ userInfo.sex == "F" ? "/images/radio-on.png" : "/images/radio.png" }}' class='h40rpx w40rpx fr mat5' ></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          身份证:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='idcard' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="idcard" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          毕业学校:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="graduation" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          班级:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="class" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          父母:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="parent" />
+        </view>
+      </view>
+      
+      <view class="clear1"></view>
+      
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          手机号:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='number' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="tel" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          QQ:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="qq" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          微信:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="wechat" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          联系地址:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="address" />
+        </view>
+      </view>
+
+      <view class="clear1"></view>
+      <view class="clear1"></view>
+
+      <view class="w200rpx h80rpx lh80rpx radius20 warpper-yellow Fwhite text-center F32 center" bindtap='nextStep'>
+        下一步
+      </view>
+
+      <view class="clear"></view>
+
+    </view>
+
+  </block>
+
+  <block wx:if="{{step == 1}}">
+
+    <view class="clear h50rpx"></view>
+    <!-- 基本信息 -->
+    <view class="w550rpx center warpper-white pa50">
+      <view class="wb100 text-center F32 lh40rpx Fgray-3 relative">
+
+        <view class='w100rpx h30rpx lh30rpx Fgray-3 F28 absolute' bindtap='backStep' style='top:0rpx; left:0rpx;'>
+          <image src='/images/shape_l.png' class='fl' style='width:18rpx; height:30rpx;'></image> 修改
+        </view>
+
+        基本资料
+      </view>
+      <view class="clear1"></view>
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          学生姓名:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='text' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="name" value="{{userInfo.name}}" />
+        </view>
+      </view>
+      <view class="clear1"></view>
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          身份证:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='idcard' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="idcard" value="{{userInfo.idcard}}" />
+        </view>
+      </view>
+      <view class="clear1"></view>
+      <view class="lh50rpx mab10 Fgray-3 F28">
+        <view class="fl h50rpx lh50rpx w140rpx">
+          手机号:
+        </view>
+        <view class="w350rpx fl mal20">
+          <input type='number' class='my-input' style='width:350rpx' bindinput='inputChange2' data-name="tel" value="{{userInfo.tel}}"  />
+        </view>
+      </view>
+      <view class="clear"></view>
+    </view>
+
+    <!-- 其他 -->
+
+    <view class="clear1"></view>
+    
+    <view class="w600rpx center warpper-white pa25">
+
+      <block wx:for="{{[300, 500, 1000, 1500, 2000]}}" wx:key="{{index}}">
+
+        <block wx:if="{{money == item}}">
+         <view class='w168rpx fl h100rpx pat10 pab10 lh50rpx pa1 warpper-orange radius10 text-center ma15'>
+            <view class='wb100 F30 Fwhite'>
+              {{item}}元
+            </view>
+            <view class="wb100 F24 Fwhite">
+              预交费金额
+            </view>
+          </view>
+        </block>
+        
+        <block wx:else>
+          <view class='w168rpx fl h100rpx pat10 pab10 lh50rpx bor-gray bor-solid-1a radius10 text-center ma15' bindtap='changeMoney' data-value="{{item}}">
+            <view class='wb100 F30 Forange'>
+              {{item}}元
+            </view>
+            <view class="wb100 F24 Fgray-2">
+              预交费金额
+            </view>
+          </view>
+        </block>
+
+        <block wx:if="{{index % 3 == 2}}">
+          <view class='clear'></view>
+        </block>
+
+      </block>
+
+      <view class='w168rpx fl h100rpx pat10 pab10 lh50rpx bor-gray bor-solid-1a radius10 text-center ma15'>
+        <view class='wb100 F28 Fgray-3'>
+          其他金额
+        </view>
+        <view class="wb100 F24 Fgray-2">
+          <input type='digit' class='my-input center' style='width:100rpx; padding:0; height:30rpx; line-height:30rpx; color:#f28e63;' bindinput='moneyChange' value="{{money}}" />
+        </view>
+      </view>
+
+      <view class='clear'></view>
+
+      <view class='wb100 warpper-white F32 Fgray-3'>
+        <view class="pa30 bor-gray bor-solid-1b h40rpx lh40rpx">支付方式</view>
+
+        <view class="pa30 lh40rpx F28" bindtap='changePayType' data-value="wepay">
+          <view class="w60rpx h60rpx fl">
+            <image src='/images/wxpay.png' class='w60rpx h60rpx'></image>
+          </view>
+          <view class="w100rpx fl h60rpx lh60rpx mal20">
+            微信
+          </view>
+          <view class="wb40 fr">
+            <image src='{{ payType == "wepay" ? "/images/radio-on.png" : "/images/radio.png" }}' class='h40rpx w40rpx fr mat5'></image>
+          </view>
+          <view class='clear'></view>
+        </view>
+        
+        <view class='clear bor-gray bor-solid-1b'></view>
+
+        <view class="pa30 lh40rpx F28" bindtap='changePayType' data-value="alipay">
+          <view class="w60rpx h60rpx fl">
+            <image src='/images/alipay.png' class='w60rpx h60rpx'></image>
+          </view>
+          <view class="w100rpx fl h60rpx lh60rpx mal20">
+            支付宝
+          </view>
+          <view class="wb40 fr">
+            <image src='{{  payType == "alipay" ? "/images/radio-on.png" : "/images/radio.png" }}' class='h40rpx w40rpx fr mat5' ></image>
+          </view>
+          <view class='clear'></view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class='clear1'></view>
+    
+    <view class="w400rpx h100rpx lh100rpx radius20 warpper-yellow Fwhite text-center F32 center" bindtap='pay'>
+      确认支付
+    </view>
+
+  </block>
+
+</view>

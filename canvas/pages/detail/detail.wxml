@@ -1,0 +1,92 @@
+<view class="pa30">
+  <view class="wb40 warpper-white fl">
+    <view class="wb100 relative text-center">
+      <image src="{{imgUrl}}" mode="aspectFit" bindload="loaded" class="{{load1}}" style="-webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8; width:100%;"></image>
+
+      <image src="../../image/loading.png" mode="aspectFit" class="{{load2}}" style="-webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8; width:100%;"></image>
+      
+
+    </view>
+  </view>
+  <view class="wb55 fr F28">
+    <view class="wb100">
+      <view class="wb100">
+        <view class="F30 Fb lh40rpx h40rpx fl">
+          <image src="../../image/icon-unlike.png" class="h40rpx w40rpx fl mar15"></image>
+          {{count2}}
+        </view>
+        <view class="wb60 fr lh40rpx">
+          <view class="wb60">
+            <view class="btn" bindtap="like" data-type="1" wx:if="{{isLike == 0}}" style="height:40rpx; line-height:40rpx; font-size:26rpx;">点赞</view>
+            <view class="btn2" bindtap="like" data-type="2" wx:if="{{isLike == 1}}" style="height:40rpx; line-height:40rpx; font-size:26rpx;">取消点赞</view>
+          </view>
+        </view>
+      </view>
+      <view class="clear h55rpx"></view>
+      <view class="wb100">
+        <view class="F30 Fb lh40rpx h40rpx fl">
+          <image src="../../image/icon-author.png" class="h40rpx w40rpx fl mar15"></image>
+          作者
+        </view>
+        <view class="wb60 fr lh40rpx">
+          {{ author == '' ? '匿名': author}}
+        </view>
+      </view>
+      <view class="clear h55rpx"></view>
+      <view class="wb100">
+        <view class="F30 Fb lh40rpx h40rpx fl">
+          <image src="../../image/icon-title.png" class="h40rpx w40rpx fl mar15"></image>
+          标题
+        </view>`
+        <view class="wb60 fr lh40rpx">
+          {{ title == '' ? '无题': title}}
+        </view>
+      </view>
+      <view class="clear h55rpx"></view>
+      <view class="wb100">
+        <view class="F30 Fb lh40rpx h40rpx fl">
+          <image src="../../image/icon-fav2.png" class="h40rpx w40rpx fl mar15"></image>
+          收藏
+        </view>
+        <view class="wb60 fr lh40rpx">
+          {{count}}
+        </view>
+      </view>
+      <view class="clear h55rpx"></view>
+      <view class="wb100">
+        <view class="F30 Fb lh40rpx h40rpx fl">
+          <image src="../../image/icon-tag.png" class="h40rpx w40rpx fl mar15"></image>
+          标签
+        </view>
+        <view class="wb60 fr lh40rpx">
+          {{ tag == '' ? '暂无标签': tag}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="clear h55rpx"></view>
+  <view class="wb100">
+    <view class="F30 Fb lh40rpx h40rpx fl">
+      <image src="../../image/icon-content.png" class="h40rpx w40rpx fl mar15"></image>
+      简介
+    </view>
+    <view class="wb75 fr lh40rpx F28">
+      {{ content == '' ? '此人很懒，什么都没有写': content}}
+    </view>
+  </view>
+</view>
+<view class="pa50 F30 Fgray-3">
+  <view class="clear h55rpx"></view>
+  <view class="clear h55rpx"></view>
+  <view class="btn2" bindtap="showImg">发送给好友</view>
+  <view class="clear h40rpx"></view>
+  <block wx:if="{{my === true}}">
+    <view class="btn2" bindtap="del">删除</view>
+    <view class="clear h40rpx"></view>
+    <view class="btn" bindtap="publish" wx:if="{{isOpen == 0}}">发布</view>
+  </block>
+  <block wx:if="{{my === false}}">
+    <view class="btn" bindtap="fav" data-type="1" wx:if="{{isFav == 0}}">添加到收藏</view>
+    <view class="btn2" bindtap="fav" data-type="2" wx:else>取消收藏</view>
+  </block>
+</view>

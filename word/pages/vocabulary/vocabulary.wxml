@@ -1,0 +1,146 @@
+<!--pages/vocabulary/vocabulary.wxml-->
+<view class="wb100">
+
+  <view class="wb100 h88rpx lh88rpx warpper-white">
+    <view class="pal30 par30 Fgray-3">
+      <view class="F36 fl" bindtap="back">退出</view>
+      <view class="w480rpx pat40 fl mal30">
+        <view class="warpper-gray-8 h14rpx radius50 over-hidden">
+          <view class="warpper-blue-12 h14rpx" style='width:{{width}}%'></view>
+        </view>
+      </view>
+      <view class="F30 fr">
+        <text>{{rememberNum}}</text>
+        <text>/</text>
+        <text>{{wordNum}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="clear h40rpx"></view>
+
+  <view class="pal30 par30">
+    <view class="wb100 h160rpx warpper-white radius10 box-shadow-gray4">
+      <view class="pa30">
+        <view class="fl">
+          <view class="F30 Fgray-3">选择单词的意思</view>
+          <view class="F48 text-over-hidden1 w560rpx">{{explain}}</view>
+        </view>
+        <!-- <image class="fr w50rpx h50rpx mat25" bindtap="play" src='/images/lb.png'></image> -->
+      </view>
+    </view>
+    <view class="clear h60rpx"></view>
+
+    <block wx:for="{{explainList}}" wx:key="">
+      <view class="wb100 h120rpx lh120rpx warpper-white bor-solid-1a bor-gray2 radius10 text-over-hidden1" bindtap="select" data-word="{{item.word}}" data-index="{{index}}">
+
+        <view class="pal30">
+          <!-- 选项A -->
+          <block wx:if="{{index == 0}}">
+            <block wx:if="{{item.select == 0}}">
+              <text class="F44">A</text>
+            </block>
+            <block wx:if="{{item.select == 1}}">
+              <text class="F44 Fgreen-3">A</text>
+            </block>
+            <block wx:if="{{item.select == 2}}">
+              <text class="F44 Fred-4">A</text>
+            </block>
+          </block>
+          <!-- 选项B -->
+          <block wx:if="{{index == 1}}">
+            <block wx:if="{{item.select == 0}}">
+              <text class="F44">B</text>
+            </block>
+            <block wx:if="{{item.select == 1}}">
+              <text class="F44 Fgreen-3">B</text>
+            </block>
+            <block wx:if="{{item.select == 2}}">
+              <text class="F44 Fred-4">B</text>
+            </block>
+          </block>
+          <!-- 选项C -->
+          <block wx:if="{{index == 2}}">
+            <block wx:if="{{item.select == 0}}">
+              <text class="F44">C</text>
+            </block>
+            <block wx:if="{{item.select == 1}}">
+              <text class="F44 Fgreen-3">C</text>
+            </block>
+            <block wx:if="{{item.select == 2}}">
+              <text class="F44 Fred-4">C</text>
+            </block>
+          </block>
+          <!-- 选项D -->
+          <block wx:if="{{index == 3}}">
+            <block wx:if="{{item.select == 0}}">
+              <text class="F44">D</text>
+            </block>
+            <block wx:if="{{item.select == 1}}">
+              <text class="F44 Fgreen-3">D</text>
+            </block>
+            <block wx:if="{{item.select == 2}}">
+              <text class="F44 Fred-4">D</text>
+            </block>
+          </block>
+
+          <block wx:if="{{item.select == 0}}">
+            <text class="F36 mal40">{{item.word}}</text>
+          </block>
+          <block wx:if="{{item.select == 1}}">
+            <text class="F36 mal40 Fgreen-3">{{item.word}}</text>
+          </block>
+          <block wx:if="{{item.select == 2}}">
+            <text class="F36 mal40 Fred-4">{{item.word}}</text>
+          </block>
+
+
+        </view>
+
+      </view>
+      <view class="clear h30rpx"></view>
+    </block>
+
+  </view>
+
+  <view class="clear"></view>
+
+  <block wx:if="{{chance == 0}}">
+    <view class="wb100 warpper-white absolute" style='bottom:0'>
+      <view class="pa24 F30 bor-solid-1b bor-gray2">
+        <view>正确答案：</view>
+        <view>
+          <text>{{word}}</text>
+          <text class="mal20">{{explain}}</text>
+        </view>
+      </view>
+      <view class="wb100 F36 text-center h100rpx lh100rpx Fblue-6" bindtap="next">记住了，下一个</view>
+    </view>
+  </block>
+
+  <block wx:if="{{end}}">
+    <view class="dialogBg">
+      <view class="w600rpx h900rpx warpper-white absolute vertical-center radius20">
+        <view class="wb100 h300rpx bor-solid-1b bor-gray2 text-center">
+          <view class="clear h70rpx"></view>
+          <view class="F30">词汇强化得分</view>
+          <view class="F100 Fgreen-3">{{score}}</view>
+        </view>
+        <view class="pa30">
+          <view class="F24 Fgray-3">我的错词</view>
+          <view class="clear h30rpx"></view>
+          
+          <scroll-view scroll-y class="wb100 h300rpx">
+            <block wx:for="{{errorList}}" wx:key="">
+              <view class="F36">{{item.word}}</view>
+              <view class="F30 Fgray-3">{{item.explain}}</view>
+              <view class="clear h40rpx"></view>
+            </block>
+          </scroll-view>
+
+          <view class="w540rpx h88rpx lh88rpx text-center warpper-blue-12 Fwhite radius50 absolute F36" style='bottom:30rpx' bindtap="back">返回</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>

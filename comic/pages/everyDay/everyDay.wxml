@@ -1,0 +1,3 @@
+<!--pages/everyDay/everyDay.wxml-->
+
+<web-view src="https://h5.7english.cn:444/new/every_day_wx.html?date={{date}}"></web-view>

@@ -1,0 +1,188 @@
+
+<view class="wb100" wx:if="{{sysVerify == true}}">
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+  </login-tag>
+
+  <view class="wb100 warpper-gray-1">
+
+    <!--搜索框-->
+    <view class="pa15 warpper-white">
+      <block wx:if="{{search === false}}">
+        <view class="wb100 center h60rpx lh60rpx radius10 warpper-white text-center F30 Fgray-2 bor-gray bor-solid-1a" bindtap="openSearch">
+          <view class="w110rpx center h60rpx lh60rpx">
+            搜索
+            <image src="../../image/icon-search.png" class="fr mat15" style="width:30rpx;height:30rpx; "></image>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="wb90 fl h60rpx lh60rpx radius10 warpper-white F30 Fgray-2 bor-gray bor-solid-1a">
+          <image src="../../image/icon-search.png" class="fl ma15" style="width:30rpx;height:30rpx; "></image>
+          <input class="fl wb90 h60rpx lh60rpx Fgray-2 text-left" bindinput="eInput" bindconfirm="toSearch" focus/>
+        </view>
+        <view class="fr F30 Fblue lh60rpx h60rpx" bindtap="toSearch">搜索</view>
+      </block>
+      <view class="clear"></view>
+    </view>
+
+    <!--导航-->
+    <!-- <view class="pa15 warpper-white">
+      <view class="wb100 pat15 pab15">
+        <navigator url="../search/search?type=1">
+          <view class="nav active">
+            <view class="h50rpx">
+              <image src="../../image/icon-type-on.png" style="width:45rpx;height:49rpx;"></image>
+            </view>
+            <view class="F24 lh50rpx">涂鸦</view>
+          </view>
+        </navigator>
+        <navigator url="../drawRoom/drawRoom">
+          <view class="nav active">
+            <view style="border-left:5rpx solid #f0f0f0;">
+              <view class="h50rpx">
+                <image src="../../image/icon-type2-on.png" style="width:52rpx;height:50rpx;"></image>
+              </view>
+              <view class="F24 lh50rpx">签名</view>
+            </view>
+          </view>
+        </navigator>
+        <view class="clear"></view>
+      </view>
+    </view> -->
+    <!-- <view class="clear1"></view> -->
+
+    <!--人气榜-->
+    <view class="wb100">
+      <!-- <view class="pa15 warpper-white">
+        <view class="F30 h50rpx lh50rpx">
+          <image src="../../image/icon-hot.png" class="fl h40rpx w40rpx mat5"></image>
+          人气榜
+        </view>
+      </view> -->
+
+      <view class="wb100">
+        <view class="clear h30rpx"></view>
+
+        <view class="wb40 center F32 text-center">
+          <view class='fl'>
+            <block wx:if="{{orderType == 1}}">
+              <text class='pab10' style='color:#F36346; border-bottom:4rpx solid #F36346'>最新作品</text>
+            </block>
+
+            <block wx:if="{{orderType != 1}}">
+              <text style='color:#404040;' bindtap='changeType' data-value='1'>最新作品</text>
+            </block>
+          </view>
+
+          <view class='fr'>
+
+            <block wx:if="{{orderType == 1}}">
+              <text style='color:#404040;' bindtap='changeType' data-value='2'>人气作品</text>
+            </block>
+
+            <block wx:if="{{orderType != 1}}">
+              <text class='pab10' style='color:#F36346; border-bottom:4rpx solid #F36346'>人气作品</text>
+            </block>
+          </view>
+        
+        </view>
+        
+        <view class="clear h30rpx"></view>
+
+      </view>
+
+      <view class="clear"></view>
+      <block wx:for="{{datas}}" wx:key="this" wx:if="{{empty === false}}">
+        <navigator url="../detail/detail?id={{item.id}}">
+          <view style="width:{{width2}}px;height:{{width2*1.64 + height2*2 + 5}}px; margin:{{margin}}px 0 0 {{margin}}px; -webkit-box-shadow:0px 0px 5px #d8d8d8;-moz-box-shadow:0px 0px 5px #d8d8d8;box-shadow:0px 0px 5px #d8d8d8; " class="fl relative warpper-white radius10 over-hidden">
+            <image src="{{item.preview_url}}" style="width:{{width2 - 10}}px;height:{{width2 * 1.64 - 10}}px; margin:5px"></image>
+        
+            <view class="wb100 F30 Fgray-3">
+              <image src="{{item.head == '' ? '../../image/icon-author.png' : item.head}}" style="width:{{height2}}px;height:{{height2}}px;" class="radius50per fl mal15 mar15"></image>
+              <view style="height:{{height2}}px;line-height:{{height2}}px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.nickname == '' ? '匿名': item.nickname}}</view>
+            </view>
+            <view class="F24 Fgray-2 pal15 par15">
+              <view style="height:{{height2}}px;line-height:{{height2}}px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;">{{ item.title == '' ? '无题': item.title}}</view>
+            </view>
+            <view class="fav">
+              <image src="../../image/icon-fav.png" style="width:22rpx;height:20rpx;"></image>
+              <view class="F20 lh20rpx h20rpx fr mal5">{{item.like_number}}</view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <block wx:if="{{empty === true}}">
+        <view class="pa30 text-center">
+          <image src="../../image/none-data.png" mode="aspectFit" style=" width:140rpx; height:140rpx;"></image>
+          <view class="h80rpx lh80rpx Fgray-3 F30">暂无数据</view>
+        </view>
+      </block>
+      <view class="clear1"></view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+
+</view>
+  
+<tab-bar selected='0' wx:if="{{sysVerify}}"></tab-bar>
+
+<loading hidden="{{hidden}}">
+  数据加载中...
+</loading>
+
+<view class="wb100" wx:if="{{sysVerify == false}}">
+
+  <!-- 切换颜色 -->
+  <view class="wb100 h80rpx pat10 pab10">
+    <view class="pal30 par30 over-scroll">
+      <view style="width: {{110 * colors.length}}rpx">
+        <block wx:for="{{ colors }}" wx:key="{{index}}">
+          <view class="warpper-white box-shadow-gray3 radius10 fl mar30 w80rpx over-hidden mab10">
+            <view class='wb100'>
+              <view class='w80rpx h80rpx' style="background-color:#{{item.color}};" data-color="#{{item.color}}" data-index="{{index}}" bindtap="changeColor">
+                 <image src="/image/select.png" hidden="{{!item.select}}" style=" width:24rpx; height:14rpx; position:absolute; left:0; right:0; bottom:0; top:0; margin:auto;"></image>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+   <canvas canvas-id="myCanvas" style="height:{{draws.height}}rpx; width:750rpx; background-color:#dedede" disable-scroll="false" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+    </canvas>
+
+  <!-- 操作按钮 -->
+
+  <view class="wb100 h120rpx Fwhite" style='background-color: #2d3740;'>
+
+      <view class="wb33 fl text-center pat20" bindtap="prev">
+        <image src="../../image/icon-prev.png" style=" width:40rpx; height:40rpx;"></image>
+        <view class="wb100 F24">
+          撤销
+        </view>
+      </view>
+
+      <view class="wb33 fl text-center pat20" bindtap="next">
+        <image src="../../image/icon-next.png" style=" width:40rpx; height:40rpx;"></image>
+        <view class="wb100 F24">
+          恢复
+        </view>
+      </view>
+
+      <view class="wb33 fl text-center pat20" bindtap="clear">
+        <image src="../../image/icon-clear.png" style=" width:40rpx; height:40rpx;"></image>
+        <view class="wb100 F24">
+          重画
+        </view>
+      </view>
+      
+  </view>
+
+</view>
+
+

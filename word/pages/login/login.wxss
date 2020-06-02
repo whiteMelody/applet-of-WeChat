@@ -1,0 +1,42 @@
+.login-btn{
+  height: 80rpx;
+  line-height: 80rpx;
+  background:#fff;
+  background-color:#fff;
+  border:none;
+  width:100%;
+  text-align: center;
+  font-size: 36rpx;
+  color: #007AFF;
+  position:static;
+  border-radius:40rpx;
+}
+
+.login-dis{
+  height: 80rpx;
+  line-height: 80rpx;
+  background:#fff;
+  background-color:#fff;
+  border:none;
+  width:100%;
+  text-align: center;
+  font-size: 36rpx;
+  color: #999;
+  position:static;
+  border-radius:40rpx;
+}
+
+
+.dialogBg{ background: rgba(0,0,0,.5); width: 100%; height: 100%; position: fixed; z-index: 999; top:0; left:0; }
+
+.pa15{
+  padding:15rpx
+}
+.pa30{
+  padding:30rpx
+}
+.wb100{
+  width:100%
+}
+
+.clear1{ clear: both; height: 15rpx;}

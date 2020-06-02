@@ -1,0 +1,17 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/wealth/wealth",
+        "pages/wealthMy/wealthMy",
+        "pages/wealthDone/wealthDone",
+        "pages/wealthGod/wealthGod",
+        "pages/wish/wish",
+        "pages/wish2/wish2"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#c82a2c",
+        "navigationBarTitleText": "财神拜年",
+        "navigationBarTextStyle": "white"
+    }
+}

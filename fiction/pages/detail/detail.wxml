@@ -1,0 +1,95 @@
+<!--pages/detail/detail.wxml-->
+<view class="wb100">
+
+  <!-- download -->
+  <view class='wb100' hidden='{{!showDownload}}'>
+    <view class="dialogBg" bindtap="closeDownload"></view>
+    <view style='top:0; bottom:0; right:0; left:0; margin:auto; position:fixed; border-radius:5rpx; z-index:9999; width:550rpx; height:380rpx; background-color:#ffffff; '>
+      <view class="clear1"></view>
+      <view style='font-size:36rpx; text-align: center; color:#333;'>温馨提示</view>
+      <view class="clear1"></view>
+      <view style='text-align: center; color:#aaa; font-size:28rpx; line-height:40rpx; padding: 0 60rpx;'>请下载app体验完整内容，现在前往下载吗？</view>
+      <view class="clear1"></view>
+      <view class="wb100" style='border-bottom:1rpx solid #e1e1e1'></view>
+      <view class="h140rpx lh70rpx pat10 pab10 text-center Fblue F32">
+        <view data-url="">暂无ios版</view>
+        <view class="wb100" data-url="http://appdetailh5.vivo.com.cn/detail/2372484?source=1" bindtap='copyUrl'>安卓版下载地址</view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{loading}}">
+    <view class="loadingBg">
+      <view class="absolute w400rpx h400rpx" style='top:0;bottom:0;left:0;right:0;margin:auto'>
+        <image src='/images/loading.gif' class="w400rpx h400rpx"></image>
+      </view>
+    </view>
+  </block>
+
+  <view class='wb100 h350rpx'>
+    <image src="{{bookImg}}" class="h350rpx img-filter40" style='width:750rpx' mode="top" />
+  </view>
+
+  <view style="background: rgba(255,255,255,0.1);top:0;left:0;z-index:9" class="wb100 h350rpx absolute"></view>
+
+  <view class="wb100 h350rpx absolute" style='left:0;right:0;top:0;margin:0 auto;z-index:100'>
+    <view class="pal60 par60">
+      <view class="clear h40rpx"></view>
+      <image class="w200rpx h280rpx fl absolute" src='{{bookImg}}' style='z-index:99'></image>
+      <image class="w200rpx h280rpx fl absolute" src='/images/book.png' style='z-index:9'></image>
+      <view class="fl h280rpx mal30" style='margin-left:230rpx'>
+        <view class="clear h30rpx"></view>
+        <view class="F36" style='word-wrap:break-word; width:400rpx'>{{bookName}}</view>
+        <view class="clear h10rpx"></view>
+        <view class="F28 h40rpx lh40rpx" style='color:#529BFF'>{{author}}</view>
+        <view class="F28 h60rpx lh60rpx">{{wordCount}}万字</view>
+        <view class="F28 h40rpx lh40rpx">暂无评分</view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="clear h10rpx warpper-gray-8"></view>
+
+  <view class="clear h20rpx"></view>
+
+  <view class="pal30 par30">
+    <view class="F28 lh45rpx">{{intro}}</view>
+  </view>
+
+  <view class="wb100 absolute h100rpx lh100rpx bor-solid-1t bor-gray" style='bottom:0'>
+    <view class="wb50 fl" bindtap="add">
+      <view class="center w220rpx h100rpx">
+        <block wx:if="{{already}}">
+          <image class="w50rpx h50rpx fl mat25" src='/images/already.png'></image>
+          <view class="fl mal10 Fgray-1">已在书架</view>
+        </block>
+        <block wx:else>
+          <image class="w50rpx h50rpx fl mat25" src='/images/icon_add.png'></image>
+          <view class="fl mal10">加入书架</view>
+        </block>
+      </view>
+    </view>
+
+    <block wx:if="{{check}}">
+      <view class="wb50 fr Fwhite" style='background-color:#529BFF' bindtap="showDonwLoad">
+        <view class="center w300rpx h100rpx">
+          <image class="w60rpx h60rpx fl mat20" src='/images/download.png'></image>
+          <view class="fl mal10">下载app阅读</view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:else>
+      <navigator url="/pages/read/read?bookID={{bookID}}&bookName={{bookName}}">
+        <view class="wb50 fr Fwhite" style='background-color:#529BFF'>
+          <view class="center w220rpx h100rpx">
+            <image class="w50rpx h50rpx fl mat25" src='/images/icon_read.png'></image>
+            <view class="fl mal10">开始阅读</view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+
+  </view>
+</view>

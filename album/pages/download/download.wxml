@@ -1,0 +1,60 @@
+<!--pages/delete/delete.wxml-->
+<view class="wb100">
+
+  <block wx:if="{{isDownload == false}}">
+    <view class="text-center F30">已选择{{photoNum}}张</view>
+  </block>
+
+  <block wx:else>
+    <view class="pal40 par40">
+        <text class='fl F24 lh40rpx Fgray-2'>正在下载{{plan}}%</text>
+        <text class='fr F24 lh40rpx Fgray-2'>分享美好瞬间</text>
+
+        <view class="clear"></view>
+
+        <view class="h20rpx wb100 warpper-gray-4 radius20">
+          <view class="h20rpx fl warpper-green radius20" style='width:{{plan}}%'>
+
+          </view>
+        </view>
+      </view>
+  </block>
+
+
+  <view class="clear1"></view>
+
+  <block wx:for='{{imgList}}' wx:key='{{key}}'>
+    <view class="pal15 par15">
+      <view class="wb100">
+        <view class="wb33333 fl relative" bindtap="select" data-index="{{index}}" data-img_id="{{item.img_id}}">
+          <image class="w230rpx h230rpx center" mode='aspectFill' src='{{item.img_path}}'></image>
+          <block wx:if="{{item.selectImg}}">
+            <image class="w40rpx h40rpx absolute" src='/images/xzzp_pre.png' style='right:20rpx; top:10rpx'></image>
+          </block>
+          <block wx:else>
+            <image class="w40rpx h40rpx absolute" src='/images/xzzp_nor.png' style='right:20rpx; top:10rpx'></image>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="clear h10rpx"></view> -->
+  </block>
+
+
+  <view class="fixed wb100 h100rpx lh100rpx text-center bor-solid-1t F30 bor-gray2" style='bottom: 0'>
+    <view class="fl pal20" bindtap="selectAll">
+      <block wx:if="{{isAll}}">
+        <image class="w40rpx h40rpx fl mat30" src='/images/xzzp_pre.png'></image>
+      </block>
+      <block wx:else>
+        <image class="w40rpx h40rpx fl mat30" src='/images/xzzp_nor.png'></image>
+      </block>
+      <view class="fl mal10">全选</view>
+    </view>
+    <view class="fr par20" bindtap="delete">
+      <view class="w180rpx h60rpx lh60rpx warpper-green-4 Fwhite radius10 mat20">立即下载</view>
+    </view>
+  </view>
+
+
+</view>

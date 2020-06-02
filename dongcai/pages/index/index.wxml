@@ -1,0 +1,441 @@
+<!--index.wxml-->
+<view class="wb100 warpper-gray-1">
+
+  <loader id="loader"></loader>
+
+  <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+  </login-tag>
+
+  <!-- 筛选弹层 -->
+  <block wx:if="{{showFiltrate}}" >
+    <view class="dialogBg" bindtap="closeFiltrate"></view>
+
+    <view class="wb100 fixed h100 warpper-gray-1" style='top:0; left: 0; z-index:9999;'>
+      <view class="pat20 pab20 h60rpx lh60rpx warpper-red Fwhite F32 text-center">
+        <view class="w150rpx fl" bindtap='closeFiltrate' data-val='back'>
+          返回
+        </view>
+        <view class="w450rpx fl">
+          比赛筛选
+        </view>
+        <view class="w150rpx fr" bindtap='closeFiltrate' data-val='ok'>
+          确定
+        </view>
+      </view>
+
+      <view class="pa25 ">
+        <view class="wb100">
+
+          <view class="text-center center bor-red bor-solid-1a h70rpx radius10 over-hidden" style='width:486rpx;'>
+            <block wx:for="{{['全部', '竞彩', '北单', '足彩']}}" wx:key="{{index}}">
+              <view class="w120rpx fl {{ index < 3 ? 'bor-red bor-solid-1r' : '' }} F28 h70rpx lh70rpx" bindtap="changeFliterType" data-index="{{index}}">
+                <block wx:if="{{index == filtrateIndex}}">
+                  <view class="wb100 h70rpx warpper-red Fwhite">
+                    {{item}}
+                  </view>
+                </block>
+
+                <block wx:else>
+                  <view class="wb100 h70rpx warpper-white Fred">
+                    {{item}}
+                  </view>
+                </block>
+
+              </view>
+            </block>
+          </view>
+
+          <view class="clear1"></view>
+
+          <view class="wb100 F28 text-center lh70rpx">
+            <view class="w210rpx fl mab30 warpper-white bor-gray2 bor-solid-2a radius10" bindtap='selectAll'>
+              全选
+            </view> 
+            <view class="w210rpx fl mab30 warpper-white mal30 mar30 bor-gray2 bor-solid-2a radius10" bindtap='selectInvert'>
+              反选
+            </view>
+            <view class="w210rpx fl mab30 warpper-white bor-gray2 bor-solid-2a radius10" bindtap='selectFive'>
+              仅五大联赛
+            </view>
+
+          </view>
+
+          <view class="clear"></view>
+
+          <view class="wb100 F28">
+            <block wx:for="{{fliterList}}" wx:key="{{index}}">
+            <view class="w210rpx fl mab30 warpper-white {{ index % 3 == 1 ? ' mal30 mar30 ' : '' }}">
+
+
+              <block wx:if="{{item.selected}}">
+                <view class='pa10 bor-red bor-solid-2a radius10 h50rpx lh50rpx relative Fred' bindtap='selectOff' data-value="{{item}}">
+                  <text class='fl'>{{item.name}}</text>
+                  <text class='fr'>{{item.val}}</text>
+                  <image src='/images/icon-selected.png' class='w40rpx h40rpx absolute' style=';bottom:-1rpx; right:-1rpx;'></image>
+                </view>
+              </block>
+
+              <block wx:else>
+                <view class='pa10 bor-gray2 bor-solid-2a radius10 h50rpx lh50rpx' bindtap='selectOn' data-value="{{item}}">
+                  <text class='fl'>{{item.name}}</text>
+                  <text class='fr'>{{item.val}}</text>
+                </view>
+              </block>
+
+            </view>
+
+            </block>
+          </view>
+
+        </view>
+
+        <view class="clear2"></view>
+        
+      </view>
+
+    </view>
+    
+  </block>
+
+  <!-- 导航 -->
+  <view class="wb100 warpper-red pat20 pab20 h60rpx">
+
+    <view class="pal50 par50 text-center">
+      <view class="w100rpx h60rpx fl">
+        <image src='/images/split_screen.png' class='w40rpx h40rpx mat10 fl'></image>
+      </view>
+      
+      <view class="w450rpx h80rpx fl">
+        <view class="w180rpx h60rpx lh60rpx center bor-white bor-solid-2a radius5 F28">
+
+          <block wx:if="{{ballType == 0}}">
+            <view class="wb50 fl warpper-white Fred">
+              足球
+            </view>
+            <view class="wb50 fl Fwhite" bindtap='changeBallType' data-value="1">
+              蓝球
+            </view>
+          </block>
+
+          <block wx:else>
+            <view class="wb50 fl Fwhite" bindtap='changeBallType' data-value="0">
+              足球
+            </view>
+            <view class="wb50 fl warpper-white Fred" >
+              蓝球
+            </view>
+          </block>
+         
+        </view>
+      </view>
+
+      <view class="w100rpx h60rpx fr">
+        <image src='/images/icon-filtrate.png' class='w60rpx h60rpx fr' bindtap='openFiltrate'></image>
+      </view>
+      
+    </view>
+
+  </view>
+
+  <view class="clear"></view>
+
+  <!-- 分类 -->
+  <view class="h80rpx lh80rpx text-center F28 Fgray-3 warpper-white bor-solid-1b bor-solid-1t bor-gray2">
+    <block wx:for="{{['全部', '进行中', '热门', '已结束', '已关注']}}" wx:key="{{index}}">
+      <view class="w110rpx fl {{ showType == index ? 'bor-red bor-solid-5b' : 'pab5' }}"  bindtap="changeShowType" data-value="{{index}}">
+        {{item}}
+      </view>
+    </block>
+
+    <view class="w150rpx fr h50rpx lh50rpx mat10 bor-solid-1a bor-red radius10 Fred mar25" bindtap='openDate'>
+      日期查询
+    </view>
+
+  </view>
+
+  <view class="clear2"></view>
+
+  <!-- 进行中的赛程 -->
+  <block wx:if="{{ingMatchs.length}}">
+     <!-- list -->
+    <block wx:for="{{ingMatchs}}" wx:key="{{index}}">
+      <view class="wb100 h160rpx warpper-white relative bor-solid-1t bor-gray2">
+        <view class="w10rpx warpper-black-1 h160rpx fl">
+        </view>
+        <!-- 收藏按钮 -->
+        <view class="w50rpx h50rpx absolute" style='top:10rpx; left:20rpx' bindtap='fav'>
+          <image src='/images/icon-fav.png' class='h50rpx w50rpx' wx:if="{{item.is_collect == 'N'}}"></image>
+          <image src='/images/icon-fav-on.png' class='h50rpx w50rpx' wx:else></image>
+        </view>
+
+        <!-- 比赛信息 -->
+        <navigator url='/pages/detail/detail?matchID={{item.match_id}}&date={{item.match_start_time3}}'>
+          <view class="w600rpx center h160rpx">
+            <view class="w150rpx fl relative pat20 pab20">
+                <view class="w60rpx h60rpx center">
+                  <image src='{{item.home_logo}}' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                  {{item.home}}
+                  <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='left: {{ -5 + (2- item.home.length) * 15 }}rpx; top:80rpx'>
+                    [3]
+                  </view>
+              </view>
+            </view>
+
+            <!-- 比赛信息 -->
+            <view class='w400rpx h40rpx pat10 pab10 absolute' style='left:0; right:0; margin:auto'>
+              <view class="wb100 text-center h40rpx lh40rpx F26">
+              {{item.number}} {{item.match_start_time2}} {{item.league}} {{item.round ? item.round : ''}}
+              </view>
+            </view>
+
+            <!-- VS -->
+            <view class="w300rpx fl text-center">
+              <view class="clear h40rpx"></view>
+              <view class="F32 h70rpx lh70rpx">
+                VS
+              </view>
+              <view class="F24 w140rpx h20rpx lh20rpx pa8 bor-solid-1a bor-green radius5 center Fgreen relative text-right" bindtap="toLive">
+                <image src='/images/icon-movie.png' class='h35rpx w35rpx absolute' style='top:2rpx; left:8rpx;'></image>
+                现场直播
+              </view>
+            </view>
+
+            <view class="w150rpx fr relative pat20 pab20">
+                <view class="w60rpx h60rpx center">
+                  <image src='{{item.away_logo}}' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                  {{item.away}}
+                  <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='right:{{ -5 + ((3 - item.away.length) * 15) }}rpx; top:80rpx'>
+                    [3]
+                  </view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+      </view>
+
+    </block>
+  </block>
+ 
+  <!-- 未开始的赛程 -->
+  <block wx:if="{{ingMatchs.length}}">
+    <view class="wb100 warpper-gray-1 h60rpx lh60rpx text-center F28">{{date}}</view>
+    <!-- list -->
+    <block wx:for="{{ingMatchs}}" wx:key="{{index}}">
+      <view class="wb100 h160rpx warpper-white relative bor-solid-1t bor-gray2">
+        <view class="w10rpx warpper-black-1 h160rpx fl">
+        </view>
+        <!-- 收藏按钮 -->
+        <view class="w50rpx h50rpx absolute" style='top:10rpx; left:20rpx' bindtap='fav'>
+          <image src='/images/icon-fav.png' class='h50rpx w50rpx' wx:if="{{item.is_collect == 'N'}}"></image>
+          <image src='/images/icon-fav-on.png' class='h50rpx w50rpx' wx:else></image>
+        </view>
+
+        <!-- 比赛信息 -->
+        <navigator url='/pages/detail/detail?matchID={{item.match_id}}&date={{item.match_start_time3}}'>
+          <view class="w600rpx center h160rpx">
+            <view class="w150rpx fl relative pat20 pab20">
+                <view class="w60rpx h60rpx center">
+                  <image src='{{item.home_logo}}' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                  {{item.home}}
+                  <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='left: {{ -5 + (2- item.home.length) * 15 }}rpx; top:80rpx'>
+                    [3]
+                  </view>
+              </view>
+            </view>
+
+            <!-- 比赛信息 -->
+            <view class='w400rpx h40rpx pat10 pab10 absolute' style='left:0; right:0; margin:auto'>
+              <view class="wb100 text-center h40rpx lh40rpx F26">
+              {{item.number}} {{item.match_start_time2}} {{item.league}} {{item.round ? item.round : ''}}
+              </view>
+            </view>
+
+            <!-- VS -->
+            <view class="w300rpx fl text-center">
+              <view class="clear h40rpx"></view>
+              <view class="F32 h70rpx lh70rpx">
+                VS
+              </view>
+              <view class="F24 w140rpx h20rpx lh20rpx pa8 bor-solid-1a bor-green radius5 center Fgreen relative text-right" bindtap="toLive">
+                <image src='/images/icon-movie.png' class='h35rpx w35rpx absolute' style='top:-4rpx; left:8rpx;'></image>
+                现场直播
+              </view>
+            </view>
+
+            <view class="w150rpx fr relative pat20 pab20">
+                <view class="w60rpx h60rpx center">
+                  <image src='{{item.away_logo}}' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                  {{item.away}}
+                  <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='right:{{ -5 + ((3 - item.away.length) * 15) }}rpx; top:80rpx'>
+                    [3]
+                  </view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+    </block>
+  </block>
+
+  <!-- 非本日的其他赛程 -->
+  <block wx:if="{{othMatchs.length}}">
+  
+     <!-- list -->
+    <block wx:for="{{othMatchs}}" wx:key="{{index}}">
+
+      <view class="wb100 warpper-gray-1 h60rpx lh60rpx text-center F28">{{item.date}}</view>
+
+      <block wx:for="{{item.list}}" wx:key="{{index}}" wx:for-item="item2">
+
+       <view class="wb100 h160rpx warpper-white relative bor-solid-1t bor-gray2">
+          <view class="w10rpx warpper-black-1 h160rpx fl">
+          </view>
+          <!-- 收藏按钮 -->
+          <view class="w50rpx h50rpx absolute" style='top:10rpx; left:20rpx' bindtap='fav'>
+            <image src='/images/icon-fav.png' class='h50rpx w50rpx' wx:if="{{item2.is_collect == 'N'}}"></image>
+            <image src='/images/icon-fav-on.png' class='h50rpx w50rpx' wx:else></image>
+          </view>
+
+          <!-- 比赛信息 -->
+          <navigator url='/pages/detail/detail?matchID={{item2.match_id}}&date={{item2.match_start_time3}}'>
+            <view class="w600rpx center h160rpx">
+              <view class="w150rpx fl relative pat20 pab20">
+                  <view class="w60rpx h60rpx center">
+                    <image src='{{item2.home_logo}}' class='w60rpx h60rpx'></image>
+                  </view>
+                  <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                    {{item2.home}}
+                    <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='left: {{ -5 + (2- item2.home.length) * 15 }}rpx; top:80rpx'>
+                      [3]
+                    </view>
+                </view>
+              </view>
+
+              <!-- 比赛信息 -->
+              <view class='w400rpx h40rpx pat10 pab10 absolute' style='left:0; right:0; margin:auto'>
+                <view class="wb100 text-center h40rpx lh40rpx F26">
+                {{item2.number}} {{item2.match_start_time2}} {{item2.league}} {{item2.round ? item2.round : ''}}
+                </view>
+              </view>
+
+              <!-- VS -->
+              <view class="w300rpx fl text-center">
+                <view class="clear h40rpx"></view>
+                <view class="F32 h70rpx lh70rpx">
+                  VS
+                </view>
+                <view class="F24 w140rpx h20rpx lh20rpx pa8 bor-solid-1a bor-green radius5 center Fgreen relative text-right" bindtap="toLive">
+                  <image src='/images/icon-movie.png' class='h35rpx w35rpx absolute' style='top:2rpx; left:8rpx;'></image>
+                  现场直播
+                </view>
+              </view>
+
+              <view class="w150rpx fr relative pat20 pab20">
+                  <view class="w60rpx h60rpx center">
+                    <image src='{{item2.away_logo}}' class='w60rpx h60rpx'></image>
+                  </view>
+                  <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                    {{item2.away}}
+                    <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='right:{{ -5 + ((3 - item2.away.length) * 15) }}rpx; top:80rpx'>
+                      [3]
+                    </view>
+                </view>
+              </view>
+
+            </view>
+          </navigator>
+        </view>
+  
+        <block wx:if="{{item.list.length-1 > index}}">
+          <view class="clear2 bor-solid-1t bor-gray2"></view>
+        </block>
+
+      </block>
+
+    </block>
+  </block>
+
+  <!-- 已结束的赛程 -->
+  <block wx:if="{{endMatchs.length}}">
+
+    <view class="wb100 warpper-gray-1 h60rpx lh60rpx text-center F28">已结束</view>
+
+    <!-- list -->
+    <block wx:for="{{endMatchs}}" wx:key="{{index}}">
+      <view class="wb100 h160rpx warpper-white relative bor-solid-1t bor-gray2">
+        <view class="w10rpx warpper-black-1 h160rpx fl">
+        </view>
+        <!-- 收藏按钮 -->
+        <view class="w50rpx h50rpx absolute" style='top:10rpx; left:20rpx' bindtap='fav'>
+          <image src='/images/icon-fav.png' class='h50rpx w50rpx' wx:if="{{item.is_collect == 'N'}}"></image>
+          <image src='/images/icon-fav-on.png' class='h50rpx w50rpx' wx:else></image>
+        </view>
+
+        <!-- 比赛信息 -->
+        <navigator url='/pages/detail/detail?matchID={{item.match_id}}&date={{item.match_start_time3}}'>
+          <view class="w600rpx center h160rpx">
+            <view class="w150rpx fl relative pat20 pab20">
+                <view class="w60rpx h60rpx center">
+                  <image src='{{item.home_logo}}' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                  {{item.home}}
+                  <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='left: {{ -5 + (2- item.home.length) * 15 }}rpx; top:80rpx'>
+                    [3]
+                  </view>
+              </view>
+            </view>
+
+            <!-- 比赛信息 -->
+            <view class='w400rpx h40rpx pat10 pab10 absolute' style='left:0; right:0; margin:auto'>
+              <view class="wb100 text-center h40rpx lh40rpx F26">
+              {{item.number}} {{item.match_start_time2}} {{item.league}} {{item.round ? item.round : ''}}
+              </view>
+            </view>
+
+            <!-- VS -->
+            <view class="w300rpx fl text-center">
+              <view class="clear h40rpx"></view>
+              <view class="F32 h70rpx lh70rpx">
+                VS
+              </view>
+              <view class="F24 w140rpx h20rpx lh20rpx pa8 bor-solid-1a bor-green radius5 center Fgreen relative text-right" bindtap="toLive">
+                <image src='/images/icon-movie.png' class='h35rpx w35rpx absolute' style='top:2rpx; left:8rpx;'></image>
+                现场直播
+              </view>
+            </view>
+
+            <view class="w150rpx fr relative pat20 pab20">
+                <view class="w60rpx h60rpx center">
+                  <image src='{{item.away_logo}}' class='w60rpx h60rpx'></image>
+                </view>
+                <view class="wb100 h60rpx lh60rpx F28 text-center text-over-hidden1">
+                  {{item.away}}
+                  <view class="Fgray-2 absolute F28 h60rpx lh60rpx w50rpx text-right" style='right:{{ -5 + ((3 - item.away.length) * 15) }}rpx; top:80rpx'>
+                    [3]
+                  </view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+    </block>
+  </block>
+ 
+  <view class="clear2 bor-solid-1t bor-solid-1b bor-gray2"></view>
+
+</view>

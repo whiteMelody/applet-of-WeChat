@@ -1,0 +1,37 @@
+<!--pages/syncAlbum/syncAlbum.wxml-->
+<view class="wb100 warpper-gray-1" style='height:{{windowHeight}}px'>
+
+  <view class="clear h40rpx"></view>
+
+  <block wx:for="{{photoList}}" wx:key='{{key}}'>
+    <view class="wb100 h120rpx warpper-white" bindtap="select" data-index="{{index}}" data-photo_id="{{item.photo_id}}">
+      <view class="pal40 F34 fl h120rpx lh120rpx">{{item.name}}</view>
+      <view class="par40 fr">
+        <block wx:if="{{item.selectAlbum}}">
+          <image class="w40rpx h40rpx mat40" src='/images/xzzp_pre.png'></image>
+        </block>
+        <block wx:else>
+          <image class="w40rpx h40rpx mat40" src='/images/xzzp_nor.png'></image>
+        </block>
+      </view>
+    </view>
+  </block>
+
+  <view class="clear h100rpx"></view>
+
+  <view class="fixed wb100 h100rpx lh100rpx text-center bor-solid-1t F30 bor-gray2 warpper-white" style='bottom: 0'>
+    <view class="fl pal20" bindtap="selectAll">
+      <block wx:if="{{isAll}}">
+        <image class="w40rpx h40rpx fl mat30" src='/images/xzzp_pre.png'></image>
+      </block>
+      <block wx:else>
+        <image class="w40rpx h40rpx fl mat30" src='/images/xzzp_nor.png'></image>
+      </block>
+      <view class="fl mal10">全选</view>
+    </view>
+    <view class="fr par20" bindtap="syncAlbum">
+      <view class="w180rpx h60rpx lh60rpx warpper-green-4 Fwhite radius10 mat20">立即同步</view>
+    </view>
+  </view>
+
+</view>

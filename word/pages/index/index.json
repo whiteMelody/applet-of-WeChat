@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "login-tag": "/pages/login/login"
+  },
+  "navigationBarBackgroundColor": "#07305A",
+  "disableScroll": true
+}

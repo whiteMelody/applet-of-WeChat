@@ -1,0 +1,25 @@
+<!--pages/examList/examList.wxml-->
+
+<view class='wb100 warpper-gray-1' style='min-height: {{height}}px'>
+
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class="pa30">
+        <view class="wb100 radius20 over-hidden warpper-white" style='height:517rpx; box-shadow: 0rpx 0rpx 50rpx rgba(0, 0, 0, .25)'>
+          <navigator url="/pages/testCover/testCover?id={{item.id}}">
+
+            <view class="wb100 relative">
+              <view  style='width:690rpx; height:517rpx; line-height: 517rpx; z-index:1; background:rgba(0,0,0,.5)' class='absolute Fwhite F32 text-center'>
+                {{item.name}}
+              </view>
+              <image src='/images/cover1.jpg' style='width:690rpx; height:517rpx;'></image>
+            </view>
+
+          </navigator>
+        </view>
+      </view>
+
+      <view class="clear"></view>
+
+    </block>
+
+</view>

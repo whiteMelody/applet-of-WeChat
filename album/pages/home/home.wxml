@@ -1,0 +1,137 @@
+<!--pages/home/home.wxml-->
+<view class="wb100">
+
+  <image class="wb100 h350rpx absolute blur" mode='aspectFill' src='{{cover}}' style='z-index:-1'></image>
+
+  <view class="w120rpx h120rpx center pat56">
+    <image class="w120rpx h120rpx radius50per" src='{{head}}'></image>
+  </view>
+
+  <view class="mat20 F36 Fwhite text-center">{{name}}</view>
+
+  <view class="mat20 F30 Fwhite text-center">《{{albumName}}》</view>
+
+  <view class="clear h100rpx"></view>
+
+  <block wx:if="{{empty}}">
+    <view class="wb100">
+      <block wx:for="{{homeList}}" wx:key="{{key}}">
+        <view class="wb100">
+          <view class="pal40 par40">
+            <view class="wb100 mat20">
+              <image class="fl w60rpx h60rpx radius50per" src='{{head}}'></image>
+              <view class="fl mal10 h60rpx">
+                <view class="F30 h30rpx lh30rpx">{{name}}</view>
+                <view class="F20 mat5 Fgray-2">{{item.createtime}}</view>
+              </view>
+              <view class="clear h10rpx"></view>
+              <view class="F30">{{item.emotion}}</view>
+              <block wx:if="{{item.location != ''}}">
+                <view class="clear h15rpx"></view>
+                <view class="F24 Fgray-2">
+                  <image class="w24rpx h28rpx fl mat5" src='/images/wz_2.png'></image>
+                  <view class="fl mal10">{{item.location}}</view>
+                </view>
+                <view class="clear h20rpx"></view>
+              </block>
+            </view>
+          </view>
+
+          <view class="pal30 par30">
+            <block wx:for="{{item.images}}" wx:for-item="items" wx:key="" wx:key="{{key}}">
+
+              <image class="w210rpx h210rpx fl mal5 mar5 mab5 mat5" src='{{items.img_path}}' bindtap="getImg" data-index="{{index}}" data-imglist="{{item.images}}" data-img="{{items.img_path}}"  mode="aspectFill"></image>
+
+              <!-- <image class="w210rpx h210rpx fl mal10 mar10 mab10 mat10" src='{{items.img_path}}' bindtap="getImg" data-imglist="{{item.images}}" data-img="{{items.img_path}}"></image> -->
+            </block>
+          </view>
+
+          <view class="clear h40rpx"></view>
+          <view class="pal40 par40">
+
+            <image class="w40rpx h40rpx fl" src='/images/xz.png' bindtap="download" data-imglist="{{item.images}}"></image>
+            <image class="w40rpx h40rpx fl mal30" src='/images/tb.png' bindtap="sync" data-imglist="{{item.images}}"></image>
+            <image class="w40rpx h40rpx fl mal30" src='/images/share.png'></image>
+
+            <view class="fr">
+              <block wx:if="{{item.is_liked != 0}}">
+                <view class="fl F30 mar15 Fgreen-2 mat5">{{item.like_count}}</view>
+                <image class="fr w40rpx h40rpx" src='/images/dz_pre.png'></image>
+              </block>
+              <block wx:else>
+                <view class="fl F30 mar15 mat5 Fgray-3">{{item.like_count}}</view>
+                <image class="fr w40rpx h40rpx" src='/images/dz_nor.png'></image>
+              </block>
+            </view>
+          </view>
+          <view class="clear"></view>
+          <view class="pal40 par40 pat20 pab20" wx:if="{{allow_comment !=0 && allow_comment !='0'}}">
+                <block wx:for="{{item.comments}}" wx:key="{{index}}">
+                  <view class="wb100 F32 lh50rpx">
+                  <text>{{item.user_info.name}}：</text>
+                  <text class='Fgray-2'>{{item.content}}</text>
+                  </view>                
+                </block>
+          </view>
+          <!-- <view class="clear h20rpx"></view> -->
+
+          <view class="wb100"  wx:if="{{allow_comment !=0 && allow_comment !='0'}}">
+
+             <!-- 查看全部  -->
+              <navigator url="../detail/detail?dynamic_id={{item.dynamic_id}}">
+                <view class="Fgray-2 lh30rpx F28 pal40" wx:if="{{item.cmnt_count>3}}"> 查看所有{{item.cmnt_count}}条评论 > </view>
+              </navigator>
+
+          </view>
+
+          <view class="pal20 par20" wx:if="{{allow_comment !=0 && allow_comment !='0'}}">
+            
+             <view class="pa20" bindtap='comment'  data-id="{{item.dynamic_id}}" data-index="{{index}}">
+                <view class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 Fgray-2">说点什么吧</view>
+              </view>
+
+          </view>
+
+          <view class="clear h60rpx"></view>
+        </view>
+
+      </block>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class='clear h120rpx'></view>
+    <view class="w244rpx center">
+      <image class="w244rpx h190rpx" src='/images/wu.png'></image>
+    </view>
+    <view class="pa30">
+      <view class="text-center F36 Fgray-2">还没有任何照片哦，快去上传吧</view>
+    </view>
+  </block>
+
+  <block wx:if="{{isReply}}">
+      <view class="dialogBg" bindtap="setReply" data-value='false'></view>
+      <view class="fixed warpper-white radius10 center" style='bottom:{{inputHeight - 48}}px; left:0; z-index:999; width:750rpx; height:120rpx;'>
+        <view class="pa30">
+     
+          <input placeholder="回复{{ReplyVal.userName}}：" bindfocus="inputFocus" focus="true" bindblur="replyBlur" bindinput="replyInput" style='width:470rpx' class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 fl" /> 
+          <view class="fr w150rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30 text-center" bindtap="setReply" data-value='true'>发送</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </block>
+
+
+    <block wx:if="{{isComment}}">
+      <view class="dialogBg" bindtap="setComment" data-value='false'></view>
+      <view class="fixed warpper-white radius10 center" style='bottom:{{inputHeight - 48}}px; left:0; z-index:999; width:750rpx; height:120rpx;'>
+        <view class="pa30">
+          <input placeholder="说点什么吧" bindfocus="inputFocus" focus="true" bindblur="inputBlur" bindinput="commentInput" style='width:470rpx' class="warpper-gray-1 pal30 par30 h60rpx lh60rpx F28 radius30 fl" /> 
+          <view class="fr w150rpx h60rpx lh60rpx warpper-green-4 Fwhite radius30 text-center" bindtap="setComment" data-value='true'>发送</view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </block>
+
+
+</view>

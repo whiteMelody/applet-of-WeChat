@@ -1,0 +1,72 @@
+<view class="wb100 h300rpx">
+  <view class="wrap">
+    <view class="circle">
+      <view class="percent left-success" style="transform:rotate({{correctCount/sumCount*360}}deg)"></view>
+      <view class="percent right-success wth0"></view>
+      <view class="percent left-error" style="transform:rotate({{(correctCount+errorCount)/sumCount*360}}deg)"></view>
+      <view class="percent right-error wth0"></view>
+    </view>
+    <view class="info text-center">
+      <view class="Fgray-2 h40rpx lh40rpx mat50">已完成</view>
+      <view class="Fgray-3 h40rpx lh40rpx F36">{{complete}} %</view>
+    </view>
+  </view>
+</view>
+<view class="clear"></view>
+<view class="wb100">
+  <view class="text-center pal30 par30 Fgray-2 lh30rpx">
+    <view class="wb33 fl">
+      <view class="w10rpx h10rpx radius50per warpper-blue fl ma10"></view>
+      <view class="fl">正确</view>
+    </view>
+    <view class="wb33 fl">
+      <view class="w10rpx h10rpx radius50per warpper-red fl ma10"></view>
+      <view class="fl">错误</view>
+    </view>
+    <view class="wb33 fl">
+      <view class="w10rpx h10rpx radius50per warpper-gray-1 fl ma10"></view>
+      <view class="fl">未完成</view>
+    </view>
+    <view class="clear"></view>
+  </view>
+  <view class="pa30 Fgray-2">
+    <view class="fl wb40">
+      <view class="fl">您共答对</view>
+      <view class="fr Fblue">{{correctCount}}题</view>
+    </view>
+    <view class="fr wb40">
+      <view class="fl">正确率</view>
+      <view class="fr Fblue">{{count1}}%</view>
+    </view>
+    <view class="clear1"></view>
+    <view class="fl wb40">
+      <view class="fl">您共答错</view>
+      <view class="fr Fred">{{errorCount}}题</view>
+    </view>
+    <view class="fr wb40">
+      <view class="fl">错误率</view>
+      <view class="fr Fred">{{count2}}%</view>
+    </view>
+    <view class="clear1"></view>
+    <view class="fl wb40">
+      <view class="fl">您已完成</view>
+      <view class="fr Fgray-3">{{correctCount+errorCount}}题</view>
+    </view>
+    <view class="fr wb40">
+      <view class="fl">完成率</view>
+      <view class="fr Fgray-3">{{count3}}%</view>
+    </view>
+    <view class="clear1"></view>
+  </view>
+
+  <!--<view style="position:fixed; bottom:0;width:100%; border-top:1rpx solid #e1e1e1;">
+        <view class="wb80 fl text-center warpper-white h50rpx lh50rpx Fgray-2" bindtap="toTest">
+            继续科目一考试
+        </view>
+        <view class="wb20 fr warpper-gray-1 h50rpx lh50rpx text-center" bindtap="del">
+            <view>
+                <image src="../../image/icon-delete.png" class="middle" style="width:20rpx; height:20rpx;"></image>
+            </view>
+        </view>
+    </view>-->
+</view>

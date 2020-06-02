@@ -1,0 +1,21 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/list/list",
+    "pages/randList/randList",
+    "pages/errorList/errorList",
+    "pages/classify/classify",
+    "pages/subPaper/subPaper",
+    "pages/testList/testList",
+    "pages/record/record",
+    "pages/showTest/showTest",
+    "pages/reTest/reTest"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#24b8ee",
+    "navigationBarTitleText": "驾考题库",
+    "navigationBarTextStyle":"white"
+  }
+
+}

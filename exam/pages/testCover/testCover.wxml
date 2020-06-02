@@ -1,0 +1,66 @@
+<!--pages/test/test.wxml-->
+<view class='wb100 warpper-gray-1' style='min-height: {{height}}px'>
+
+ <login-tag 
+    id="login"
+    bind:cancelEvent="_cancelEvent"  
+    bind:confirmEvent="_confirmEvent">
+  </login-tag>
+
+    <block wx:if="{{user.openID}}">
+
+      <view class="wb100 warpper-gray-1" style='z-index:9999;'>
+        <view class="pa30 relative">
+          <view class="wb100 radius20 warpper-white" style=' box-shadow: 0rpx 0rpx 50rpx rgba(0, 0, 0, .25)'>
+            
+            <view class="pa30">
+
+              <view class="wb100 F36 lh50rpx Fgray-3 text-center">
+                {{paper.name}}
+              </view>
+
+              <view class="clear1"></view>
+
+              <view class="wb100 Fgray-2 F28 text-center lh40rpx">
+                {{paper.sum}}人测过
+              </view>
+
+              <view class="clear1"></view>
+
+              <view class="wb100">
+                <image src='/images/cover1.jpg' style='width:630rpx; height:472rpx;'></image>
+              </view>
+              
+              <view class="clear1"></view>
+
+              <view class="wb100 F28 Fgray-3 lh40rpx">
+                {{paper.comment}}
+              </view>
+              
+              <view class="clear1"></view>
+              <view class="clear1"></view>
+
+              <view class="wb100">
+                
+                <navigator url="/pages/test/test?id={{paper.id}}">
+                  <view class=" w300rpx h80rpx lh80rpx radius20 warpper-yellow Fwhite text-center F32 fl">
+                    开始测试
+                  </view>
+                </navigator>
+
+                <button open-type='share' class=" w300rpx h80rpx lh80rpx radius20 warpper-green Fwhite text-center F32 fr">分享给好友</button>
+                
+              </view>
+
+              <view class="clear"></view>
+
+            </view>
+
+          </view>
+        </view>
+
+      </view>
+
+  </block>
+
+</view>

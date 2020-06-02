@@ -1,0 +1,59 @@
+<!--pages/test/test.wxml-->
+<view class='wb100 warpper-gray-1'>
+
+  <view class="wb100 warpper-gray-1">
+    <view class="pa30 relative">
+      <view class="wb100 radius20 warpper-white" style='box-shadow: 0rpx 0rpx 50rpx rgba(0, 0, 0, .25)'>
+        
+        <view class="wb100 relative">
+          <view style='height:517rpx; line-height: 517rpx; z-index:1; background:rgba(0,0,0,.5)' class='absolute Fwhite F32 text-center wb100'>
+            {{paperName}}
+          </view>
+        
+          <image src='/images/cover1.jpg' class='wb100' style='height:517rpx;'></image>
+        </view>
+
+        <view class="pa30">
+          
+          <view class="wb100">
+            <view class="w80rpx h80rpx fl">
+              <image src='{{user.head}}' class='w80rpx h80rpx radius50per'></image>
+            </view>
+
+            <view class="w300rpx lh80rpx mal20 fl F32">
+              {{user.name}}
+            </view >
+
+          </view>
+
+          <view class="clear1"></view>
+
+          <view class="wb100 F32 Fblack lh50rpx">
+          测试结果：{{title}}
+          </view>
+
+          <view class="clear1"></view>
+
+          <view class="wb100 F28 Fgray-3 lh40rpx">
+            {{res}}
+          </view>
+          
+          <view class="clear1"></view>
+          
+          <view class="clear1"></view>
+
+          <view class="w500rpx center">
+
+            <button open-type='share' class=" w500rpx h100rpx lh100rpx radius20 warpper-green Fwhite text-center F32">分享给好友</button>
+            
+          </view>
+
+        </view>
+
+      </view>
+    </view>
+
+  </view>
+  
+
+</view>

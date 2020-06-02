@@ -1,0 +1,37 @@
+<!--pages/book/book.wxml-->
+<view class="wb100">
+
+  <block wx:if="{{loading}}">
+    <view class="loadingBg">
+      <view class="absolute w400rpx h400rpx" style='top:0;bottom:0;left:0;right:0;margin:auto'>
+        <image src='/images/loading.gif' class="w400rpx h400rpx"></image>
+      </view>
+    </view>
+  </block>
+
+  <block wx:for="{{bookList}}" wx:key="">
+    <navigator url="/pages/detail/detail?bookName={{item.bookName}}&author={{item.author}}&bookImg={{item.bookImg}}&intro={{item.intro}}">
+      <view class="wb100">
+        <view class="clear h30rpx"></view>
+        <view class="pal30 par30">
+
+          <image class="fl w160rpx h200rpx absolute" src='{{item.bookImg}}' style='z-index:99'></image>
+
+          <image class="fl w160rpx h200rpx absolute" src='/images/book.png' style='z-index:9'></image>
+
+          <view class="fl h200rpx w500rpx" style='margin-left:180rpx'>
+            <view class="clear h10rpx"></view>
+            <view class="F32 h40rpx lh40rpx text-over-hidden1">{{item.bookName}}</view>
+            <view class="clear h10rpx"></view>
+            <view class="F24 h40rpx lh40rpx Fgray-3 text-over-hidden1">{{item.author}}</view>
+            <view class="clear h10rpx"></view>
+            <view class="F30 Fgray-3 text-over-hidden2">{{item.intro}}</view>
+          </view>
+        </view>
+        <view class="clear h20rpx"></view>
+        <view class="clear h10rpx warpper-gray-8"></view>
+      </view>
+    </navigator>
+  </block>
+
+</view>

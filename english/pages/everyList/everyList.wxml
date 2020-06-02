@@ -1,0 +1,40 @@
+<!--pages/everyList/everyList.wxml-->
+
+<view class="wb100">
+  <view class="lh90rpx F14">
+    <block wx:for="{{datas}}" wx:key="{{index}}">
+      <view class="pal30 h80rpx lh80rpx F28 warpper-gray-3 Fgray-3 Fb">
+        {{item.date}}
+      </view>
+
+      <view class="clear1"></view>
+
+      <view class="pal30">
+        <block wx:for="{{item.datas}}" wx:key="{{index}}">
+          <block wx:if="{{item.newsType == 1}}">
+            <navigator url='/pages/everyDay/everyDay?date={{date}}'>
+              <view class="wb100">
+                <view class="w150rpx h150rpx warpper-blue fl radius20">
+                  <image src="{{item.imageURL}}?x-oss-process=image/resize,m_fill,w_150,h_150" class='radius20' style='width:150rpx; height:150rpx;' />
+                </view>
+
+                <view class="Fgray-3">
+                  <view class="h70rpx lh70rpx over-hidden pal20 F28 Fblack">
+                    每日一句
+                  </view>
+                  <view class='pal20 lh40rpx text-over-hidden2 F24'>
+                  {{item.languageEN}} {{item.languageCN}}
+                  </view>
+                </view>
+
+              </view>
+            </navigator>
+            <view class="clear1"></view>
+          </block>
+        </block>
+      </view>
+
+    </block>
+
+  </view>
+</view>

@@ -1,0 +1,37 @@
+<form catchsubmit="formSubmit" catchreset="formReset">
+  <view class="pa30">
+    <view class="wb100 h80rpx lh80rpx F30 bor-gray bor-solid-1b">
+      <view class="wb10 fl">标题</view>
+      <input name="title" class="wb85 fr h80rpx" placeholder="请输入标题" />
+    </view>
+    <view class="wb100 h80rpx lh80rpx F30">
+      <view class="wb10 fl">分类</view>
+      <view class="wb85 fr">
+
+      <radio-group class="radio-group" bindchange="radioChange">
+        <radio value="1" name="type" />涂鸦
+        <radio value="2" name="type" class="mal50" />签名
+      </radio-group>
+
+      </view>
+    </view>
+    <view class="wb100 h80rpx lh80rpx F30">
+      <view class="wb10 fl h80rpx">标签</view>
+      <view class="wb85 fr h80rpx">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{tags}}">
+          <view class="picker">
+            {{tags[index]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="wb100 h80rpx lh80rpx F30">
+      <view class="h80rpx">简介</view>
+      <textarea placeholder="请输入作品简介" name="content" style="background:#ffffff;border:1px solid #979797;border-radius:10rpx; padding:20rpx 3%; width:94%; height:238rpx; " />
+    </view>
+    <view class="clear h400rpx"></view>
+    <view class="wb100">
+      <button formType="submit" class="btn h80rpx">提交</button>
+    </view>
+  </view>
+</form>

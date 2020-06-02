@@ -1,0 +1,118 @@
+<!--index.wxml-->
+<view class="wb100">
+
+  <!-- search -->
+  <view class='wb100'>
+     <!--搜索框-->
+    <view class="pa30 warpper-white">
+      <block wx:if="{{search === false}}">
+        <view class="wb100 center h60rpx lh60rpx radius10 warpper-white text-center F30 Fgray-2 bor-gray bor-solid-1a" bindtap="openSearch">
+          <view class="w110rpx center h60rpx lh60rpx">
+            搜索
+            <image src="/images/icon-search.png" class="fr mat15" style="width:30rpx;height:30rpx; "></image>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="wb88 fl h60rpx lh60rpx radius10 warpper-white F30 Fgray-2 bor-gray bor-solid-1a">
+          <image src="/images/icon-search.png" class="fl ma15" style="width:30rpx;height:30rpx; "></image>
+          <input class="fl wb90 h60rpx lh60rpx Fgray-2 text-left" bindinput="eInput" bindconfirm="toSearch" focus/>
+        </view>
+        <view class="fr F30 Fblue lh60rpx h60rpx Fpink" bindtap="toSearch">搜索</view>
+      </block>
+      <view class="clear"></view>
+    </view>
+  </view>
+  
+  <view class='clear'></view>
+
+  <!-- <view class="wb100">
+      <view class="pa30 warpper-white">
+        <view class="wb50 fl">
+          <view class='pa5'>
+            <view class="wb100 warpper-blue h100rpx">
+            </view>
+          </view>
+        </view>
+        <view class="wb50 fl">
+          <view class='pa5'>
+            <view class="wb100 warpper-blue h100rpx">
+            </view>
+          </view>
+        </view>
+        <view class="wb50 fl">
+          <view class='pa5'>
+            <view class="wb100 warpper-blue h100rpx">
+            </view>
+          </view>
+        </view>
+        <view class="wb50 fl">
+          <view class='pa5'>
+            <view class="wb100 warpper-blue h100rpx">
+            </view>
+          </view>
+        </view>
+      </view>
+  </view> -->
+
+  <view class="clear1"></view>
+
+  <view class='wb100'>
+    <view class="pa30">
+      <block wx:for="{{cateList}}" wx:key="{{index}}">
+        <view class="w230rpx fl text-center mab30 relative" bindtap='toCate' data-id="{{item.next_level[0].id}}">
+          <image src='{{item.cate_img}}' class='w220rpx h220rpx'></image>
+          <view class='Fwhite F32 absolute wb100' style='bottom:30rpx'>{{item.cate_name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="clear1"></view>
+
+  <view class="wb100">
+  
+    <view class="wb100 h20px lh20rpx F32 Fblack-1 pa30 warpper-gray-1">
+      热门
+    </view>
+      <view class="wb100">
+         <block wx:for="{{list}}" wx:key="{{index}}">
+
+            <navigator url='/pages/detail/detail?id={{item.id}}'>
+
+              <view class="pat30 pab30 par30 relative h240rpx" style='padding-left:240rpx;'>
+                  
+                  <view class="w180rpx h240rpx warpper-gray-1 absolute" style='left:30rpx; top:30rpx;'>
+                    <image src='{{item.img_path}}' class='w180rpx h240rpx' mode='aspectFill'></image>
+                  </view>
+
+                  <view class="Fblack F32 h50rpx lh50rpx text-over-hidden1">{{item.food_name}}</view>
+                  <view class="clear h10rpx"></view>
+                  <view class="Fgray-2 F28 h90rpx lh45rpx text-over-hidden2">{{item.food_desc ? item.food_desc : '暂无简介'}}</view>
+                  <view class="clear1"></view>
+
+                  <view class="wb100 h50rpx">
+
+                    <view class="w300rpx fl Fgray-2 F24 lh50rpx">
+                      {{item.looked_num}}人做过 {{item.collection_num}}人收藏
+                    </view>
+
+                    <view class="w100rpx fr F24 Fgray-3 lh50rpx">
+                      <image src='/images/icon-star-on.png' class='h50rpx w50rpx fr' wx:if="{{item.isFav}}"></image>
+                      <image src='/images/icon-star.png' class='h50rpx w50rpx fr' wx:else></image>
+                      <!-- 收藏 -->
+                    </view>
+                  </view>
+              </view>
+
+            </navigator>
+
+            <view class="clear bor-gray bor-solid-1b"></view>
+
+        </block>
+    </view>
+  </view>
+
+  <view class="clear1"></view>
+
+</view>
